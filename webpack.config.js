@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const devServer = (isDev) => !isDev ? {} : {
     devServer: {
@@ -11,10 +12,11 @@ const devServer = (isDev) => !isDev ? {} : {
     },
   };
 
+const esLintPlugin = (isDev) => isDev ? [] : [ new ESLintPlugin({ extensions: ['ts', 'js'] }) ];
 
 module.exports = ({develop}) => ({
 mode: develop ? 'development' : 'production',
-devtool: develop ? 'inline-source-map' : 'none',
+devtool: develop ? 'inline-source-map' : false,
   entry: './src/index.ts',
   output: {
     filename: 'bundle.js',
@@ -50,6 +52,7 @@ devtool: develop ? 'inline-source-map' : 'none',
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    ...esLintPlugin(develop),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
