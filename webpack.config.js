@@ -4,7 +4,17 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
+const devServer = (isDev) => !isDev ? {} : {
+    devServer: {
+      open: true,
+      port: 8080,
+    },
+  };
+
+
+module.exports = ({develop}) => ({
+mode: develop ? 'development' : 'production',
+devtool: develop ? 'inline-source-map' : 'none',
   entry: './src/index.ts',
   output: {
     filename: 'bundle.js',
@@ -51,5 +61,6 @@ module.exports = {
 */
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new MiniCssExtractPlugin({ filename: '[name].css' }),
-  ]
-};
+  ],
+  ...devServer(develop) 
+});
