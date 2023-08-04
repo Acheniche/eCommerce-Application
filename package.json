@@ -3,7 +3,8 @@
     "scripts": {
         "build": "webpack",
         "dev": "webpack serve --env develop",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "prettier": "prettier --write \"src/**/*.ts\""
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.2.1",
