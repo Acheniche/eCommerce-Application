@@ -3,6 +3,7 @@ import MainPage from '../mainPage/mainPage';
 import RegistrationPage from '../registrationPage/registrationPage';
 import LoginPage from '../loginPage/loginPage';
 import Header from '../header/header';
+import ErrorPage, { ErrorTypes } from '../errors/error404';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -32,6 +33,8 @@ export default class App {
       page = new RegistrationPage(PageID);
     } else if (PageID === PagesID.loginPage) {
       page = new LoginPage(PageID);
+    } else {
+      page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
 
     if (page) {

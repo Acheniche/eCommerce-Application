@@ -17,7 +17,6 @@ const Buttons = [
 ];
 
 export default class Header extends Component {
-
   renderHeaderButtons() {
     const headerButtons = document.createElement('div');
     Buttons.forEach((button) => {

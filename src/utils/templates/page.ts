@@ -1,6 +1,6 @@
 export default abstract class Page {
   protected container: HTMLElement;
-  
+
   static TextObject = {};
 
   constructor(id: string) {
