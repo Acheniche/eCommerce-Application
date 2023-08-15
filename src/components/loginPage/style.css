@@ -1,0 +1,29 @@
+.login {
+  margin: auto;
+  margin-top: 10vw;
+  border: 1px solid;
+  width: 500px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.email-wrapper{
+  margin-top: 40px;
+}
+
+.button-wrapper{
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.toggle-password-button {
+  width: 20px;
+	height: 20px;
+	background: url(/src/assets/image/view.svg) 0 0 no-repeat;
+}
+
+.view {
+	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+}
