@@ -6,9 +6,7 @@ class ValidationLoginPage {
     const domainRegex: RegExp = /^[^@\s]+\.[^@\s]+$/;
     if (emailInput && notValidEmail) {
       const trimValue = emailInput.value.trim();
-      if (!(emailInput.value == trimValue)) {
-        notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
-      }
+
       if (!(emailRegex.test(emailInput.value) && domainRegex.test(emailInput.value.split('@')[1]))) {
         notValidEmail.innerHTML = 'Email address must contain a domain name (e.g., example.com).';
       }
@@ -18,6 +16,9 @@ class ValidationLoginPage {
 
       if (emailInput.value.length === 0) {
         notValidEmail.innerHTML = 'Fill in this field';
+      }
+      if (!(emailInput.value == trimValue)) {
+        notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
       }
     }
   }
