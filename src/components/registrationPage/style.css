@@ -1,0 +1,29 @@
+.registration {
+  margin: auto;
+  margin-top: 3vw;
+  border: 1px solid;
+  width: 500px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.email-wrapper{
+  margin-top: 40px;
+}
+
+.button-registration-wrapper{
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+.toggle-password-button {
+  width: 20px;
+	height: 20px;
+	background: url(/src/assets/image/view.svg) 0 0 no-repeat;
+}
+
+.view {
+	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+}
