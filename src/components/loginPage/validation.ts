@@ -9,12 +9,13 @@ class ValidationLoginPage {
       if (!(emailInput.value == trimValue)) {
         notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
       }
+      if (!(emailRegex.test(emailInput.value) && domainRegex.test(emailInput.value.split('@')[1]))) {
+        notValidEmail.innerHTML = 'Email address must contain a domain name (e.g., example.com).';
+      }
       if (!(emailRegex.test(emailInput.value))) {
         notValidEmail.innerHTML = 'Email address must be properly formatted (e.g., user@example.com).';
       }
-      if (!(domainRegex.test(emailInput.value))) {
-        notValidEmail.innerHTML = 'Email address must contain a domain name (e.g., example.com).';
-      }
+
       if (emailInput.value.length === 0) {
         notValidEmail.innerHTML = 'Fill in this field';
       }
