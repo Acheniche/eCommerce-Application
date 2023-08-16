@@ -57,6 +57,17 @@ class ValidationRegistrationPage {
     }
   }
 
+  public streetCheck() {
+    const name: HTMLInputElement | null = document.querySelector('.street');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-street');
+    if (name && spanNotValid) {
+      spanNotValid.innerHTML = '';
+      if (name.value.length < 1) {
+        spanNotValid.innerHTML = 'Must contain at least one character';
+      }
+    }
+  }
+
   private cleanSpan(): void {
     const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
@@ -83,6 +94,7 @@ class ValidationRegistrationPage {
         this.firstNameCheck();
         this.lastNameCheck();
         this.cityCheck();
+        this.streetCheck();
       });
     }
   }
