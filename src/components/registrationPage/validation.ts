@@ -68,6 +68,25 @@ class ValidationRegistrationPage {
     }
   }
 
+  public dateCheck() {
+    const birthDate: HTMLInputElement | null = document.querySelector('.date-birth');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-date-birth');
+    const currentDate = new Date();
+    const minimumAge: number = 13;
+    const minimumAgeDate = new Date(currentDate.getFullYear() - minimumAge,
+      currentDate.getMonth(), currentDate.getDate());
+    if (birthDate && spanNotValid) {
+      spanNotValid.innerHTML = '';
+      if (birthDate.value == '') {
+        spanNotValid.innerHTML = 'Required field';
+      }
+      const birth = new Date(birthDate.value);
+      if (birth > minimumAgeDate) {
+        spanNotValid.innerHTML = 'Your age must be over 13';
+      }
+    }
+  }
+
   private cleanSpan(): void {
     const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
@@ -95,6 +114,7 @@ class ValidationRegistrationPage {
         this.lastNameCheck();
         this.cityCheck();
         this.streetCheck();
+        this.dateCheck();
       });
     }
   }
