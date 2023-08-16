@@ -40,14 +40,24 @@ class ValidationRegistrationPage {
     }
   }
 
+  public lastNameCheck() {
+    const name: HTMLInputElement | null = document.querySelector('.last-name');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-last-name');
+    if (name && spanNotValid) {
+      this.nameValidation(name, spanNotValid);
+    }
+  }
+
   private cleanSpan(): void {
     const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
     const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-first-name');
-    if (notValidEmail && notValidPassword && spanNotValid) {
+    const spanNotValidLast: HTMLSpanElement | null = document.querySelector('.not-valid-last-name');
+    if (notValidEmail && notValidPassword && spanNotValid && spanNotValidLast) {
       notValidEmail.innerHTML = '';
       notValidPassword.innerHTML = '';
       spanNotValid.innerHTML = '';
+      spanNotValidLast.innerHTML = '';
     }
   }
 
@@ -62,6 +72,7 @@ class ValidationRegistrationPage {
         this.emailValidation();
         this.passwordValidation();
         this.firstNameCheck();
+        this.lastNameCheck();
       });
     }
   }
