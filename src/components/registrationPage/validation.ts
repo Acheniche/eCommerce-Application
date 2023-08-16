@@ -1,83 +1,57 @@
+import ValidationLoginPage from '../loginPage/validation';
+
 class ValidationRegistrationPage {
+  private validationLoginPage: ValidationLoginPage;
+
+  constructor() {
+    this.validationLoginPage = new ValidationLoginPage();
+  }
+
   public emailValidation(): void {
-    const emailInput: HTMLInputElement | null = document.querySelector('.email');
-    const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
-    const emailRegex: RegExp = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    if (emailInput && notValidEmail) {
-      const trimValue = emailInput.value.trim();
-      if (!(emailRegex.test(emailInput.value))) {
-        notValidEmail.innerHTML = 'Email address must be properly formatted (e.g., user@example.com).';
-      }
-      if (emailInput.value.length === 0) {
-        notValidEmail.innerHTML = 'Fill in this field';
-      }
-      if (!(emailInput.value == trimValue)) {
-        notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
-      }
-    }
+    this.validationLoginPage.emailValidation();
   }
 
   public passwordValidation(): void {
-    const passwordInput: HTMLInputElement | null = document.querySelector('.password');
-    const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
-    const uppercaseLetter: RegExp = /^(?=.*[A-Z]).+$/;
-    const lowercaseLetter: RegExp = /^(?=.*[a-z]).+$/;
-    const containDigit : RegExp = /^(?=.*\d).+$/;
-    const specialCharacter: RegExp = /^(?=.*[!@#$%^&*]).+$/;
-    if (passwordInput && notValidPassword) {
-      const trimValue = passwordInput.value.trim();
-      if (passwordInput.value.length < 8) {
-        notValidPassword.innerHTML = 'Password must be at least 8 characters long.';
-      }
-      if (!(uppercaseLetter.test(passwordInput.value))) {
-        notValidPassword.innerHTML = 'Password must contain at least one uppercase letter (A-Z).';
-      }
-      if (!(lowercaseLetter.test(passwordInput.value))) {
-        notValidPassword.innerHTML = 'Password must contain at least one lowercase letter (a-z).';
-      }
+    this.validationLoginPage.passwordValidation();
+  }
 
-      if (!(containDigit.test(passwordInput.value))) {
-        notValidPassword.innerHTML = 'Password must contain at least one digit (0-9).';
-      }
-      if (!(specialCharacter.test(passwordInput.value))) {
-        notValidPassword.innerHTML = 'Password must contain at least one special character (e.g., !@#$%^&*).';
-      }
-      if (!(passwordInput.value == trimValue)) {
-        notValidPassword.innerHTML = 'Password must not contain leading or trailing whitespace.';
-      }
+  public togglePasswordVisibility(): void {
+    this.validationLoginPage.togglePasswordVisibility();
+  }
 
-      if (passwordInput.value.length === 0) {
-        notValidPassword.innerHTML = 'Fill in this field';
+  public nameValidation(name: HTMLInputElement, span: HTMLSpanElement) {
+    const regex = /^[A-Za-z]+$/;
+    if (name && span) {
+      if (name.value.length > 0) {
+        if (!(regex.test(name.value))) {
+          span.innerHTML = 'No special characters or numbers';
+        }
+      } else {
+        span.innerHTML = 'Must contain at least one character';
       }
     }
   }
 
-  public togglePasswordVisibility(): void {
-    const passwordInput: HTMLInputElement | null = document.querySelector('.password');
-    const toggleButton: HTMLButtonElement | null = document.querySelector('.toggle-password-button');
-
-    if (passwordInput && toggleButton) {
-      toggleButton.addEventListener('click', () => {
-
-        if (passwordInput.type === 'password') {
-          passwordInput.type = 'text';
-          toggleButton.classList.add('view');
-        } else {
-          passwordInput.type = 'password';
-          toggleButton.classList.remove('view');
-        }
-      });
+  public firstNameCheck() {
+    const name: HTMLInputElement | null = document.querySelector('.first-name');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-first-name');
+    if (name && spanNotValid) {
+      this.nameValidation(name, spanNotValid);
     }
   }
 
   private cleanSpan(): void {
     const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
-    if (notValidEmail && notValidPassword) {
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-first-name');
+    if (notValidEmail && notValidPassword && spanNotValid) {
       notValidEmail.innerHTML = '';
       notValidPassword.innerHTML = '';
+      spanNotValid.innerHTML = '';
     }
   }
+
+
 
   public buttonListener(): void {
     const loginButton: HTMLButtonElement | null = document.querySelector('.registration-button');
@@ -87,7 +61,7 @@ class ValidationRegistrationPage {
         this.cleanSpan();
         this.emailValidation();
         this.passwordValidation();
-
+        this.firstNameCheck();
       });
     }
   }
