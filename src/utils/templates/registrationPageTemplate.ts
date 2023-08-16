@@ -1,7 +1,7 @@
 class CreateRegistrationPage {
   public block: string = `
   <div class="registration">
-    <div class="email-wrapper">
+    <div class="email-wrapper-registration">
         <span>Insert your email </span>
       <input type="text" class="email" placeholder="email">
       <div class="email-valid-span">
@@ -59,7 +59,7 @@ class CreateRegistrationPage {
 
     <div class="postal-wrapper">
       <span>Insert your Postal code</span>
-      <input type="text" class="postal-code" placeholder="Postal code">
+      <input type="number" class="postal-code" placeholder="Postal code">
       <div class="postal-code-valid-span">
         <span class="not-valid-postal-code"></span>
       </div>
@@ -68,10 +68,10 @@ class CreateRegistrationPage {
     <div class="country-wrapper">
       <span>Insert your Country</span>
       <select id="country">
-	<option></option>
-	<option>USA</option>
-	<option>Germany</option>
-</select>
+        <option></option>
+        <option>USA</option>
+        <option>Germany</option>
+      </select>
       <div class="country-valid-span">
         <span class="not-valid-country"></span>
       </div>

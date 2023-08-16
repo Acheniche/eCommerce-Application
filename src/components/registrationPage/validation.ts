@@ -68,6 +68,39 @@ class ValidationRegistrationPage {
     }
   }
 
+  public countryCheck() {
+    const country: HTMLInputElement | null = document.querySelector('#country');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-country');
+    if (country && spanNotValid) {
+      spanNotValid.innerHTML = '';
+      if (country.value == '') {
+        spanNotValid.innerHTML = 'Required field';
+      }
+    }
+  }
+
+  public postalListener() {
+    const postal: HTMLInputElement | null = document.querySelector('.postal-code');
+    if (postal) {
+      postal.oninput = function () {
+        postal.value = postal.value.substring(0, 5);
+      };
+    }
+  }
+
+  public postalCheck() {
+    const country: HTMLInputElement | null = document.querySelector('.postal-code');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-postal-code');
+    if (country && spanNotValid) {
+      spanNotValid.innerHTML = '';
+      if (country.value == '') {
+        spanNotValid.innerHTML = 'Required field';
+      } else if (country.value.length < 5) {
+        spanNotValid.innerHTML = 'Must be 5 digits';
+      }
+    }
+  }
+
   public dateCheck() {
     const birthDate: HTMLInputElement | null = document.querySelector('.date-birth');
     const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-date-birth');
@@ -105,6 +138,7 @@ class ValidationRegistrationPage {
   public buttonListener(): void {
     const loginButton: HTMLButtonElement | null = document.querySelector('.registration-button');
     this.togglePasswordVisibility();
+    this.postalListener();
     if (loginButton) {
       loginButton.addEventListener('click', () => {
         this.cleanSpan();
@@ -115,6 +149,8 @@ class ValidationRegistrationPage {
         this.cityCheck();
         this.streetCheck();
         this.dateCheck();
+        this.postalCheck();
+        this.countryCheck();
       });
     }
   }

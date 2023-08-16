@@ -1,16 +1,16 @@
 .registration {
   margin: auto;
-  margin-top: 3vw;
+  margin-top: 1vw;
   border: 1px solid;
   width: 500px;
-  height: 400px;
+  height: 450px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.email-wrapper{
-  margin-top: 40px;
+.email-wrapper-registration{
+  margin-top: 25px;
 }
 
 .button-registration-wrapper{
