@@ -35,7 +35,7 @@ class CreateRegistrationPage {
 
     <div class="date-birth-wrapper">
       <span>Insert your Date of birth</span>
-      <input type="text" class="date-birth" placeholder="Date of birth">
+      <input type="date" class="date-birth" placeholder="Date of birth">
       <div class="date-birth-valid-span">
         <span class="not-valid-date-birth"></span>
       </div>

@@ -48,6 +48,15 @@ class ValidationRegistrationPage {
     }
   }
 
+  public cityCheck() {
+    const name: HTMLInputElement | null = document.querySelector('.city');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-city');
+    if (name && spanNotValid) {
+      spanNotValid.innerHTML = '';
+      this.nameValidation(name, spanNotValid);
+    }
+  }
+
   private cleanSpan(): void {
     const notValidEmail: HTMLSpanElement | null = document.querySelector('.not-valid-email');
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
@@ -73,6 +82,7 @@ class ValidationRegistrationPage {
         this.passwordValidation();
         this.firstNameCheck();
         this.lastNameCheck();
+        this.cityCheck();
       });
     }
   }
