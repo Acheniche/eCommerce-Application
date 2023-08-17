@@ -41,7 +41,7 @@ export default class Header extends Component {
     logoHTML.append(logo);
     logoHTML.append(logoText);
     logoHTML.classList.add('logoHTML');
-    logoHTML.href = `#main-page`;
+    logoHTML.href = '#main-page';
     headerLogo.append(logoHTML);
     this.container.append(headerLogo);
   }

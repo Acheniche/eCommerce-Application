@@ -1,5 +1,5 @@
 import Page from '../../utils/templates/page';
-import '../../components/errors/error.css'
+import '../../components/errors/error.css';
 
 
 export enum ErrorTypes {

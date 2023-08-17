@@ -1,0 +1,81 @@
+.registration {
+  margin: auto;
+  margin-top: 1vw;
+  border: 1px solid;
+  width: 500px;
+  height: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgba(169, 160, 160, 0.8);
+  color: black;
+}
+
+.not-valid {
+  color: rgb(3, 7, 247);
+}
+
+.email-wrapper-registration{
+  margin-top: 25px;
+}
+
+.button-registration-wrapper{
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+.toggle-password-button {
+  width: 20px;
+	height: 20px;
+	background: url(/src/assets/image/view.svg) 0 0 no-repeat;
+}
+
+.view {
+	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icon {
+  position: absolute;
+  color: red;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  visibility: hidden;
+  font-size: 1.2rem;
+}
+
+.display-active {
+  visibility: visible;
+}
+
+.input-wrong {
+  border: 2px dashed red;
+}
