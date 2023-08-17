@@ -12,6 +12,7 @@ export default class RegistrationPage extends Page {
     const title = this.createHeaderTitle(RegistrationPage.TextObject.MainTitle);
     const login = new CreateRegistrationPage();
     const validation = new ValidationRegistrationPage();
+    this.container.classList.add('RegistrationWrapper');
     this.container.append(title);
     this.container.insertAdjacentHTML('beforeend', login.block);
     setTimeout(() => {

@@ -1,12 +1,15 @@
 .login {
   margin: auto;
-  margin-top: 10vw;
+  margin-top: 5vh;
   border: 1px solid;
+  border-radius: 20px;
   width: 500px;
-  height: 200px;
+  min-height: 200px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: left;
+  padding-left: 1vw;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .email-wrapper{
@@ -14,8 +17,8 @@
 }
 
 .button-wrapper{
-  margin-left: 70px;
-  margin-right: 70px;
+display: block;
+margin: 0 auto;
 }
 
 .toggle-password-button {
@@ -26,4 +29,49 @@
 
 .view {
 	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+}
+.LoginWrapper h1{
+text-align: center;
+font-size: 300%;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.login-button{
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: .2s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+}
+
+.login-button:before {
+  content: "";
+  background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+}
+
+.login-button:hover {
+  background: black;
+  color: #fff;
+}
+.login-button:hover:before {
+  left: 150px;
+  transition: .5s ease-in-out;
+}
+
+.email-valid-span{
+  color: red;
 }
