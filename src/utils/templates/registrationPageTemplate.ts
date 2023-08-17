@@ -4,7 +4,7 @@ class CreateRegistrationPage {
     <div class="email-wrapper-registration">
         <span>Email </span>
         <div class="tooltip">
-          <input type="text" class="email" id="input" placeholder="email">
+          <input type="text" class="email" placeholder="email">
           <span class="icon">!</span>
           <span class="tooltip-text">Email address must be properly formatted
           (e.g., user@example.com).<br> Not contain whitespace.<br>Must contain a
@@ -17,7 +17,7 @@ class CreateRegistrationPage {
     <div class="password-wrapper">
         <span>Password </span>
         <div class="tooltip">
-          <input type="password" class="password" id="input" placeholder="password">
+          <input type="password" class="password" placeholder="password">
           <span class="icon">!</span>
           <span class="tooltip-text">Password must contain: minimum 8 characters,
           at least 1 uppercase letter, 1 lowercase letter, and 1 number</span>
@@ -31,7 +31,7 @@ class CreateRegistrationPage {
     <div class="first-name-wrapper">
       <span>First name</span>
       <div class="tooltip">
-        <input type="text" class="first-name" id="input" placeholder="First name">
+        <input type="text" class="first-name" placeholder="First name">
         <span class="icon">!</span>
         <span class="tooltip-text">First name must contain:
          at least one character and no special characters or numbers</span>
@@ -44,7 +44,7 @@ class CreateRegistrationPage {
     <div class="last-name-wrapper">
       <span>Last name</span>
       <div class="tooltip">
-        <input type="text" class="last-name" id="input" placeholder="Last name">
+        <input type="text" class="last-name" placeholder="Last name">
         <span class="icon">!</span>
         <span class="tooltip-text">Last name must contain:
         at least one character and no special characters or numbers</span>
@@ -57,7 +57,7 @@ class CreateRegistrationPage {
     <div class="date-birth-wrapper">
       <span>Date of birth</span>
       <div class="tooltip">
-        <input type="date" class="date-birth" id="input" placeholder="Date of birth">
+        <input type="date" class="date-birth" placeholder="Date of birth">
         <span class="icon">!</span>
         <span class="tooltip-text">You must be over 13 years old</span>
       </div>
@@ -69,7 +69,7 @@ class CreateRegistrationPage {
     <div class="street-wrapper">
       <span>Street</span>
       <div class="tooltip">
-        <input type="text" class="street" id="input" placeholder="Street">
+        <input type="text" class="street" placeholder="Street">
         <span class="icon">!</span>
         <span class="tooltip-text">Write your street, this field should not be left empty</span>
       </div>
@@ -81,7 +81,7 @@ class CreateRegistrationPage {
     <div class="city-wrapper">
       <span>City</span>
       <div class="tooltip">
-        <input type="text" class="city" id="input" placeholder="City">
+        <input type="text" class="city" placeholder="City">
         <span class="icon">!</span>
         <span class="tooltip-text">City must not contain: special characters or numbers</span>
       </div>
@@ -93,7 +93,7 @@ class CreateRegistrationPage {
     <div class="postal-wrapper">
       <span>Postal code</span>
       <div class="tooltip">
-        <input type="number" class="postal-code" id="input" placeholder="Postal code">
+        <input type="number" class="postal-code" placeholder="Postal code">
         <span class="icon">!</span>
         <span class="tooltip-text">Postal code must be 5 digits</span>
       </div>
