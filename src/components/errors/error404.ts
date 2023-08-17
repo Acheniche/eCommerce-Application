@@ -1,7 +1,6 @@
 import Page from '../../utils/templates/page';
 import '../../components/errors/error.css';
 
-
 export enum ErrorTypes {
   Error404 = 404,
 }

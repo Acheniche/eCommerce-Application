@@ -59,9 +59,9 @@ export default class App {
   run() {
     App.container.append(this.header.render());
     const hash = window.location.hash.slice(1);
-    if (hash === ''){
+    if (hash === '') {
       App.renderPage('main-page');
-    } else{
+    } else {
       App.renderPage(hash);
     }
     this.routeChange();

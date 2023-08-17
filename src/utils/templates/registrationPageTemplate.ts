@@ -130,7 +130,6 @@ class CreateRegistrationPage {
 
   </div>
 `;
-
 }
 
 export default CreateRegistrationPage;

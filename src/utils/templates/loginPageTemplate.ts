@@ -24,7 +24,6 @@ class CreateLoginPage {
 
 </div>
 `;
-
 }
 
 export default CreateLoginPage;

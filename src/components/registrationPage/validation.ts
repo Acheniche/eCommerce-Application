@@ -12,7 +12,6 @@ class ValidationRegistrationPage {
     if (wrapper) {
       this.validationLoginPage.emailValidation(wrapper);
     }
-
   }
 
   public passwordValidation(): void {
@@ -31,7 +30,7 @@ class ValidationRegistrationPage {
     if (name && span && wrapper) {
       const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
       if (name.value.length > 0) {
-        if (!(regex.test(name.value))) {
+        if (!regex.test(name.value)) {
           icon?.classList.add('display-active');
           span.innerHTML = 'No special characters or numbers';
           name.classList.add('input-wrong');
@@ -132,7 +131,7 @@ class ValidationRegistrationPage {
         spanNotValid.innerHTML = 'Required field';
         icon.classList.add('display-active');
         country.classList.add('input-wrong');
-      } else if (country.value.length < 5  && icon) {
+      } else if (country.value.length < 5 && icon) {
         spanNotValid.innerHTML = 'Must be 5 digits';
         icon.classList.add('display-active');
         country.classList.add('input-wrong');
@@ -148,8 +147,11 @@ class ValidationRegistrationPage {
     const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-date-birth');
     const currentDate = new Date();
     const minimumAge: number = 13;
-    const minimumAgeDate = new Date(currentDate.getFullYear() - minimumAge,
-      currentDate.getMonth(), currentDate.getDate());
+    const minimumAgeDate = new Date(
+      currentDate.getFullYear() - minimumAge,
+      currentDate.getMonth(),
+      currentDate.getDate(),
+    );
     const wrapper: HTMLDivElement | null = document.querySelector('.date-birth-wrapper');
     if (birthDate && spanNotValid && wrapper) {
       spanNotValid.innerHTML = '';
@@ -182,8 +184,6 @@ class ValidationRegistrationPage {
       spanNotValidLast.innerHTML = '';
     }
   }
-
-
 
   public buttonListener(): void {
     const loginButton: HTMLButtonElement | null = document.querySelector('.registration-button');
