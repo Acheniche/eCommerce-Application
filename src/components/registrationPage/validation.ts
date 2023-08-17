@@ -34,12 +34,15 @@ class ValidationRegistrationPage {
         if (!(regex.test(name.value))) {
           icon?.classList.add('display-active');
           span.innerHTML = 'No special characters or numbers';
+          name.classList.add('input-wrong');
         } else {
           icon?.classList.remove('display-active');
+          name.classList.remove('input-wrong');
         }
       } else if (name.value.length == 0) {
         span.innerHTML = 'Must contain at least one character';
         icon?.classList.add('display-active');
+        name.classList.add('input-wrong');
       }
     }
   }
@@ -83,8 +86,10 @@ class ValidationRegistrationPage {
       if (name.value.length < 1 && icon) {
         icon.classList.add('display-active');
         spanNotValid.innerHTML = 'Must contain at least one character';
+        name.classList.add('input-wrong');
       } else {
         icon?.classList.remove('display-active');
+        name.classList.remove('input-wrong');
       }
     }
   }
@@ -99,8 +104,10 @@ class ValidationRegistrationPage {
       if (country.value == '' && icon) {
         spanNotValid.innerHTML = 'Required field';
         icon.classList.add('display-active');
+        country.classList.add('input-wrong');
       } else {
         icon?.classList.remove('display-active');
+        country.classList.remove('input-wrong');
       }
     }
   }

@@ -9,19 +9,24 @@ class ValidationLoginPage {
       const icon: HTMLSpanElement | null | undefined = wrapper?.querySelector('.icon');
       if (!(emailInput.value == trimValue)) {
         icon?.classList.add('display-active');
+        emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
       } else if (!(emailRegex.test(emailInput.value))) {
         icon?.classList.add('display-active');
+        emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must be properly formatted (e.g., user@example.com).';
       } else if (emailInput.value.length === 0) {
         icon?.classList.add('display-active');
+        emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Fill in this field';
       } else if
       (!(emailRegex.test(emailInput.value) && domainRegex.test(emailInput.value.split('@')[1]))) {
         icon?.classList.add('display-active');
+        emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must contain a domain name (e.g., example.com).';
       } else {
         icon?.classList.remove('display-active');
+        emailInput.classList.remove('input-wrong');
       }
     }
   }
@@ -36,29 +41,37 @@ class ValidationLoginPage {
     if (passwordInput && notValidPassword) {
       const trimValue = passwordInput.value.trim();
       const icon: HTMLSpanElement | null | undefined = wrapper?.querySelector('.icon');
-      if (passwordInput.value.length < 8) {
-        notValidPassword.innerHTML = 'Password must be at least 8 characters long.';
+      if (passwordInput.value.length === 0) {
+        notValidPassword.innerHTML = 'Fill in this field';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else if (!(uppercaseLetter.test(passwordInput.value))) {
         notValidPassword.innerHTML = 'Password must contain at least one uppercase letter (A-Z).';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else if (!(lowercaseLetter.test(passwordInput.value))) {
         notValidPassword.innerHTML = 'Password must contain at least one lowercase letter (a-z).';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else if (!(containDigit.test(passwordInput.value))) {
         notValidPassword.innerHTML = 'Password must contain at least one digit (0-9).';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else if (!(specialCharacter.test(passwordInput.value))) {
         notValidPassword.innerHTML = 'Password must contain at least one special character (e.g., !@#$%^&*).';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else if (!(passwordInput.value == trimValue)) {
         notValidPassword.innerHTML = 'Password must not contain leading or trailing whitespace.';
         icon?.classList.add('display-active');
-      } else if (passwordInput.value.length === 0) {
-        notValidPassword.innerHTML = 'Fill in this field';
+        passwordInput.classList.add('input-wrong');
+      } else if (passwordInput.value.length < 8) {
+        notValidPassword.innerHTML = 'Password must be at least 8 characters long.';
         icon?.classList.add('display-active');
+        passwordInput.classList.add('input-wrong');
       } else {
         icon?.classList.remove('display-active');
+        passwordInput.classList.remove('input-wrong');
       }
     }
   }
