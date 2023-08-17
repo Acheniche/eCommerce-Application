@@ -7,6 +7,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-color: rgba(169, 160, 160, 0.8);
+  color: black;
+}
+
+.not-valid {
+  color: rgb(3, 7, 247);
 }
 
 .email-wrapper-registration{
@@ -26,4 +32,32 @@
 
 .view {
 	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
