@@ -12,6 +12,7 @@ export default class LoginPage extends Page {
     const title = this.createHeaderTitle(LoginPage.TextObject.MainTitle);
     const login = new CreateLoginPage();
     const validation = new ValidationLoginPage();
+    this.container.classList.add('LoginWrapper');
     this.container.append(title);
     this.container.insertAdjacentHTML('beforeend', login.block);
     setTimeout(() => {

@@ -11,7 +11,7 @@ class ValidationLoginPage {
         icon?.classList.add('display-active');
         emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must not contain leading or trailing whitespace.';
-      } else if (!(emailRegex.test(emailInput.value))) {
+      } else if (!emailRegex.test(emailInput.value)) {
         icon?.classList.add('display-active');
         emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must be properly formatted (e.g., user@example.com).';
@@ -19,8 +19,7 @@ class ValidationLoginPage {
         icon?.classList.add('display-active');
         emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Fill in this field';
-      } else if
-      (!(emailRegex.test(emailInput.value) && domainRegex.test(emailInput.value.split('@')[1]))) {
+      } else if (!(emailRegex.test(emailInput.value) && domainRegex.test(emailInput.value.split('@')[1]))) {
         icon?.classList.add('display-active');
         emailInput.classList.add('input-wrong');
         notValidEmail.innerHTML = 'Email address must contain a domain name (e.g., example.com).';
@@ -36,7 +35,7 @@ class ValidationLoginPage {
     const notValidPassword: HTMLSpanElement | null = document.querySelector('.not-valid-password');
     const uppercaseLetter: RegExp = /^(?=.*[A-Z]).+$/;
     const lowercaseLetter: RegExp = /^(?=.*[a-z]).+$/;
-    const containDigit : RegExp = /^(?=.*\d).+$/;
+    const containDigit: RegExp = /^(?=.*\d).+$/;
     const specialCharacter: RegExp = /^(?=.*[!@#$%^&*]).+$/;
     if (passwordInput && notValidPassword) {
       const trimValue = passwordInput.value.trim();
@@ -45,19 +44,19 @@ class ValidationLoginPage {
         notValidPassword.innerHTML = 'Fill in this field';
         icon?.classList.add('display-active');
         passwordInput.classList.add('input-wrong');
-      } else if (!(uppercaseLetter.test(passwordInput.value))) {
+      } else if (!uppercaseLetter.test(passwordInput.value)) {
         notValidPassword.innerHTML = 'Password must contain at least one uppercase letter (A-Z).';
         icon?.classList.add('display-active');
         passwordInput.classList.add('input-wrong');
-      } else if (!(lowercaseLetter.test(passwordInput.value))) {
+      } else if (!lowercaseLetter.test(passwordInput.value)) {
         notValidPassword.innerHTML = 'Password must contain at least one lowercase letter (a-z).';
         icon?.classList.add('display-active');
         passwordInput.classList.add('input-wrong');
-      } else if (!(containDigit.test(passwordInput.value))) {
+      } else if (!containDigit.test(passwordInput.value)) {
         notValidPassword.innerHTML = 'Password must contain at least one digit (0-9).';
         icon?.classList.add('display-active');
         passwordInput.classList.add('input-wrong');
-      } else if (!(specialCharacter.test(passwordInput.value))) {
+      } else if (!specialCharacter.test(passwordInput.value)) {
         notValidPassword.innerHTML = 'Password must contain at least one special character (e.g., !@#$%^&*).';
         icon?.classList.add('display-active');
         passwordInput.classList.add('input-wrong');
@@ -82,7 +81,6 @@ class ValidationLoginPage {
 
     if (passwordInput && toggleButton) {
       toggleButton.addEventListener('click', () => {
-
         if (passwordInput.type === 'password') {
           passwordInput.type = 'text';
           toggleButton.classList.add('view');
@@ -111,7 +109,6 @@ class ValidationLoginPage {
         this.cleanSpan();
         this.emailValidation();
         this.passwordValidation();
-
       });
     }
   }

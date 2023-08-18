@@ -18,13 +18,12 @@ class CreateLoginPage {
   </div>
   <div class="button-wrapper">
       <button class="login-button">
-          ENTER
+        Submit
       </button>
   </div>
 
 </div>
 `;
-
 }
 
 export default CreateLoginPage;

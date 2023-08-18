@@ -2,7 +2,7 @@ class CreateRegistrationPage {
   public block: string = `
   <div class="registration">
     <div class="email-wrapper-registration">
-        <span>Insert your email </span>
+        <span>Email </span>
         <div class="tooltip">
           <input type="text" class="email" placeholder="email">
           <span class="icon">!</span>
@@ -15,7 +15,7 @@ class CreateRegistrationPage {
       </div>
     </div>
     <div class="password-wrapper">
-        <span>Insert your password </span>
+        <span>Password </span>
         <div class="tooltip">
           <input type="password" class="password" placeholder="password">
           <span class="icon">!</span>
@@ -29,7 +29,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="first-name-wrapper">
-      <span>Insert your First name</span>
+      <span>First name</span>
       <div class="tooltip">
         <input type="text" class="first-name" placeholder="First name">
         <span class="icon">!</span>
@@ -42,7 +42,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="last-name-wrapper">
-      <span>Insert your Last name</span>
+      <span>Last name</span>
       <div class="tooltip">
         <input type="text" class="last-name" placeholder="Last name">
         <span class="icon">!</span>
@@ -55,7 +55,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="date-birth-wrapper">
-      <span>Insert your Date of birth</span>
+      <span>Date of birth</span>
       <div class="tooltip">
         <input type="date" class="date-birth" placeholder="Date of birth">
         <span class="icon">!</span>
@@ -67,7 +67,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="street-wrapper">
-      <span>Insert your Street</span>
+      <span>Street</span>
       <div class="tooltip">
         <input type="text" class="street" placeholder="Street">
         <span class="icon">!</span>
@@ -79,7 +79,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="city-wrapper">
-      <span>Insert your City</span>
+      <span>City</span>
       <div class="tooltip">
         <input type="text" class="city" placeholder="City">
         <span class="icon">!</span>
@@ -91,7 +91,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="postal-wrapper">
-      <span>Insert your Postal code</span>
+      <span>Postal code</span>
       <div class="tooltip">
         <input type="number" class="postal-code" placeholder="Postal code">
         <span class="icon">!</span>
@@ -103,7 +103,7 @@ class CreateRegistrationPage {
     </div>
 
     <div class="country-wrapper">
-      <span>Insert your Country</span>
+      <span>Country</span>
       <div class="tooltip">
         <select id="country">
           <option></option>
@@ -116,14 +116,13 @@ class CreateRegistrationPage {
       <div class="country-valid-span">
         <span class="not-valid-country not-valid"></span>
       </div>
-
     </div>
 
 
     <div class="button-registration-wrapper">
     <div class="tooltip">
         <button class="registration-button">
-            ENTER
+            Submit
         </button>
         <span class="tooltip-text">Check if you filled in all the fields correctly?</span>
       </div>
@@ -131,7 +130,6 @@ class CreateRegistrationPage {
 
   </div>
 `;
-
 }
 
 export default CreateRegistrationPage;
