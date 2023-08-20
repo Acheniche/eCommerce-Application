@@ -1,4 +1,5 @@
 import ValidationLoginPage from '../loginPage/validation';
+import registrationOnServ from './reg';
 
 class ValidationRegistrationPage {
   private validationLoginPage: ValidationLoginPage;
@@ -201,6 +202,7 @@ class ValidationRegistrationPage {
         this.dateCheck();
         this.postalCheck();
         this.countryCheck();
+        registrationOnServ();
       });
     }
   }
