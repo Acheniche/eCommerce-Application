@@ -21,6 +21,7 @@ export async function registration(email: string, password: string) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
+      console.log(res.json());
       App.renderPage(PagesID.mainPage);
       const text = 'login';
       popupWindow.popupTrue(text);
@@ -41,6 +42,8 @@ export default function loginOnServ() {
       const password = (<HTMLInputElement>document.querySelector('.password')).value;
       console.log(email, password);
       registration(String(email), String(password));
+      sessionStorage.setItem('login', email);
+      sessionStorage.setItem('password', password);
     }
   });
 }
