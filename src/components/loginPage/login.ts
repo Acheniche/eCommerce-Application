@@ -1,4 +1,4 @@
-//import MainPage from '../mainPage/mainPage';
+import App, { PagesID } from '../app';
 
 async function registration(email: string, password: string) {
   await fetch(
@@ -16,7 +16,7 @@ async function registration(email: string, password: string) {
       //const rsolt = response.json();
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
-      //lfm
+      App.renderPage(PagesID.mainPage);
     }
   });
 }
