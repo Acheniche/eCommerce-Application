@@ -1,4 +1,5 @@
 import Component from '../../utils/templates/components';
+import PopupWindow from '../../utils/templates/popup';
 import { PagesID } from '../app';
 
 const Buttons = [
@@ -26,7 +27,20 @@ export default class Header extends Component {
       buttonHTML.innerText = button.text;
       headerButtons.append(buttonHTML);
     });
+    const newLink: HTMLAnchorElement = document.createElement('a');
+    newLink.classList.add('logout');
+    newLink.textContent = 'Logout';
+    newLink.classList.add('display-none');
+
+    headerButtons.appendChild(newLink);
     this.container.append(headerButtons);
+  }
+
+  renderHeaderButtonsOkLogin() {
+    const logoutBtn: HTMLButtonElement = document.querySelector('.logout') as HTMLButtonElement;
+    const loginLink = document.querySelector('a[href="#login-page"]') as HTMLAnchorElement;
+    logoutBtn.classList.remove('display-none');
+    loginLink.classList.add('display-none');
   }
 
   renderHeaderLogo() {
@@ -49,6 +63,8 @@ export default class Header extends Component {
   render() {
     this.renderHeaderLogo();
     this.renderHeaderButtons();
+    const createPop = new PopupWindow();
+    this.container.insertAdjacentHTML('beforeend', createPop.block);
     return this.container;
   }
 }
