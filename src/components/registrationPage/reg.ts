@@ -1,3 +1,6 @@
+import App, { PagesID } from '../app';
+
+
 async function addOnServ() {
   const email = document.getElementById('registration-email') as HTMLInputElement;
   const password = document.getElementById('registration-password') as HTMLInputElement;
@@ -54,7 +57,7 @@ async function addOnServ() {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
     } else {
-      (<HTMLElement>document.querySelector('.not-valid-country')).innerHTML = 'registration was successful';
+      // there create popup
     }
   });
 }
@@ -71,6 +74,7 @@ export default function registrationOnServ() {
       }
       if (counter == 9) {
         addOnServ();
+        App.renderPage(PagesID.mainPage);
       }
       i += 1;
     }
