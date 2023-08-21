@@ -1,3 +1,5 @@
+import loginOnServ from './login';
+
 class ValidationLoginPage {
   public emailValidation(wrapper?: HTMLDivElement): void {
     const emailInput: HTMLInputElement | null = document.querySelector('.email');
@@ -109,6 +111,7 @@ class ValidationLoginPage {
         this.cleanSpan();
         this.emailValidation();
         this.passwordValidation();
+        loginOnServ();
       });
     }
   }
