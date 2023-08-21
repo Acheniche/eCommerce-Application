@@ -1,6 +1,5 @@
 import CreateLoginPage from '../../utils/templates/loginPageTemplate';
 import Page from '../../utils/templates/page';
-import PopupWindow from '../../utils/templates/popup';
 import './style.css';
 import ValidationLoginPage from './validation';
 

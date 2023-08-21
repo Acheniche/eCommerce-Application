@@ -1,5 +1,7 @@
+import LogoutButton from '../../utils/templates/logout';
 import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
+import Header from '../header/header';
 
 async function addOnServ() {
   const email = document.getElementById('registration-email') as HTMLInputElement;
@@ -12,6 +14,8 @@ async function addOnServ() {
   const postal = document.getElementById('registration-postal') as HTMLInputElement;
   const country = document.getElementById('country') as HTMLInputElement;
   const popupWindow = new PopupWindow();
+  const logoutBtn = new Header('header', 'header');
+  const logoutBtnListener = new LogoutButton();
   let countryData = '';
   if (country.value === 'USA') {
     countryData = 'US';
@@ -61,6 +65,10 @@ async function addOnServ() {
     } else {
       const text = 'registration';
       popupWindow.popupTrue(text);
+      logoutBtn.renderHeaderButtonsOkLogin();
+      setTimeout(() => {
+        logoutBtnListener.logoutBtnListener();
+      }, 10);
     }
   });
   await fetch(

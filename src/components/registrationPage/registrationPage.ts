@@ -2,7 +2,6 @@ import Page from '../../utils/templates/page';
 import './style.css';
 import CreateRegistrationPage from '../../utils/templates/registrationPageTemplate';
 import ValidationRegistrationPage from './validation';
-import PopupWindow from '../../utils/templates/popup';
 
 export default class RegistrationPage extends Page {
   static TextObject = {

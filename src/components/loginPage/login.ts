@@ -1,8 +1,13 @@
+import LogoutButton from '../../utils/templates/logout';
 import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
+import Header from '../header/header';
 
 export async function registration(email: string, password: string) {
   const popupWindow = new PopupWindow();
+  const logoutBtn = new Header('header', 'header');
+  const logoutBtnListener = new LogoutButton();
+
   await fetch(
     `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=${email}&password=${password}`,
     {
@@ -19,6 +24,10 @@ export async function registration(email: string, password: string) {
       App.renderPage(PagesID.mainPage);
       const text = 'login';
       popupWindow.popupTrue(text);
+      logoutBtn.renderHeaderButtonsOkLogin();
+      setTimeout(() => {
+        logoutBtnListener.logoutBtnListener();
+      }, 10);
     }
   });
 }
