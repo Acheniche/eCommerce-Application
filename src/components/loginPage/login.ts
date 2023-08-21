@@ -21,8 +21,8 @@ export async function registration(email: string, password: string) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
-      console.log(res.json());
       App.renderPage(PagesID.mainPage);
+      location.hash = 'main-page';
       const text = 'login';
       popupWindow.popupTrue(text);
       logoutBtn.renderHeaderButtonsOkLogin();
@@ -40,7 +40,6 @@ export default function loginOnServ() {
     if (!passwordEl.classList.contains('input-wrong') && !emailEl.classList.contains('input-wrong')) {
       const email = (<HTMLInputElement>document.querySelector('.email')).value;
       const password = (<HTMLInputElement>document.querySelector('.password')).value;
-      console.log(email, password);
       registration(String(email), String(password));
       sessionStorage.setItem('login', email);
       sessionStorage.setItem('password', password);

@@ -74,6 +74,8 @@ async function addOnServ(check: string) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
     } else {
+      App.renderPage(PagesID.mainPage);
+      location.hash = 'main-page';
       const text = 'registration';
       popupWindow.popupTrue(text);
       logoutBtn.renderHeaderButtonsOkLogin();
@@ -113,7 +115,6 @@ export default function registrationOnServ() {
       if (counter == 9) {
         const check = setDefaultAdress();
         addOnServ(String(check));
-        App.renderPage(PagesID.mainPage);
       }
       i += 1;
     }
