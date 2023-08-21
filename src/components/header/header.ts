@@ -1,4 +1,5 @@
 import Component from '../../utils/templates/components';
+import PopupWindow from '../../utils/templates/popup';
 import { PagesID } from '../app';
 
 const Buttons = [
@@ -49,6 +50,8 @@ export default class Header extends Component {
   render() {
     this.renderHeaderLogo();
     this.renderHeaderButtons();
+    const createPop = new PopupWindow();
+    this.container.insertAdjacentHTML('beforeend', createPop.block);
     return this.container;
   }
 }

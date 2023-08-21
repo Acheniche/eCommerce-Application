@@ -13,10 +13,8 @@ export default class RegistrationPage extends Page {
     const title = this.createHeaderTitle(RegistrationPage.TextObject.MainTitle);
     const login = new CreateRegistrationPage();
     const validation = new ValidationRegistrationPage();
-    const createPop = new PopupWindow();
     this.container.classList.add('RegistrationWrapper');
     this.container.append(title);
-    this.container.insertAdjacentHTML('beforeend', createPop.block);
     this.container.insertAdjacentHTML('beforeend', login.block);
     setTimeout(() => {
       validation.buttonListener();
