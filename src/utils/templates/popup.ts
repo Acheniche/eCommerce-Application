@@ -1,6 +1,5 @@
 class PopupWindow {
-
-  public block: string  = `
+  public block: string = `
       <div class="modal-content">
         <p class="text-popup">Текст модального окна</p>
       </div>

@@ -3,7 +3,7 @@ import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
 import Header from '../header/header';
 
-async function addOnServ() {
+async function addOnServ(check: string) {
   const email = document.getElementById('registration-email') as HTMLInputElement;
   const password = document.getElementById('registration-password') as HTMLInputElement;
   const firstname = document.getElementById('registration-firstname') as HTMLInputElement;
@@ -28,6 +28,18 @@ async function addOnServ() {
     lastName: lastname.value.toString(),
     password: password.value.toString(),
     dateOfBirth: dateOfBirth.value.toString(),
+    action: check == 'true' ? 'setDefaultBillingAddress' : 'addAddress',
+    AddressID:
+      check == 'true'
+        ? [
+            {
+              country: countryData,
+              city: city.value.toString(),
+              street: street.value.toString(),
+              postalCode: postal.value.toString(),
+            },
+          ]
+        : '',
     addresses: [
       {
         country: countryData,
@@ -58,7 +70,6 @@ async function addOnServ() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-
   }).then(function (res) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
@@ -82,7 +93,13 @@ async function addOnServ() {
     },
   );
 }
-
+function setDefaultAdress() {
+  if ((<HTMLInputElement>document.querySelector('.change-check')).checked == false) {
+    return false;
+  } else {
+    return true;
+  }
+}
 export default function registrationOnServ() {
   (<HTMLInputElement>document.querySelector('.registration-button')).addEventListener('click', (e) => {
     e.stopImmediatePropagation();
@@ -94,10 +111,12 @@ export default function registrationOnServ() {
         counter += 1;
       }
       if (counter == 9) {
-        addOnServ();
+        const check = setDefaultAdress();
+        addOnServ(String(check));
         App.renderPage(PagesID.mainPage);
       }
       i += 1;
     }
   });
 }
+

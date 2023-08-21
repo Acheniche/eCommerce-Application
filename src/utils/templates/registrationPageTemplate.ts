@@ -118,6 +118,14 @@ class CreateRegistrationPage {
       </div>
     </div>
 
+    <div>
+    <label class="checkbox-ios">
+    Set the default address
+    <input type="checkbox" class="change-check">
+    <span class="checkbox-ios-switch"></span>
+    </label>
+  </div>
+
 
     <div class="button-registration-wrapper">
     <div class="tooltip">
