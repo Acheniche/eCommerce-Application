@@ -52,6 +52,7 @@ async function addOnServ() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+
   }).then(function (res) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
@@ -61,8 +62,7 @@ async function addOnServ() {
     }
   });
   await fetch(
-    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=
-    ${email.value}&password=${password.value}`,
+    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=${email.value.toString()}&password=${password.value.toString()}`,
     {
       method: 'POST',
       headers: {
