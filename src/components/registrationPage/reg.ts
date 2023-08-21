@@ -1,6 +1,5 @@
 import App, { PagesID } from '../app';
 
-
 async function addOnServ() {
   const email = document.getElementById('registration-email') as HTMLInputElement;
   const password = document.getElementById('registration-password') as HTMLInputElement;
@@ -58,8 +57,20 @@ async function addOnServ() {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
     } else {
       // there create popup
+      
     }
   });
+  await fetch(
+    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=
+    ${email.value}&password=${password.value}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    },
+  );
 }
 
 export default function registrationOnServ() {

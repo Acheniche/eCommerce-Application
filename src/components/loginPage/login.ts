@@ -1,6 +1,6 @@
 import App, { PagesID } from '../app';
 
-async function registration(email: string, password: string) {
+export async function registration(email: string, password: string) {
   await fetch(
     `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=
     ${email}&password=${password}`,
@@ -17,6 +17,7 @@ async function registration(email: string, password: string) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
       App.renderPage(PagesID.mainPage);
+      // there create popup
     }
   });
 }
