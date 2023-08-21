@@ -1,3 +1,8 @@
+import LogoutButton from '../../utils/templates/logout';
+import PopupWindow from '../../utils/templates/popup';
+import App, { PagesID } from '../app';
+import Header from '../header/header';
+
 async function addOnServ(check: string) {
   const email = document.getElementById('registration-email') as HTMLInputElement;
   const password = document.getElementById('registration-password') as HTMLInputElement;
@@ -8,6 +13,9 @@ async function addOnServ(check: string) {
   const city = document.getElementById('registration-city') as HTMLInputElement;
   const postal = document.getElementById('registration-postal') as HTMLInputElement;
   const country = document.getElementById('country') as HTMLInputElement;
+  const popupWindow = new PopupWindow();
+  const logoutBtn = new Header('header', 'header');
+  const logoutBtnListener = new LogoutButton();
   let countryData = '';
   if (country.value === 'USA') {
     countryData = 'US';
@@ -65,8 +73,25 @@ async function addOnServ(check: string) {
   }).then(function (res) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
+    } else {
+      const text = 'registration';
+      popupWindow.popupTrue(text);
+      logoutBtn.renderHeaderButtonsOkLogin();
+      setTimeout(() => {
+        logoutBtnListener.logoutBtnListener();
+      }, 10);
     }
   });
+  await fetch(
+    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=${email.value.toString()}&password=${password.value.toString()}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    },
+  );
 }
 function setDefaultAdress() {
   if ((<HTMLInputElement>document.querySelector('.change-check')).checked == false) {
@@ -88,6 +113,7 @@ export default function registrationOnServ() {
       if (counter == 9) {
         const check = setDefaultAdress();
         addOnServ(String(check));
+        App.renderPage(PagesID.mainPage);
       }
       i += 1;
     }
