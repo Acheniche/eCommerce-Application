@@ -4,8 +4,7 @@ import App, { PagesID } from '../app';
 export async function registration(email: string, password: string) {
   const popupWindow = new PopupWindow();
   await fetch(
-    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=
-    ${email}&password=${password}`,
+    `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=${email}&password=${password}`,
     {
       method: 'POST',
       headers: {
@@ -13,9 +12,8 @@ export async function registration(email: string, password: string) {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     },
-  ).then(function (response) {
-    if (!response.ok) {
-      //const rsolt = response.json();
+  ).then(function (res) {
+    if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
       App.renderPage(PagesID.mainPage);
