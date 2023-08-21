@@ -16,7 +16,8 @@ class LogoutButton {
                 Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
                 'Content-Type': 'application/x-www-form-urlencoded',
               },
-            });
+            },
+          );
           if (response.ok) {
             location.hash = 'main-page';
             App.renderPage(PagesID.mainPage);
@@ -34,6 +35,5 @@ class LogoutButton {
     }
   }
 }
-
 
 export default LogoutButton;
