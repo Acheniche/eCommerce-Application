@@ -1,6 +1,8 @@
+import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
 
 export async function registration(email: string, password: string) {
+  const popupWindow = new PopupWindow();
   await fetch(
     `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=
     ${email}&password=${password}`,
@@ -17,7 +19,8 @@ export async function registration(email: string, password: string) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
       App.renderPage(PagesID.mainPage);
-      // there create popup
+      const text = 'login';
+      popupWindow.popupTrue(text);
     }
   });
 }
