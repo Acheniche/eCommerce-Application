@@ -5,7 +5,7 @@
   padding-top: 1vw;
   border: 1px solid;
   border-radius: 20px;
-  width: 500px;
+  width: 600px;
   min-height: 450px;
   display: flex;
   flex-wrap: wrap;
@@ -134,7 +134,8 @@
     transition: .5s ease-in-out;
   }
 
-  #country{
+  #country_shipping,
+  #country_billing{
     background-color: #F4F4F4;
     border-radius: 10px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -291,4 +292,30 @@
   /* Focus */
   .checkbox-ios.focused .checkbox-ios-switch:before {
     box-shadow: inset 0px 0px 4px #ff5623;
+  }
+
+  .address-wrapper{
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .address-wrapper_billing,
+  .address-wrapper_shipping{
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  .street-wrapper,
+  .city-wrapper,
+  .postal-wrapper,
+  .country-wrapper,
+  .city-wrapper_shipping,
+  .street-wrapper_shipping,
+  .postal-wrapper_shipping,
+  .country-wrapper_shipping{
+    display: flex;
+    flex-direction: column;
   }
