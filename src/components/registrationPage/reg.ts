@@ -130,7 +130,7 @@ export default function registrationOnServ() {
       if (icons[i].classList.contains('display-active') == false) {
         counter += 1;
       }
-      if (counter == 9) {
+      if (counter == 13) {
         const checkBilling = setDefaultAdressBilling();
         const checkShipping = setDefaultAdressShipping();
         addOnServ(String(checkBilling), String(checkShipping));
