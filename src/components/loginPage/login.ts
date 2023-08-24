@@ -29,6 +29,9 @@ export async function registration(email: string, password: string) {
       setTimeout(() => {
         logoutBtnListener.logoutBtnListener();
       }, 10);
+      const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
+      profileLink.classList.remove('display-none');
+      App.isLogin = true;
     }
   });
 }

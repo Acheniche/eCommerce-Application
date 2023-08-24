@@ -38,6 +38,10 @@ export default class Header extends Component {
 
     headerButtons.appendChild(newLink);
     this.container.append(headerButtons);
+    setTimeout(() => {
+      const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
+      profileLink.classList.add('display-none');
+    }, 10);
   }
 
   renderHeaderButtonsOkLogin() {

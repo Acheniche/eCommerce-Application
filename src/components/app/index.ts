@@ -22,6 +22,8 @@ export default class App {
 
   private header: Header;
 
+  public static isLogin = false;
+
   static renderPage(PageID: string) {
     const currentPageHTML = document.querySelector(`#${App.defaultPageID}`);
     if (currentPageHTML) {
@@ -35,7 +37,7 @@ export default class App {
       page = new RegistrationPage(PageID);
     } else if (PageID === PagesID.loginPage) {
       page = new LoginPage(PageID);
-    } else if (PageID === PagesID.profilePage) {
+    } else if (PageID === PagesID.profilePage && App.isLogin === true) {
       page = new ProfilePage(PageID);
     }  else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
