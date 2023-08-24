@@ -5,12 +5,14 @@ import LoginPage from '../loginPage/loginPage';
 import Header from '../header/header';
 import ErrorPage, { ErrorTypes } from '../errors/error404';
 import ProfilePage from '../userProfilePage/userProfilePage';
+import CatalogPage from '../catalogProductPage/catalogProductPage';
 
 export const enum PagesID {
   mainPage = 'main-page',
   registrationPage = 'registration-page',
   loginPage = 'login-page',
   profilePage = 'profile-page',
+  catalogPage = 'catalog-page',
 }
 
 export default class App {
@@ -39,7 +41,9 @@ export default class App {
       page = new LoginPage(PageID);
     } else if (PageID === PagesID.profilePage && App.isLogin === true) {
       page = new ProfilePage(PageID);
-    }  else {
+    } else if (PageID === PagesID.catalogPage) {
+      page = new CatalogPage(PageID);
+    } else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
 
