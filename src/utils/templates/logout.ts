@@ -6,7 +6,6 @@ class LogoutButton {
     if (logoutBtn) {
       logoutBtn.addEventListener('click', async (event) => {
         event.preventDefault();
-        console.log('EventListener work');
         try {
           const response = await fetch(
             'https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/anonymous/token?grant_type=client_credentials',

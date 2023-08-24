@@ -66,10 +66,13 @@ class CreateRegistrationPage {
       </div>
     </div>
 
+    <div class="address-wrapper"> 
+      <div class="address-wrapper_billing">
     <div class="street-wrapper">
+    <h3>Billing address</h3>
       <span>Street</span>
       <div class="tooltip">
-        <input type="text" class="street" id="registration-street" placeholder="Street">
+        <input type="text" class="street" id="registration-street_billing" placeholder="Street">
         <span class="icon">!</span>
         <span class="tooltip-text">Write your street, this field should not be left empty</span>
       </div>
@@ -81,7 +84,7 @@ class CreateRegistrationPage {
     <div class="city-wrapper">
       <span>City</span>
       <div class="tooltip">
-        <input type="text" class="city" id="registration-city" placeholder="City">
+        <input type="text" class="city" id="registration-city_billing" placeholder="City">
         <span class="icon">!</span>
         <span class="tooltip-text">City must not contain: special characters or numbers</span>
       </div>
@@ -93,7 +96,7 @@ class CreateRegistrationPage {
     <div class="postal-wrapper">
       <span>Postal code</span>
       <div class="tooltip">
-        <input type="number" class="postal-code" id="registration-postal" placeholder="Postal code">
+        <input type="number" class="postal-code" id="registration-postal_billing" placeholder="Postal code">
         <span class="icon">!</span>
         <span class="tooltip-text">Postal code must be 5 digits</span>
       </div>
@@ -105,7 +108,7 @@ class CreateRegistrationPage {
     <div class="country-wrapper">
       <span>Country</span>
       <div class="tooltip">
-        <select id="country">
+        <select id="country_billing">
           <option></option>
           <option>USA</option>
           <option>Germany</option>
@@ -117,14 +120,78 @@ class CreateRegistrationPage {
         <span class="not-valid-country not-valid"></span>
       </div>
     </div>
-
     <div>
     <label class="checkbox-ios">
-    Set the default address
-    <input type="checkbox" class="change-check">
+    Set default billing address
+    <input type="checkbox" class="change-check_billing">
     <span class="checkbox-ios-switch"></span>
     </label>
   </div>
+    </div>
+    <div class="address-wrapper_shipping">
+    <h3>Shipping address</h3>
+    <div class="street-wrapper_shipping">
+      <span>Street</span>
+      <div class="tooltip">
+        <input type="text" class="street_shipping" id="registration-street_shipping" placeholder="Street">
+        <span class="icon">!</span>
+        <span class="tooltip-text">Write your street, this field should not be left empty</span>
+      </div>
+      <div class="street-valid-span">
+        <span class="not-valid-street_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div class="city-wrapper_shipping">
+      <span>City</span>
+      <div class="tooltip">
+        <input type="text" class="city_shipping" id="registration-city_shipping" placeholder="City">
+        <span class="icon">!</span>
+        <span class="tooltip-text">City must not contain: special characters or numbers</span>
+      </div>
+      <div class="city-valid-span">
+        <span class="not-valid-city_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div class="postal-wrapper_shipping">
+      <span>Postal code</span>
+      <div class="tooltip">
+        <input type="number" class="postal-code_shipping" id="registration-postal_shipping" placeholder="Postal code">
+        <span class="icon">!</span>
+        <span class="tooltip-text">Postal code must be 5 digits</span>
+      </div>
+      <div class="postal-code-valid-span">
+        <span class="not-valid-postal-code_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div class="country-wrapper_shipping">
+      <span>Country</span>
+      <div class="tooltip">
+        <select id="country_shipping">
+          <option></option>
+          <option>USA</option>
+          <option>Germany</option>
+        </select>
+        <span class="icon">!</span>
+      <span class="tooltip-text">Choose a country</span>
+      </div>
+      <div class="country-valid-span">
+        <span class="not-valid-country_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div>
+    <label class="checkbox-ios">
+    Set default shipping address
+    <input type="checkbox" class="change-check_shipping">
+    <span class="checkbox-ios-switch"></span>
+    </label>
+  </div>
+
+    </div>
+    </div>
 
 
     <div class="button-registration-wrapper">
