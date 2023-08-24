@@ -35,7 +35,7 @@ export default class App {
       page = new MainPage(PageID);
     } else if (PageID === PagesID.registrationPage) {
       page = new RegistrationPage(PageID);
-    } else if (PageID === PagesID.loginPage) {
+    } else if (PageID === PagesID.loginPage && App.isLogin === false) {
       page = new LoginPage(PageID);
     } else if (PageID === PagesID.profilePage && App.isLogin === true) {
       page = new ProfilePage(PageID);
