@@ -4,11 +4,13 @@ import RegistrationPage from '../registrationPage/registrationPage';
 import LoginPage from '../loginPage/loginPage';
 import Header from '../header/header';
 import ErrorPage, { ErrorTypes } from '../errors/error404';
+import ProfilePage from '../userProfilePage/userProfilePage';
 
 export const enum PagesID {
   mainPage = 'main-page',
   registrationPage = 'registration-page',
   loginPage = 'login-page',
+  profilePage = 'profile-page',
 }
 
 export default class App {
@@ -33,7 +35,9 @@ export default class App {
       page = new RegistrationPage(PageID);
     } else if (PageID === PagesID.loginPage) {
       page = new LoginPage(PageID);
-    } else {
+    } else if (PageID === PagesID.profilePage) {
+      page = new ProfilePage(PageID);
+    }  else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
 

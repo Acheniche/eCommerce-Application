@@ -15,6 +15,10 @@ const Buttons = [
     id: PagesID.loginPage,
     text: 'Login',
   },
+  {
+    id: PagesID.profilePage,
+    text: 'Profile',
+  },
 ];
 
 export default class Header extends Component {
