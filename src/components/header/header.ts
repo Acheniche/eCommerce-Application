@@ -9,6 +9,10 @@ const Buttons = [
     text: 'Main',
   },
   {
+    id: PagesID.catalogPage,
+    text: 'Catalog',
+  },
+  {
     id: PagesID.registrationPage,
     text: 'Registration',
   },
@@ -20,10 +24,7 @@ const Buttons = [
     id: PagesID.profilePage,
     text: 'Profile',
   },
-  {
-    id: PagesID.catalogPage,
-    text: 'Catalog',
-  },
+
 ];
 
 export default class Header extends Component {
