@@ -63,7 +63,7 @@
   display: inline-block;
   padding: 10px 30px;
   margin: 10px;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
   border: 1px solid black;
   border-radius: 8px;
@@ -83,6 +83,7 @@
     'Helvetica Neue',
     sans-serif;
   font-size: 14px;
+  z-index: -1;
 }
 
 .login-button:before {

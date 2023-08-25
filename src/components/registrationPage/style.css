@@ -54,9 +54,10 @@
 }
 
 .tooltip {
-  position: relative;
+  /* position: relative; */
   display: inline-block;
   cursor: pointer;
+  /* z-index: -1; */
 }
 
 .tooltip .tooltip-text {
@@ -74,6 +75,7 @@
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
+  /* z-index: -1; */
 }
 
 .tooltip:hover .tooltip-text {
@@ -82,7 +84,7 @@
 }
 
 .icon {
-  position: absolute;
+  /* position: absolute; */
   color: red;
   top: 50%;
   transform: translateY(-50%);
@@ -90,6 +92,7 @@
   visibility: hidden;
   font-size: 1.8rem;
   padding-left: 1vh;
+  /* z-index: -1; */
 }
 
 .display-active {
@@ -127,13 +130,14 @@
   display: inline-block;
   padding: 10px 30px;
   margin: 10px;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
   border: 1px solid black;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
   color: black;
   transition: 0.2s ease-in-out;
+  /* z-index: -1; */
 }
 
 .registration-button:before {
@@ -145,6 +149,7 @@
   top: -8px;
   left: -75px;
   transform: skewX(-45deg);
+  /* z-index: -1; */
 }
 
 .registration-button:hover {
@@ -181,7 +186,7 @@
 }
 
 .checkbox-ios .checkbox-ios-switch {
-  position: relative;
+  /* position: relative; */
   display: inline-block;
   box-sizing: border-box;
   width: 28px;
@@ -192,6 +197,7 @@
   vertical-align: top;
   background: #eee;
   transition: 0.2s;
+  z-index: -1;
 }
 .checkbox-ios .checkbox-ios-switch:before {
   content: '';
@@ -211,7 +217,7 @@
   width: 0;
   height: 0;
   position: absolute;
-  z-index: -1;
+  /* z-index: -1; */
   opacity: 0;
 }
 .checkbox-ios input[type='checkbox']:not(:disabled):active + .checkbox-ios-switch:before {
@@ -247,9 +253,10 @@
 .checkbox-ios {
   display: inline-block;
   line-height: 28px;
-  position: relative;
+  /* position: relative; */
   vertical-align: middle;
   user-select: none;
+  /* z-index: -1; */
 }
 
 .checkbox-ios .checkbox-ios-switch {
@@ -366,10 +373,15 @@
   }
 
   .street-wrapper h3,
-  .address-wrapper_shipping h3{
+  .address-wrapper_shipping h3 {
     font-size: 1rem;
   }
   .RegistrationWrapper h1 {
     font-size: 2rem;
   }
+}
+
+#checkbox-ios-text2,
+#checkbox-ios-text2 {
+  z-index: -1;
 }

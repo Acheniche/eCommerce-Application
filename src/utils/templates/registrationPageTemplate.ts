@@ -66,7 +66,7 @@ class CreateRegistrationPage {
       </div>
     </div>
 
-    <div class="address-wrapper"> 
+    <div class="address-wrapper">
       <div class="address-wrapper_billing">
     <div class="street-wrapper">
     <h3>Billing address</h3>
@@ -121,11 +121,13 @@ class CreateRegistrationPage {
       </div>
     </div>
     <div>
+<span id="checkbox-ios-text2">Set default billing address</span>
     <label class="checkbox-ios">
-    Set default billing address
+
     <input type="checkbox" class="change-check_billing">
     <span class="checkbox-ios-switch"></span>
     </label>
+
   </div>
     </div>
     <div class="address-wrapper_shipping">
@@ -183,8 +185,8 @@ class CreateRegistrationPage {
     </div>
 
     <div>
+    <span id="checkbox-ios-text2">Set default shipping address</span>
     <label class="checkbox-ios">
-    Set default shipping address
     <input type="checkbox" class="change-check_shipping">
     <span class="checkbox-ios-switch"></span>
     </label>
