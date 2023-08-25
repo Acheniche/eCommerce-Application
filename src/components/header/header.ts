@@ -1,3 +1,4 @@
+import BurgerMenu from '../../utils/templates/burgerMenu';
 import Component from '../../utils/templates/components';
 import PopupWindow from '../../utils/templates/popup';
 import { PagesID } from '../app';
@@ -73,10 +74,15 @@ export default class Header extends Component {
   }
 
   render() {
+    const burgerMenu = new BurgerMenu();
     this.renderHeaderLogo();
     this.renderHeaderButtons();
     const createPop = new PopupWindow();
     this.container.insertAdjacentHTML('beforeend', createPop.block);
+    this.container.insertAdjacentHTML('beforeend', burgerMenu.block);
+    setTimeout(() => {
+      burgerMenu.burgerListener();
+    }, 10);
     return this.container;
   }
 }
