@@ -89,7 +89,11 @@ async function addOnServ(check_billing: string, check_shipping: string) {
       logoutBtn.renderHeaderButtonsOkLogin();
       setTimeout(() => {
         logoutBtnListener.logoutBtnListener();
+
       }, 10);
+      const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
+      profileLink.classList.remove('display-none');
+      App.isLogin = true;
     }
   });
   await fetch(

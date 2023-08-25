@@ -4,11 +4,15 @@ import RegistrationPage from '../registrationPage/registrationPage';
 import LoginPage from '../loginPage/loginPage';
 import Header from '../header/header';
 import ErrorPage, { ErrorTypes } from '../errors/error404';
+import ProfilePage from '../userProfilePage/userProfilePage';
+import CatalogPage from '../catalogProductPage/catalogProductPage';
 
 export const enum PagesID {
   mainPage = 'main-page',
   registrationPage = 'registration-page',
   loginPage = 'login-page',
+  profilePage = 'profile-page',
+  catalogPage = 'catalog-page',
 }
 
 export default class App {
@@ -19,6 +23,8 @@ export default class App {
   private initialPage: MainPage;
 
   private header: Header;
+
+  public static isLogin = false;
 
   static renderPage(PageID: string) {
     const currentPageHTML = document.querySelector(`#${App.defaultPageID}`);
@@ -31,8 +37,12 @@ export default class App {
       page = new MainPage(PageID);
     } else if (PageID === PagesID.registrationPage) {
       page = new RegistrationPage(PageID);
-    } else if (PageID === PagesID.loginPage) {
+    } else if (PageID === PagesID.loginPage && App.isLogin === false) {
       page = new LoginPage(PageID);
+    } else if (PageID === PagesID.profilePage && App.isLogin === true) {
+      page = new ProfilePage(PageID);
+    } else if (PageID === PagesID.catalogPage) {
+      page = new CatalogPage(PageID);
     } else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
