@@ -10,7 +10,6 @@ class BurgerMenu {
   private shadow() {
     const shadow: HTMLDivElement | null = document.querySelector('.shadow');
     if (window.innerWidth < 800) {
-
       if (shadow?.classList.contains('shadow_active')) {
         shadow.classList.remove('shadow_active');
         shadow.style.opacity = '0';
@@ -34,7 +33,6 @@ class BurgerMenu {
           shadow.style.display = 'none';
         }, 400);
       }
-
     }
   }
 

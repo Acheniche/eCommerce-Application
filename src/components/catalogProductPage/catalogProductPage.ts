@@ -1,9 +1,7 @@
 import Page from '../../utils/templates/page';
 import './style.css';
 
-
 class CatalogPage extends Page {
-
   static TextObject = {
     MainTitle: 'Catalog',
   };
