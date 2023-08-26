@@ -3,6 +3,7 @@ import CreateProfilePage from '../../utils/templates/profilePageTemplates';
 import './style.css';
 import App from '../app';
 import { getUserProfile } from '../../components/userProfilePage/profileInfo';
+import EditProfilePage from './editProfile';
 
 class ProfilePage extends Page {
   static TextObject = {
@@ -17,6 +18,7 @@ class ProfilePage extends Page {
       const email = sessionStorage.getItem('email');
       if (email) {
         getUserProfile(email).then((data) => {
+          const editProfile = new EditProfilePage();
           const profile = new CreateProfilePage(data);
           this.container.insertAdjacentHTML('beforeend', profile.block());
           const table = document.createElement('table');
@@ -72,9 +74,15 @@ class ProfilePage extends Page {
           }
           const div = document.getElementById('table-wrapper');
           div?.append(table);
+
+          setTimeout(() => {
+            editProfile.buttonListener();
+          }, 100);
+
         });
       }
-    }
+    
+  }
     return this.container;
   }
 }
