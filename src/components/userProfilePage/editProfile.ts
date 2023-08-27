@@ -3,23 +3,22 @@ import { getUserProfile } from './profileInfo';
 import ValidationProfile from './validationProfile';
 
 export default class EditProfilePage {
-
-    public clearProfilePage() {
-        const container = document.querySelector('.ProfileWrapper');
-        if (container) {
-        container.innerHTML = '';
-        }
+  public clearProfilePage() {
+    const container = document.querySelector('.ProfileWrapper');
+    if (container) {
+      container.innerHTML = '';
     }
+  }
 
-    public buttonListener(): void {
-        const editButton: HTMLButtonElement | null = document.querySelector('.edit-profile-button');
-        if (editButton) {
-          editButton.addEventListener('click', () => {
-            this.clearProfilePage();
+  public buttonListener(): void {
+    const editButton: HTMLButtonElement | null = document.querySelector('.edit-profile-button');
+    if (editButton) {
+      editButton.addEventListener('click', () => {
+        this.clearProfilePage();
 
-            const email = sessionStorage.getItem('email');
-            if (email) {
-            getUserProfile(email).then((data) => {
+        const email = sessionStorage.getItem('email');
+        if (email) {
+          getUserProfile(email).then((data) => {
             const validationProfile = new ValidationProfile();
             const profile = new CreateProfilePage(data);
             const container = document.querySelector('.ProfileWrapper');
@@ -30,11 +29,11 @@ export default class EditProfilePage {
             (<HTMLInputElement>document.getElementById('registration-email')).value = data.email;
 
             setTimeout(() => {
-                validationProfile.buttonListener();
-              }, 100);
-            });
-            }
+              validationProfile.buttonListener();
+            }, 100);
           });
         }
-      }
+      });
+    }
+  }
 }

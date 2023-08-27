@@ -1,8 +1,28 @@
-async function updateData(id:string, version:number, accessToken:string) {
+async function updatePassword(id: string, version: number, accessToken: string) {
+  const vers = version;
+  const data = {
+    id: id,
+    version: vers,
+    currentPassword: (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value,
+    newPassword: (<HTMLInputElement>document.querySelector('#registration-newPassword')).value,
+  };
+  console.log(data);
+  const res = await fetch('https://api.europe-west1.gcp.commercetools.com/ghpr/customers/password', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(res);
+}
 
-    const data = {
-      'version' : version,
-      'actions' : [ /*{
+async function updateData(id: string, version: number, accessToken: string) {
+  const data = {
+    version: version,
+    actions: [
+      /*{
         'action' : 'addAddress',
         'address' : {
           'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
@@ -12,63 +32,60 @@ async function updateData(id:string, version:number, accessToken:string) {
         },
       },*/
       {
-        'action': 'setFirstName',
-        'firstName': (<HTMLInputElement>document.querySelector('#registration-firstname')).value,
+        action: 'setFirstName',
+        firstName: (<HTMLInputElement>document.querySelector('#registration-firstname')).value,
       },
       {
-        'action': 'setLastName',
-        'lastName': (<HTMLInputElement>document.querySelector('#registration-lastname')).value,
+        action: 'setLastName',
+        lastName: (<HTMLInputElement>document.querySelector('#registration-lastname')).value,
       },
       {
-        'action': 'changeEmail',
-        'email': (<HTMLInputElement>document.querySelector('#registration-email')).value,
+        action: 'changeEmail',
+        email: (<HTMLInputElement>document.querySelector('#registration-email')).value,
       },
       {
-        'action': 'setDateOfBirth',
-        'dateOfBirth': (<HTMLInputElement>document.querySelector('#registration-dateOfBirth')).value,
+        action: 'setDateOfBirth',
+        dateOfBirth: (<HTMLInputElement>document.querySelector('#registration-dateOfBirth')).value,
       },
-      ],
-    };
+    ],
+  };
 
-    await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
+  await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).then(function (res) {
+    if (!res.ok) {
+      console.log(res);
+    } else if (
+      (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value.length > 0 &&
+      (<HTMLInputElement>document.querySelector('#registration-newPassword')).value.length > 0
+    ) {
+      console.log('true');
+      updatePassword(id, version, accessToken);
+    } else {
+      sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
+      location.hash = '#main-page';
+      console.log('all ok');
+    }
+  });
+}
+
+export default async function getToken(id: string, version: number) {
+  const response = await fetch(
+    'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
+    {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
+        Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify(data),
-  
-  
-    })
-      .then(function (res) {
-        if (!res.ok) {
-          console.log(res);
-        /* else if ((<HTMLInputElement>document.querySelector('#input-modal8')).value.length > 0 &&
-      (<HTMLInputElement>document.querySelector('#input-modal9')).value.length > 0 ) {
-          console.log('true');*/
-       //   updatePassword(id, version, accessToken);
-       // }
-       } else {
-       //   userProfail((<HTMLInputElement>document.querySelector('#input-modal7')).value);
-       sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
-       console.log('all ok');
-        }
-      });
-  }
-
-
-export default async function getToken(id:string, version:number) {
-    const response = await fetch('https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
-      {
-        method: 'POST',
-        headers: {
-          Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      },
-  
-    );
-    const tokenData = await response.json();
-    const accessToken = tokenData.access_token;
-    updateData(id, version, accessToken);
-  }
+    },
+  );
+  const tokenData = await response.json();
+  const accessToken = tokenData.access_token;
+  updateData(id, version, accessToken);
+}

@@ -108,6 +108,34 @@ export default class CreateProfilePage {
 </div>
 </div>
 
+<div class="Oldpassword-wrapper">
+<span>Old Password </span>
+<div class="tooltip">
+  <input type="password" class="Oldpassword" id="registration-oldPassword" placeholder="old password">
+  <span class="icon">!</span>
+  <span class="tooltip-text">Password must contain: minimum 8 characters,
+  at least 1 uppercase letter, 1 lowercase letter, and 1 number</span>
+</div>
+<button class="Oldtoggle-password-button"></button>
+<div class="email-valid-span">
+  <span class="Oldnot-valid-password not-valid"></span>
+</div>
+</div>
+
+<div class="Newpassword-wrapper">
+<span>New Password </span>
+<div class="tooltip">
+  <input type="password" class="Newpassword" id="registration-newPassword" placeholder="new password">
+  <span class="icon">!</span>
+  <span class="tooltip-text">Password must contain: minimum 8 characters,
+  at least 1 uppercase letter, 1 lowercase letter, and 1 number</span>
+</div>
+<button class="Newtoggle-password-button"></button>
+<div class="email-valid-span">
+  <span class="Newnot-valid-password not-valid"></span>
+</div>
+</div>
+
 
 <div class="button-registration-wrapper">
 <div class="tooltip">

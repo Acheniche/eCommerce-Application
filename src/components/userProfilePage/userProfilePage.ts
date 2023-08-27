@@ -78,11 +78,9 @@ class ProfilePage extends Page {
           setTimeout(() => {
             editProfile.buttonListener();
           }, 100);
-
         });
       }
-    
-  }
+    }
     return this.container;
   }
 }
