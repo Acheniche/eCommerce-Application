@@ -1,3 +1,5 @@
+import App from '../app';
+
 async function updatePassword(id: string, version: number, accessToken: string) {
   const vers = version;
   const data = {
@@ -68,7 +70,9 @@ async function updateData(id: string, version: number, accessToken: string) {
       updatePassword(id, version, accessToken);
     } else {
       sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
-      location.hash = '#main-page';
+
+      App.renderPage('profile-page');
+
       console.log('all ok');
     }
   });
