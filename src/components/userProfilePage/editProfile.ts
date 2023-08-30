@@ -1,7 +1,8 @@
+import innerAddres from './innerAdressBuilding';
 import CreateProfilePage from '../../utils/templates/profilePageTemplates';
 import { getUserProfile } from './profileInfo';
 import ValidationProfile from './validationProfile';
-
+import addAddress from './addAdress';
 export default class EditProfilePage {
   public clearProfilePage() {
     const container = document.querySelector('.ProfileWrapper');
@@ -27,8 +28,10 @@ export default class EditProfilePage {
             (<HTMLInputElement>document.getElementById('registration-lastname')).value = data.lastName;
             (<HTMLInputElement>document.getElementById('registration-dateOfBirth')).value = data.dateOfBirth;
             (<HTMLInputElement>document.getElementById('registration-email')).value = data.email;
-
+            //console.log(data.shippingAddressIds)
+            innerAddres(data)
             setTimeout(() => {
+              addAddress(data)
               validationProfile.buttonListener();
             }, 100);
           });

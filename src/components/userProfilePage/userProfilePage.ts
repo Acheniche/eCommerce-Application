@@ -20,19 +20,20 @@ class ProfilePage extends Page {
         getUserProfile(email).then((data) => {
           const editProfile = new EditProfilePage();
           const profile = new CreateProfilePage(data);
+          const adressBilling = new CreateProfilePage(data)
           this.container.insertAdjacentHTML('beforeend', profile.block());
           const table = document.createElement('table');
 
           const Row = document.createElement('tr');
-          const Td1 = document.createElement('td');
+          const Td1 = document.createElement('th');
           Td1.appendChild(document.createTextNode('City'));
-          const Td2 = document.createElement('td');
+          const Td2 = document.createElement('th');
           Td2.appendChild(document.createTextNode('Street'));
-          const Td3 = document.createElement('td');
+          const Td3 = document.createElement('th');
           Td3.appendChild(document.createTextNode('Postal Code'));
-          const Td4 = document.createElement('td');
+          const Td4 = document.createElement('th');
           Td4.appendChild(document.createTextNode('Country'));
-          const Td5 = document.createElement('td');
+          const Td5 = document.createElement('th');
           Td5.appendChild(document.createTextNode('Id'));
           const Td6 = document.createElement('td');
           Td6.appendChild(document.createTextNode(''));

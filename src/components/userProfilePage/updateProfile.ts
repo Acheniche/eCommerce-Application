@@ -33,6 +33,18 @@ async function updateData(id: string, version: number, accessToken: string) {
           'country' : (<HTMLInputElement>document.querySelector('#input-modal6')).value,
         },
       },*/
+/*       {
+       action: 'addAddress',
+       address: {
+        'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
+        'postalCode' :(<HTMLInputElement>document.querySelector('#input-modal4')).value,
+        'city' : (<HTMLInputElement>document.querySelector('#input-modal5')).value,
+        'country' : (<HTMLInputElement>document.querySelector('#input-modal6')).value,
+      },
+
+    }, */
+
+
       {
         action: 'setFirstName',
         firstName: (<HTMLInputElement>document.querySelector('#registration-firstname')).value,
@@ -91,5 +103,8 @@ export default async function getToken(id: string, version: number) {
   );
   const tokenData = await response.json();
   const accessToken = tokenData.access_token;
+  let shop = document.querySelectorAll('.city_shipping')
+  console.log(shop.values)
   updateData(id, version, accessToken);
+
 }

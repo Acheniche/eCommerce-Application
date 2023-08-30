@@ -28,8 +28,163 @@ export default class CreateProfilePage {
   constructor(data: User) {
     this.data = data;
   }
+  adressShiping(){
+    return `
+    <div class="address-shipping">
+    <h3>Shipping address</h3>
+    <div class="street-wrapper_shipping">
+      <span>Street</span>
+      <div class="tooltip">
+        <input type="text" class="street_shipping" id="registration-street_shipping" placeholder="Street">
+        <span class="icon">!</span>
+        <span class="tooltip-text">Write your street, this field should not be left empty</span>
+      </div>
+      <div class="street-valid-span">
+        <span class="not-valid-street_shipping not-valid"></span>
+      </div>
 
-  public block() {
+
+    <div class="city-wrapper_shipping">
+      <span>City</span>
+      <div class="tooltip">
+        <input type="text" class="city_shipping" id="registration-city_shipping" placeholder="City">
+        <span class="icon">!</span>
+        <span class="tooltip-text">City must not contain: special characters or numbers</span>
+      </div>
+      <div class="city-valid-span">
+        <span class="not-valid-city_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div class="postal-wrapper_shipping">
+      <span>Postal code</span>
+      <div class="tooltip">
+        <input type="number" class="postal-code_shipping" id="registration-postal_shipping" placeholder="Postal code">
+        <span class="icon">!</span>
+        <span class="tooltip-text">Postal code must be 5 digits</span>
+      </div>
+      <div class="postal-code-valid-span">
+        <span class="not-valid-postal-code_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div class="country-wrapper_shipping">
+      <span>Country</span>
+      <div class="tooltip">
+        <select id="country_shipping">
+          <option></option>
+          <option>USA</option>
+          <option>Germany</option>
+        </select>
+        <span class="icon">!</span>
+      <span class="tooltip-text">Choose a country</span>
+      </div>
+      <div class="country-valid-span">
+        <span class="not-valid-country_shipping not-valid"></span>
+      </div>
+    </div>
+
+    <div>
+    <span id="checkbox-ios-text2">Set default shipping address</span>
+    <label class="checkbox-ios">
+    <input type="checkbox" class="change-check_shipping">
+    <span class="checkbox-ios-switch"></span>
+    </label>
+  </div>
+  <button class="add-button-adressShiping">add new adress</button>
+  <button class="delete-button-adressShiping">delete adress</button>
+  <div>
+  </div>
+</div>
+</div>
+    `
+  }
+  adressBilling(){
+    return `
+    <div class="address-wrapper_billing">
+  <div class="street-wrapper">
+  <h3>Billing address</h3>
+    <span>Street</span>
+    <div class="tooltip">
+      <input type="text" class="street" id=registration-street_billing" placeholder="Street">
+      <span class="icon">!</span>
+      <span class="tooltip-text">Write your street, this field should not be left empty</span>
+    </div>
+    <div class="street-valid-span">
+      <span class="not-valid-street not-valid"></span>
+    </div>
+  </div>
+
+  <div class="city-wrapper">
+    <span>City</span>
+    <div class="tooltip">
+      <input type="text" class="city" id="registration-city_billing" placeholder="City">
+      <span class="icon">!</span>
+      <span class="tooltip-text">City must not contain: special characters or numbers</span>
+    </div>
+    <div class="city-valid-span">
+      <span class="not-valid-city not-valid"></span>
+    </div>
+  </div>
+
+  <div class="postal-wrapper">
+    <span>Postal code</span>
+    <div class="tooltip">
+      <input type="number" class="postal-code" id="registration-postal_billing" placeholder="Postal code">
+      <span class="icon">!</span>
+      <span class="tooltip-text">Postal code must be 5 digits</span>
+    </div>
+    <div class="postal-code-valid-span">
+      <span class="not-valid-postal-code not-valid"></span>
+    </div>
+  </div>
+
+  <div class="country-wrapper">
+    <span>Country</span>
+    <div class="tooltip">
+      <select id="country_billing">
+        <option></option>
+        <option>USA</option>
+        <option>Germany</option>
+      </select>
+      <span class="icon">!</span>
+    <span class="tooltip-text">Choose a country</span>
+    </div>
+    <div class="country-valid-span">
+      <span class="not-valid-country not-valid"></span>
+    </div>
+  </div>
+  <div>
+  <span id="checkbox-ios-text2">Set default billing address</span>
+  <label class="checkbox-ios">
+
+
+
+  <input type="checkbox" class="change-check_billing">
+  <span class="checkbox-ios-switch"></span>
+  </label>
+
+
+</div>
+
+<div>
+<button class="delete-button-adressBilling">
+    delete this address
+</button>
+<button class="add-button-adressBilling">
+add new address
+</button>
+</div>
+</div>
+
+
+  </div>
+</div>`
+  }
+
+
+
+  block() {
     return `
     <div class="profile">
         <div class="profile-firstname-wrapper">
@@ -40,12 +195,15 @@ export default class CreateProfilePage {
             <h3 class="lastname">Lastname:</h3>
             <h3 class="lastname-value">${this.data.lastName}</h3>
         </div>
+        <div class="profile-email-wrapper">
+            <h3 class="email">Date Of Birth:</h3>
+            <h3 class="email-value">${this.data.email}</h3>
+        </div>
         <div class="profile-dateOfBirth-wrapper">
             <h3 class="dateOfBirth">Date Of Birth:</h3>
             <h3 class="dateOfBirth-value">${this.data.dateOfBirth}</h3>
         </div>
         <div class="profile-addresses-wrapper" id="table-wrapper">
-      
         </div>
         <button class="edit-profile-button">Edit profile</button>
     </div>
@@ -56,6 +214,7 @@ export default class CreateProfilePage {
     return `
     <h1>Update user profile</h1>
 
+    <div class="update-user-profile">
     <div class="first-name-wrapper">
       <span>First name</span>
       <div class="tooltip">
@@ -116,6 +275,9 @@ export default class CreateProfilePage {
   <span class="tooltip-text">Password must contain: minimum 8 characters,
   at least 1 uppercase letter, 1 lowercase letter, and 1 number</span>
 </div>
+
+
+
 <button class="Oldtoggle-password-button"></button>
 <div class="email-valid-span">
   <span class="Oldnot-valid-password not-valid"></span>
@@ -137,6 +299,8 @@ export default class CreateProfilePage {
 </div>
 
 
+<div class="address-wrapper" id="adress-profail-id3"></div>
+
 <div class="button-registration-wrapper">
 <div class="tooltip">
     <button class="update-button">
@@ -144,6 +308,7 @@ export default class CreateProfilePage {
     </button>
     <span class="tooltip-text">Check if you filled in all the fields correctly?</span>
   </div>
+</div>
 </div>
     `;
   }
