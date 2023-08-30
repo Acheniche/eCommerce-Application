@@ -30,6 +30,6 @@ export async function getUserProfile(mail: string) {
       const email = tr.results.at(-1).email;
       const id = tr.results.at(-1).id;
       const version = tr.results.at(-1).version;*/
-      console.log(data)
+  console.log(data);
   return data.results.at(-1);
 }

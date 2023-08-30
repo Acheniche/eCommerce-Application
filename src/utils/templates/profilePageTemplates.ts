@@ -28,7 +28,8 @@ export default class CreateProfilePage {
   constructor(data: User) {
     this.data = data;
   }
-  adressShiping(){
+
+  adressShiping() {
     return `
     <div class="address-shipping">
     <h3>Shipping address</h3>
@@ -97,9 +98,10 @@ export default class CreateProfilePage {
   </div>
 </div>
 </div>
-    `
+    `;
   }
-  adressBilling(){
+
+  adressBilling() {
     return `
     <div class="address-wrapper_billing">
   <div class="street-wrapper">
@@ -179,7 +181,7 @@ add new address
 
 
   </div>
-</div>`
+</div>`;
   }
 
 

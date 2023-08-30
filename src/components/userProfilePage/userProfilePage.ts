@@ -20,7 +20,6 @@ class ProfilePage extends Page {
         getUserProfile(email).then((data) => {
           const editProfile = new EditProfilePage();
           const profile = new CreateProfilePage(data);
-          const adressBilling = new CreateProfilePage(data)
           this.container.insertAdjacentHTML('beforeend', profile.block());
           const table = document.createElement('table');
 

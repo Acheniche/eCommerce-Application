@@ -1,73 +1,82 @@
-import CreateProfilePage from "../../utils/templates/profilePageTemplates";
-export default function addAddress(data:any){
+import { adressBilling1, adressShiping1 } from './innerAdressBuilding';
+function deleteAddressShiping(data:string[]) {
+  const allAdressesButtonDelete = document.querySelectorAll('.delete-button-adressShiping');
+  const buttonDelete = [...allAdressesButtonDelete];
+  buttonDelete.forEach(elem =>{
+    elem.addEventListener('click', (e) =>{
+      e.stopImmediatePropagation();
+      if (allAdressesButtonDelete.length > 1) {
+        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove());
+        deleteAddressShiping(data);
+      } else {
+        console.log('You canot delete');
+        console.log(allAdressesButtonDelete);
+        deleteAddressShiping(data);
+      }
+    });
+  });
+}
+
+function deleteAddress(data:string[]) {
+  const allAdressesButtonDelete = document.querySelectorAll('.delete-button-adressBilling');
+  const buttonDelete = [...allAdressesButtonDelete];
+  buttonDelete.forEach(elem =>{
+    elem.addEventListener('click', (e) =>{
+      e.stopImmediatePropagation();
+      if (allAdressesButtonDelete.length > 1) {
+        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove());
+        deleteAddress(data);
+      } else {
+        console.log('You canot delete');
+        console.log(allAdressesButtonDelete);
+        deleteAddress(data);
+      }
+    });
+  });
+
+}
+
+function addAddressShiping(data:string[]) {
+  const allAdressesButton = document.querySelectorAll('.add-button-adressShiping');
+  const divarray = [...allAdressesButton];
+  divarray.forEach(elem =>{
+    elem.addEventListener('click', (e)=>{
+      e.stopImmediatePropagation();
+      const container = document.querySelector('#adress-profail-id3');
+      container?.insertAdjacentHTML('beforeend', adressShiping1());
+      addAddressShiping(data);
+    });
+  });
+}
+
+
+
+export default function addAddress(data:string[]) {
   deleteAddress(data);
-  addAddressShiping(data)
-  deleteAddressShiping(data)
-  let allAdressesButton = document.querySelectorAll('.add-button-adressBilling')
-  let div_array = [...allAdressesButton];
-  div_array.forEach(elem =>{
+  addAddressShiping(data);
+  deleteAddressShiping(data);
+  const allAdressesButton = document.querySelectorAll('.add-button-adressBilling');
+  const divarray = [...allAdressesButton];
+  divarray.forEach(elem =>{
     elem.addEventListener('click', (e)=>{
-      e.stopImmediatePropagation()
-      const profile = new CreateProfilePage(data);
+      e.stopImmediatePropagation();
       const container = document.querySelector('#adress-profail-id3');
-      container?.insertAdjacentHTML('beforeend', profile.adressBilling());
-      addAddress(data)
-    })
-  })
+      container?.insertAdjacentHTML('beforeend', adressBilling1());
+      addAddress(data);
+    });
+  });
 }
 
-function addAddressShiping(data:any){
-  let allAdressesButton = document.querySelectorAll('.add-button-adressShiping')
-  let div_array = [...allAdressesButton];
-  div_array.forEach(elem =>{
-    elem.addEventListener('click', (e)=>{
-      e.stopImmediatePropagation()
-      const profile = new CreateProfilePage(data);
-      const container = document.querySelector('#adress-profail-id3');
-      container?.insertAdjacentHTML('beforeend', profile.adressShiping());
-      addAddress(data)
-    })
-  })
-}
 
-function deleteAddressShiping(data:any){
-  let allAdressesButtonDelete = document.querySelectorAll('.delete-button-adressShiping')
-  let buttonDelete = [...allAdressesButtonDelete];
-  buttonDelete.forEach(elem =>{
-    elem.addEventListener('click', (e) =>{
-      e.stopImmediatePropagation()
-      if(allAdressesButtonDelete.length > 1){
-        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove())
-        deleteAddress(data)
-      }else{
-        console.log("You canot delete")
-        console.log(allAdressesButtonDelete)
-        deleteAddress(data)
-      }
-    })
-  })
-}
 
-function deleteAddress(data:any){
-  let allAdressesButtonDelete = document.querySelectorAll('.delete-button-adressBilling')
-  let buttonDelete = [...allAdressesButtonDelete];
-  buttonDelete.forEach(elem =>{
-    elem.addEventListener('click', (e) =>{
-      e.stopImmediatePropagation()
-      if(allAdressesButtonDelete.length > 1){
-        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove())
-        deleteAddress(data)
-      }else{
-        console.log("You canot delete")
-        console.log(allAdressesButtonDelete)
-        deleteAddress(data)
-      }
-    })
-  })
-/*   (<HTMLButtonElement>document.querySelector('.delete-adress')).addEventListener('click', (e)=>{
-    ((<HTMLElement>e.target).parentElement?.parentElement?.parentElement)
-  }) */
-}
+
+
+
+
+
+
+
+
 
 
 //console.log((<HTMLElement>e.target).parentElement?.parentElement?.parentElement)
