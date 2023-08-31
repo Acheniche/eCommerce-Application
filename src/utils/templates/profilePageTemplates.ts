@@ -198,7 +198,7 @@ add new address
             <h3 class="lastname-value">${this.data.lastName}</h3>
         </div>
         <div class="profile-email-wrapper">
-            <h3 class="email">Date Of Birth:</h3>
+            <h3 class="email">Email:</h3>
             <h3 class="email-value">${this.data.email}</h3>
         </div>
         <div class="profile-dateOfBirth-wrapper">

@@ -155,3 +155,65 @@
   left: 150px;
   transition: 0.5s ease-in-out;
 }
+
+
+table {
+  border-spacing: 1.2vw 1vw;
+}
+
+.update-user-profile{
+  margin-bottom: 10px;
+}
+
+.first-name-wrapper{
+  margin-top: 18px;
+}
+
+button{
+  border-radius: 5px;
+}
+
+.ProfileWrapper .address-wrapper_billing{
+  margin-bottom: 0px;
+  height: auto;
+  width: auto;
+}
+
+.ProfileWrapper .address-wrapper_billing, .ProfileWrapper .address-shipping{
+  margin-right: 5px;
+  padding: 12px;
+}
+
+@media (max-width: 745px) {
+  .ProfileWrapper .address-wrapper_billing, .ProfileWrapper .address-shipping{
+    margin-bottom: 10px;
+
+  }
+}
+
+@media (max-width: 600px) {
+  .profile h3, .profile table {
+    font-size: 1em;
+  }
+  .update-user-profile input{
+    width: 45vw;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .profile{
+    width: 85vw;
+  }
+  .profile table {
+    font-size: 0.8em;
+  }
+  table {
+    border-spacing: 0.7vw 0.7vw;
+  }
+  table {
+    overflow-x: scroll !important; /* Или overflow-x: scroll; */
+    white-space: nowrap;
+  }
+
+}
