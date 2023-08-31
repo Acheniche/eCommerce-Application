@@ -1,0 +1,19 @@
+.CatalogWrapper{
+    display: flex;
+}
+.filters{
+    border-right: 1px black solid;
+    width: 15vw;
+    height: 85.5vh;
+    margin: 0;
+}
+.navigation{
+    border-bottom: 1px black solid;
+    margin: 0;
+    width: 85vw;
+    height: 15vh;
+}
+.cardWrapper img{
+    width: 50px;
+    height: 50px;
+}
