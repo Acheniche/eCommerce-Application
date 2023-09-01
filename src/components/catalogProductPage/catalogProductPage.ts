@@ -30,9 +30,23 @@ class CatalogPage extends Page {
         const description = document.createElement('p');
         description.classList.add('productDescription');
         description.textContent = `${data.results[i].masterData.current.description['en-US']}`;
+        const price = document.createElement('h3');
+        price.classList.add('productPrice');
+        const priceValue: string = data.results[i].masterData.staged.masterVariant.prices[0].value.centAmount;
+        price.textContent = `${(priceValue)} ${data.results[i].masterData.staged.masterVariant.prices[0].value.currencyCode}`;
+
         cardWrapper.append(img);
         cardWrapper.append(name);
         cardWrapper.append(description);
+        cardWrapper.append(price);
+
+        if (data.results[i].masterData.staged.masterVariant.prices[0].discounted) {
+          price.style.textDecoration = 'line-through';
+          const discount = document.createElement('h3');
+          discount.classList.add('discount');
+          discount.textContent = `${data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.centAmount} ${data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.currencyCode}`;
+          cardWrapper.append(discount);
+        }
         if (products) {
           products.append(cardWrapper);
         }
