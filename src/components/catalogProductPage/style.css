@@ -37,3 +37,19 @@
 .discount{
     color: red;
 }
+.navigation{
+    display: flex;
+}
+ul{
+    list-style: none;
+}
+li:hover{
+    color: blue;
+}
+.active{
+    color: red;
+}
+.category{
+    font-size: 20px;
+    font-weight: 700;
+}
