@@ -1,4 +1,5 @@
 import ValidationLoginPage from '../loginPage/validation';
+import ValidationRegistrationPage from '../registrationPage/validation';
 import { getUserProfile } from './profileInfo';
 import getToken from './updateProfile';
 
@@ -230,6 +231,7 @@ export default class ValidationProfile {
     const updateButton: HTMLButtonElement | null = document.querySelector('.update-button');
     const OldPasswordWrapper: HTMLDivElement | null = document.querySelector('.Oldpassword-wrapper');
     const NewPasswordWrapper: HTMLDivElement | null = document.querySelector('.Newpassword-wrapper');
+    const ValidationAddres = new ValidationRegistrationPage;
     this.oldtogglePasswordVisibility();
     this.newtogglePasswordVisibility();
     if (updateButton) {
@@ -259,6 +261,17 @@ export default class ValidationProfile {
         this.firstNameCheck();
         this.lastNameCheck();
         this.dateCheck();
+        ValidationAddres.cityCheck_billing();
+        ValidationAddres.streetCheck_billing();
+        ValidationAddres.countryCheck_billing();
+        ValidationAddres.postalListener_billing();
+        ValidationAddres.postalCheck_billing();
+        ValidationAddres.streetCheck_shipping();
+        ValidationAddres.cityCheck_shipping();
+        ValidationAddres.postalCheck_shipping();
+        ValidationAddres.postalListener_shipping();
+        ValidationAddres.countryCheck_shipping();
+
         //-------------------------------
         const icons = document.querySelectorAll('.icon');
         let i: number = 0;
@@ -268,7 +281,7 @@ export default class ValidationProfile {
             counter += 1;
           }
 
-          if (counter === 6) {
+          if (counter === 14) {
             const email = sessionStorage.getItem('email');
             if (email) {
               getUserProfile(email).then((data) => {
@@ -277,6 +290,7 @@ export default class ValidationProfile {
             }
           }
           i += 1;
+
         }
         //------------------------------
       });

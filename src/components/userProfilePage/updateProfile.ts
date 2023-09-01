@@ -1,7 +1,11 @@
+import PopupWindow from '../../utils/templates/popup';
 import App from '../app';
 
 async function updatePassword(id: string, version: number, accessToken: string) {
   const vers = version;
+  const popupWindow = new PopupWindow();
+  const passwordTru = 'password-tru';
+  const passwordWrong = 'password-wrong';
   const data = {
     id: id,
     version: vers,
@@ -17,7 +21,15 @@ async function updatePassword(id: string, version: number, accessToken: string) 
     },
     body: JSON.stringify(data),
   });
-  console.log(res);
+  console.log(res.status, typeof res.status);
+  if (res.status == 400) {
+    popupWindow.popupTrue(passwordWrong);
+    console.log('wrong');
+  } else if (res.status == 200) {
+    popupWindow.popupTrue(passwordTru);
+    console.log('tru');
+  }
+
 }
 
 async function updateData(id: string, version: number, accessToken: string) {
