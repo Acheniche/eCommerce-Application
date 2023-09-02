@@ -1,7 +1,7 @@
 import Page from '../../utils/templates/page';
 import './style.css';
 import CreateCatalogPage from '../../utils/templates/catalogPageTemplate';
-import { createProductsCards, createProductsCardsCategory, getProducts, getSubCategoryProduct } from './products';
+import { createProductsCards, createProductsCardsCategory, getProducts, getSubCategoryProduct, mainNameFilter, nameFilter } from './products';
 
 
 class CatalogPage extends Page {
@@ -27,7 +27,7 @@ class CatalogPage extends Page {
           i.classList.remove('active');
         });
         (e.target as HTMLElement).classList.add('active');
-        console.log((e.target as HTMLElement).id);
+        sessionStorage.setItem('categoryId', (e.target as HTMLElement).id);
         const products = document.querySelector('.products');
         if (products) {
         products.innerHTML = '';
@@ -42,6 +42,23 @@ class CatalogPage extends Page {
         }
       }
     }
+    });
+    document.body.addEventListener('click', e => {
+      if ((e.target as HTMLElement).className === 'button-filterByName') {
+      const products = document.querySelector('.products');
+      if (products) {
+      products.innerHTML = '';
+      }
+      if (sessionStorage.getItem('categoryId') != 'main') {
+      nameFilter().then((data) => {
+        createProductsCardsCategory(data);
+      });
+    } else {
+      mainNameFilter().then((data) => {
+        createProductsCardsCategory(data);
+      });
+    }
+  }
     });
     return this.container;
   }

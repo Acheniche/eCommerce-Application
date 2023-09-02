@@ -7,7 +7,9 @@ export type Products = {
 export default class CreateCatalogPage {
     public mainCatalog() {
         return `
-        <div class="filters"></div>
+        <div class="filters">
+        <button class="button-filterByName">Filter by name</button>
+        </div>
         <div class="rightSide">
             <div class="navigation">
             <ul class="column1">
