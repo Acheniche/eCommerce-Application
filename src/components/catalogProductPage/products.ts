@@ -82,6 +82,9 @@ export function createProductsCards(data: Products) {
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
+    const div = document.createElement('div');
+    div.appendChild(img);
+    div.appendChild(name);
     const description = document.createElement('p');
     description.classList.add('productDescription');
     description.textContent = `${data.results[i].masterData.current.description['en-US']}`;
@@ -92,8 +95,9 @@ export function createProductsCards(data: Products) {
       data.results[i].masterData.staged.masterVariant.prices[0].value.currencyCode
     }`;
 
-    cardWrapper.append(img);
-    cardWrapper.append(name);
+    // cardWrapper.append(img);
+    // cardWrapper.append(name);
+    cardWrapper.append(div);
     cardWrapper.append(description);
     cardWrapper.append(price);
 
