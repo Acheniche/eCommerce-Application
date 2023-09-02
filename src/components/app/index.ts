@@ -6,6 +6,7 @@ import Header from '../header/header';
 import ErrorPage, { ErrorTypes } from '../errors/error404';
 import ProfilePage from '../userProfilePage/userProfilePage';
 import CatalogPage from '../catalogProductPage/catalogProductPage';
+import ProductPage from '../detailedProductPage/detailedProductPage';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -13,6 +14,7 @@ export const enum PagesID {
   loginPage = 'login-page',
   profilePage = 'profile-page',
   catalogPage = 'catalog-page',
+  productPage = 'product-page',
 }
 
 export default class App {
@@ -43,6 +45,8 @@ export default class App {
       page = new ProfilePage(PageID);
     } else if (PageID === PagesID.catalogPage) {
       page = new CatalogPage(PageID);
+    } else if (PageID === PagesID.productPage) {
+      page = new ProductPage(PageID);
     } else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }

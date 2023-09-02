@@ -7,6 +7,7 @@ export type Results = {
   name: Lang;
   description: Lang;
   prices: Array<Prices>;
+  id: string;
 };
 export type Staged = {
   staged: MasterVariant;
@@ -42,6 +43,7 @@ export type Value = {
 };
 
 
+
 export async function getProducts() {
     const response = await fetch(
         'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
@@ -69,9 +71,13 @@ export async function getProducts() {
 
 export function createProductsCards(data: Products) {
   const products = document.querySelector('.products');
+  if (products) {
+    products.innerHTML = '';
+  }
   for (let i = 0; i < data.results.length; i++) {
     const cardWrapper = document.createElement('div');
     cardWrapper.classList.add('cardWrapper');
+    cardWrapper.setAttribute('id', `${data.results[i].id}`);
     const img = document.createElement('img');
     img.src = `${data.results[i].masterData.staged.masterVariant.images[0].url}`;
     img.alt = 'pic';
@@ -131,11 +137,14 @@ export async function getSubCategoryProduct(id: string) {
 }
 
 export function createProductsCardsCategory(data: Products) {
-  console.log(data);
   const products = document.querySelector('.products');
+  if (products) {
+    products.innerHTML = '';
+  }
   for (let i = 0; i < data.results.length; i++) {
     const cardWrapper = document.createElement('div');
     cardWrapper.classList.add('cardWrapper');
+    cardWrapper.setAttribute('id', `${data.results[i].id}`);
     const img = document.createElement('img');
     img.src = `${data.results[i].masterVariant.images[0].url}`;
     img.alt = 'pic';
