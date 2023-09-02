@@ -10,6 +10,10 @@ export default class CreateCatalogPage {
         <div class="filters">
         <button class="button-filterByName">Filter by name</button>
         <button class="button-filterByPrice">Filter by price</button>
+        <div class="search-wrapper">
+        <input type="text" class="search" placeholder="search...">
+        <button class="buttonSearch">Search</button>
+        </div>
         </div>
         <div class="rightSide">
             <div class="navigation">

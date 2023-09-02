@@ -1,7 +1,7 @@
 import Page from '../../utils/templates/page';
 import './style.css';
 import CreateCatalogPage from '../../utils/templates/catalogPageTemplate';
-import { createProductsCards, createProductsCardsCategory, getProducts, getSubCategoryProduct, mainNameFilter, mainPriceFilter, nameFilter, priceFilter } from './products';
+import { createProductsCards, createProductsCardsCategory, getProducts, getSubCategoryProduct, mainNameFilter, mainPriceFilter, nameFilter, priceFilter, productSearch } from './products';
 
 
 class CatalogPage extends Page {
@@ -76,8 +76,30 @@ class CatalogPage extends Page {
         createProductsCardsCategory(data);
       });
     }
-  }
+    }
     });
+    document.body.addEventListener('click', e => {
+      if ((e.target as HTMLElement).className === 'buttonSearch') {
+      const products = document.querySelector('.products');
+      if (products) {
+      products.innerHTML = '';
+      }
+      const input = document.querySelector('.search') as HTMLInputElement;
+      const text = input.value.toString();
+      productSearch(text).then((data) => {
+        createProductsCardsCategory(data);
+        sessionStorage.setItem('categoryId', 'main');
+        document.querySelectorAll('A').forEach(i => {
+          i.classList.remove('active');
+        });
+        const main = document.getElementById('main');
+        if (main) {
+        main.classList.add('active');
+        }
+      });
+    }
+    });
+
     return this.container;
   }
 }
