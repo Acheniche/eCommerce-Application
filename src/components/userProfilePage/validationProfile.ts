@@ -281,7 +281,7 @@ export default class ValidationProfile {
             counter += 1;
           }
 
-          if (counter === 14) {
+          if (counter === 6) {
             const email = sessionStorage.getItem('email');
             if (email) {
               getUserProfile(email).then((data) => {

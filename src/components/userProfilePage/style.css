@@ -184,6 +184,11 @@ button{
   padding: 12px;
 }
 
+
+.ProfileWrapper table input{
+  width: 70px;
+}
+
 @media (max-width: 745px) {
   .ProfileWrapper .address-wrapper_billing, .ProfileWrapper .address-shipping{
     margin-bottom: 10px;

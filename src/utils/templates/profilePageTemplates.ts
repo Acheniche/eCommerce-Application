@@ -300,6 +300,8 @@ add new address
 </div>
 </div>
 
+<div class="profile-addresses-wrapper" id="table-wrapper">
+        </div>
 
 <div class="address-wrapper" id="adress-profail-id3"></div>
 
