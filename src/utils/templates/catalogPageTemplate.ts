@@ -1,12 +1,12 @@
 export type Products = {
-    id: string;
-    name: string;
-    description: string;
+  id: string;
+  name: string;
+  description: string;
 };
 
 export default class CreateCatalogPage {
-    public mainCatalog() {
-        return `
+  public mainCatalog() {
+    return `
         <div class="filters">
         <button class="button-filterByName">Filter by name</button>
         <button class="button-filterByPrice">Filter by price</button>
@@ -42,5 +42,5 @@ export default class CreateCatalogPage {
             <div class="products"></div>
         </div>
         `;
-    }
+  }
 }

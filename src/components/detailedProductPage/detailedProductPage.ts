@@ -6,7 +6,7 @@ export default class ProductPage extends Page {
   render() {
     this.container.classList.add('DetailedProductWrapper');
     getProduct().then((data) => {
-        createProductsCards(data);
+      createProductsCards(data);
     });
     return this.container;
   }

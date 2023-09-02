@@ -2,9 +2,7 @@ import Page from '../../utils/templates/page';
 import './style.css';
 import App from '../app';
 
-
 class ProfilePage extends Page {
-
   static TextObject = {
     MainTitle: 'Profile',
   };
@@ -16,7 +14,6 @@ class ProfilePage extends Page {
       this.container.classList.add('LoginWrapper');
       this.container.append(title);
       // this.container.insertAdjacentHTML('beforeend', login.block);
-
     }
     return this.container;
   }
