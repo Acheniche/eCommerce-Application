@@ -9,6 +9,7 @@ export default class CreateCatalogPage {
         return `
         <div class="filters">
         <button class="button-filterByName">Filter by name</button>
+        <button class="button-filterByPrice">Filter by price</button>
         </div>
         <div class="rightSide">
             <div class="navigation">
