@@ -86,13 +86,19 @@ export function createProductsCards(data: Results) {
   carouselWrapper.append(buttonPrev);
   carouselWrapper.append(buttonNext);
 
+  const modalWrapper = document.createElement('div');
+  modalWrapper.classList.add('modal-wrapper');
+  modalWrapper.classList.add('display-none');
+
   for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
 
     const img = document.createElement('img');
     img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
     img.alt = 'pic';
     sliderLine.append(img);
-
+    img.addEventListener('click', () => {
+      modalWrapper.classList.remove('display-none');
+    });
   }
   slider.append(sliderLine);
   carouselWrapper.append(slider);
@@ -113,34 +119,103 @@ export function createProductsCards(data: Results) {
   cardWrapper.append(description);
   cardWrapper.append(price);
 
+
+  const modalWindow = document.createElement('div');
+  modalWindow.classList.add('modal-window');
+  modalWrapper.append(modalWindow);
+
+  const modalСarouselWrapper = document.createElement('div');
+  modalСarouselWrapper.classList.add('modal-container');
+  const modalSlider = document.createElement('div');
+  modalSlider.classList.add('modal-slider');
+  const modalSliderLine = document.createElement('div');
+  modalSliderLine.classList.add('modal-slider-line');
+
+  const modalButtonNext = document.createElement('button');
+  modalButtonNext.classList.add('modal-slider-next');
+  modalButtonNext.innerText = 'Next';
+
+  const modalButtonPrev = document.createElement('button');
+  modalButtonPrev.classList.add('modal-slider-next');
+  modalButtonPrev.classList.add('modal-inactive');
+  modalButtonPrev.innerText = 'Prev';
+
+  const exitButton = document.createElement('button');
+  exitButton.classList.add('exit-button');
+  exitButton.innerText = 'Exit';
+
+  modalWrapper.append(exitButton);
+  modalСarouselWrapper.append(modalButtonPrev);
+  modalСarouselWrapper.append(modalButtonNext);
+
+  exitButton.addEventListener('click', () => {
+    modalWrapper.classList.add('display-none');
+  });
+
+  for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
+
+    const img = document.createElement('img');
+    img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
+    img.alt = 'pic';
+    modalSliderLine.append(img);
+  }
+  modalSlider.append(modalSliderLine);
+  modalСarouselWrapper.append(modalSlider);
+
+  modalWindow.append(modalСarouselWrapper);
+
+  cardWrapper.append(modalWrapper);
+
+
   let offset = 0;
 
-  // if (offset == 0) {
-  //   buttonPrev.classList.add('inactive');
-  // }
   buttonNext.addEventListener('click', function () {
     if (offset < 512) {
       offset = offset + 256;
       sliderLine.style.left = -offset + 'px';
+      buttonPrev.classList.remove('inactive');
       if (offset == 512) {
         buttonNext.classList.add('inactive');
-        buttonPrev.classList.remove('inactive');
       }
     }
-
   });
 
   buttonPrev.addEventListener('click', function () {
+    // console.log('offsetWidth', sliderLine.offsetWidth);
     if (offset > 0) {
       offset = offset - 256;
       sliderLine.style.left = -offset + 'px';
+      buttonNext.classList.remove('inactive');
       if (offset == 0) {
         buttonPrev.classList.add('inactive');
-        buttonNext.classList.remove('inactive');
       }
     }
-
   });
+
+  modalButtonNext.addEventListener('click', function () {
+    if (offset < 1024) {
+      offset = offset + 512;
+      modalSliderLine.style.left = -offset + 'px';
+      modalButtonPrev.classList.remove('modal-inactive');
+      if (offset == 1024) {
+        modalButtonNext.classList.add('modal-inactive');
+      }
+    }
+  });
+
+  modalButtonPrev.addEventListener('click', function () {
+    // console.log('offsetWidth', sliderLine.offsetWidth);
+    if (offset > 0) {
+      offset = offset - 512;
+      modalSliderLine.style.left = -offset + 'px';
+      modalButtonNext.classList.remove('modal-inactive');
+      if (offset == 0) {
+        modalButtonPrev.classList.add('modal-inactive');
+      }
+    }
+  });
+
+
 
   if (data.masterData.staged.masterVariant.prices[0].discounted) {
     price.style.textDecoration = 'line-through';
