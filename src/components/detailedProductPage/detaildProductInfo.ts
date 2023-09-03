@@ -36,9 +36,15 @@ export function createProductsCards(data: Results) {
   const cardWrapper = document.createElement('div');
   cardWrapper.classList.add('detailedWrapper');
   cardWrapper.setAttribute('id', `${data.id}`);
-  const img = document.createElement('img');
-  img.src = `${data.masterData.staged.masterVariant.images[0].url}`;
-  img.alt = 'pic';
+  const carouselWrapper = document.createElement('div');
+  console.log('data.masterData.staged.masterVariant.images.length', data.masterData.staged.masterVariant.images.length);
+  for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
+    const img = document.createElement('img');
+    img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
+    img.alt = 'pic';
+    carouselWrapper.append(img);
+  }
+
   const name = document.createElement('h3');
   name.classList.add('detailedName');
   name.textContent = `${data.masterData.current.name['en-US']}`;
@@ -50,7 +56,7 @@ export function createProductsCards(data: Results) {
   const priceValue = `${data.masterData.staged.masterVariant.prices[0].value.centAmount}`;
   price.textContent = `${priceValue.slice(0, -2)} ${data.masterData.staged.masterVariant.prices[0].value.currencyCode}`;
 
-  cardWrapper.append(img);
+  cardWrapper.append(carouselWrapper);
   cardWrapper.append(name);
   cardWrapper.append(description);
   cardWrapper.append(price);

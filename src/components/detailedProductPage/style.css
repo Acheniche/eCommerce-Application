@@ -2,3 +2,11 @@
     width: 50vw;
     height: 100vh;
 }
+
+.detailedWrapper{
+  margin: auto;
+}
+
+#current-page{
+  margin: auto;
+}
