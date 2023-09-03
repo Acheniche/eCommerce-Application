@@ -130,30 +130,30 @@ class CatalogPage extends Page {
             const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
             const values: string[] = [];
             checkboxes.forEach((node) => {
-            values.push((<HTMLInputElement>node).value);
+              values.push((<HTMLInputElement>node).value);
             });
             const brands = values.join('","');
             if (brands != '') {
-            Filter(brands).then((data) => {
-              createProductsCardsCategory(data);
-            });
-          } else {
-            if (sessionStorage.getItem('categoryId') != 'main') {
-              const id = sessionStorage.getItem('categoryId');
-              if (id) {
-              getSubCategoryProduct(id).then((data) => {
+              Filter(brands).then((data) => {
                 createProductsCardsCategory(data);
               });
-            }
-            }
+            } else {
+              if (sessionStorage.getItem('categoryId') != 'main') {
+                const id = sessionStorage.getItem('categoryId');
+                if (id) {
+                  getSubCategoryProduct(id).then((data) => {
+                    createProductsCardsCategory(data);
+                  });
+                }
+              }
 
-            if (sessionStorage.getItem('categoryId') === 'main') {
-              getProducts().then((data) => {
-                createProductsCards(data);
-              });
+              if (sessionStorage.getItem('categoryId') === 'main') {
+                getProducts().then((data) => {
+                  createProductsCards(data);
+                });
+              }
+            }
           }
-        }
-        }
         });
       });
     return this.container;

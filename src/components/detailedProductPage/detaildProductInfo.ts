@@ -1,5 +1,35 @@
 import { Results } from '../catalogProductPage/products';
 
+export default class Carousel {
+  public renderCarouselWrapper() {
+    return `
+    <div class="container">
+
+      <div class="slider">
+          <div class="slider-line">
+              <img src="./images/elephant.png" alt="">
+              <img src="./images/gorilla.png" alt="">
+              <img src="./images/home.png" alt="">
+              <img src="./images/ice_cream.png" alt="">
+          </div>
+      </div>
+      <button class="slider-prev">Prev</button>
+      <button class="slider-next">Next</button>
+    </div>
+    `;
+  }
+
+  public renderCarouselItem(url: string) {
+    return `
+    <div class="item">
+      <div class="cards" id="id1">
+        <img src="${url}"cards__img" alt="pic" />
+      </div>
+    </div>
+    `;
+  }
+}
+
 export async function getProduct() {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
@@ -37,13 +67,35 @@ export function createProductsCards(data: Results) {
   cardWrapper.classList.add('detailedWrapper');
   cardWrapper.setAttribute('id', `${data.id}`);
   const carouselWrapper = document.createElement('div');
-  console.log('data.masterData.staged.masterVariant.images.length', data.masterData.staged.masterVariant.images.length);
+  carouselWrapper.classList.add('container');
+  const slider = document.createElement('div');
+  slider.classList.add('slider');
+  const sliderLine = document.createElement('div');
+  sliderLine.classList.add('slider-line');
+
+  const buttonNext = document.createElement('button');
+  buttonNext.classList.add('slider-next');
+  buttonNext.innerText = 'Next';
+
+  const buttonPrev = document.createElement('button');
+  buttonPrev.classList.add('slider-next');
+  buttonPrev.classList.add('inactive');
+
+  buttonPrev.innerText = 'Prev';
+
+  carouselWrapper.append(buttonPrev);
+  carouselWrapper.append(buttonNext);
+
   for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
+
     const img = document.createElement('img');
     img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
     img.alt = 'pic';
-    carouselWrapper.append(img);
+    sliderLine.append(img);
+
   }
+  slider.append(sliderLine);
+  carouselWrapper.append(slider);
 
   const name = document.createElement('h3');
   name.classList.add('detailedName');
@@ -60,6 +112,35 @@ export function createProductsCards(data: Results) {
   cardWrapper.append(name);
   cardWrapper.append(description);
   cardWrapper.append(price);
+
+  let offset = 0;
+
+  // if (offset == 0) {
+  //   buttonPrev.classList.add('inactive');
+  // }
+  buttonNext.addEventListener('click', function () {
+    if (offset < 512) {
+      offset = offset + 256;
+      sliderLine.style.left = -offset + 'px';
+      if (offset == 512) {
+        buttonNext.classList.add('inactive');
+        buttonPrev.classList.remove('inactive');
+      }
+    }
+
+  });
+
+  buttonPrev.addEventListener('click', function () {
+    if (offset > 0) {
+      offset = offset - 256;
+      sliderLine.style.left = -offset + 'px';
+      if (offset == 0) {
+        buttonPrev.classList.add('inactive');
+        buttonNext.classList.remove('inactive');
+      }
+    }
+
+  });
 
   if (data.masterData.staged.masterVariant.prices[0].discounted) {
     price.style.textDecoration = 'line-through';
