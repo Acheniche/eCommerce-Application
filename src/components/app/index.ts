@@ -7,6 +7,7 @@ import ErrorPage, { ErrorTypes } from '../errors/error404';
 import ProfilePage from '../userProfilePage/userProfilePage';
 import CatalogPage from '../catalogProductPage/catalogProductPage';
 import ProductPage from '../detailedProductPage/detailedProductPage';
+import { getProducts } from '../catalogProductPage/products';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -61,7 +62,20 @@ export default class App {
   private routeChange() {
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);
-      App.renderPage(hash);
+      const arr: string[] = [];
+      getProducts().then((data) => {
+        for (let i = 0; i < data.results.length; i++) {
+          arr.push(data.results[i].id);
+        }
+      }).then(() => {
+        for (let i = 0; i < arr.length; i++) {
+          if (hash === arr[i]) {
+            App.renderPage('product-page');
+            return;
+          }
+        }
+        App.renderPage(hash);
+      });
     });
   }
 

@@ -117,7 +117,7 @@ class CatalogPage extends Page {
               sessionStorage.setItem('categoryId', 'main');
               sessionStorage.setItem('productId', `${cardId}`);
               App.renderPage('product-page');
-              location.hash = 'product-page';
+              location.hash = cardId;
             }
           }
         });

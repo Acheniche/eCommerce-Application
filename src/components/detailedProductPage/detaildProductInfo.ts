@@ -1,35 +1,5 @@
 import { Results } from '../catalogProductPage/products';
 
-export default class Carousel {
-  public renderCarouselWrapper() {
-    return `
-    <div class="container">
-
-      <div class="slider">
-          <div class="slider-line">
-              <img src="./images/elephant.png" alt="">
-              <img src="./images/gorilla.png" alt="">
-              <img src="./images/home.png" alt="">
-              <img src="./images/ice_cream.png" alt="">
-          </div>
-      </div>
-      <button class="slider-prev">Prev</button>
-      <button class="slider-next">Next</button>
-    </div>
-    `;
-  }
-
-  public renderCarouselItem(url: string) {
-    return `
-    <div class="item">
-      <div class="cards" id="id1">
-        <img src="${url}"cards__img" alt="pic" />
-      </div>
-    </div>
-    `;
-  }
-}
-
 export async function getProduct() {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
@@ -45,7 +15,7 @@ export async function getProduct() {
   const accessToken = tokenData.access_token;
 
   const res = await fetch(
-    `https://api.europe-west1.gcp.commercetools.com/ghpr/products/${sessionStorage.getItem('productId')}`,
+    `https://api.europe-west1.gcp.commercetools.com/ghpr/products/${window.location.hash.slice(1)}`,
     {
       method: 'GET',
       headers: {
