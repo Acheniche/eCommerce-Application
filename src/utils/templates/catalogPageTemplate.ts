@@ -8,12 +8,72 @@ export default class CreateCatalogPage {
   public mainCatalog() {
     return `
         <div class="filters">
-        <button class="button-filterByName">Filter by name</button>
-        <button class="button-filterByPrice">Filter by price</button>
-        <div class="search-wrapper">
-        <input type="text" class="search" placeholder="search...">
-        <button class="buttonSearch">Search</button>
-        </div>
+            <button class="button-filterByName">Filter by name</button>
+            <button class="button-filterByPrice">Filter by price</button>
+             <div class="search-wrapper">
+                <input type="text" class="search" placeholder="search...">
+                <button class="buttonSearch">Search</button>
+            </div>
+            <div class="filter">
+                <form>
+                    <label class="checkbox-container"> Samsung
+                        <input type="checkbox" name="Brand" value="Samsung" class="brandCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    <br>
+                    <label class="checkbox-container"> Apple
+                        <input type="checkbox" name="Brand" value="Apple" class="brandCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    <br>
+                    <label class="checkbox-container"> Xiaomi
+                        <input type="checkbox" name="Brand" value="Xiaomi" class="brandCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    <br>
+                    <label class="checkbox-container"> ASUS
+                    <input type="checkbox" name="Brand" value="ASUS" class="brandCheck">
+                    <span class="checkmark"></span>
+                    </label>
+                    <br>
+                    <label class="checkbox-container"> HP
+                    <input type="checkbox" name="Brand" value="HP" class="brandCheck">
+                    <span class="checkmark"></span>
+                </label>
+                <br>
+                <label class="checkbox-container"> Epson
+                <input type="checkbox" name="Brand" value="Epson" class="brandCheck">
+                <span class="checkmark"></span>
+            </label>
+            <br>
+            <label class="checkbox-container"> Lenovo
+            <input type="checkbox" name="Brand" value="Lenovo" class="brandCheck">
+            <span class="checkmark"></span>
+        </label>
+        <br>
+        <label class="checkbox-container"> Canon
+        <input type="checkbox" name="Brand" value="Canon" class="brandCheck">
+        <span class="checkmark"></span>
+    </label>
+    <br>
+    <label class="checkbox-container"> Sony
+    <input type="checkbox" name="Brand" value="Sony" class="brandCheck">
+    <span class="checkmark"></span>
+</label>
+<br>
+<label class="checkbox-container"> Philips
+<input type="checkbox" name="Brand" value="Philips" class="brandCheck">
+<span class="checkmark"></span>
+</label>
+<br>
+<label class="checkbox-container"> Bose
+<input type="checkbox" name="Brand" value="Bose" class="brandCheck">
+<span class="checkmark"></span>
+</label>
+<br>
+                </form>
+                <button class="button-filterByBrand">Submit</button>
+            </div>
         </div>
         <div class="rightSide">
             <div class="navigation">

@@ -2,6 +2,7 @@ import Page from '../../utils/templates/page';
 import './style.css';
 import CreateCatalogPage from '../../utils/templates/catalogPageTemplate';
 import {
+  Filter,
   createProductsCards,
   createProductsCardsCategory,
   getProducts,
@@ -119,6 +120,40 @@ class CatalogPage extends Page {
               location.hash = 'product-page';
             }
           }
+        });
+        document.body.addEventListener('click', (e) => {
+          if ((e.target as HTMLElement).className === 'button-filterByBrand') {
+            const products = document.querySelector('.products');
+            if (products) {
+              products.innerHTML = '';
+            }
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const values: string[] = [];
+            checkboxes.forEach((node) => {
+            values.push((<HTMLInputElement>node).value);
+            });
+            const brands = values.join('","');
+            if (brands != '') {
+            Filter(brands).then((data) => {
+              createProductsCardsCategory(data);
+            });
+          } else {
+            if (sessionStorage.getItem('categoryId') != 'main') {
+              const id = sessionStorage.getItem('categoryId');
+              if (id) {
+              getSubCategoryProduct(id).then((data) => {
+                createProductsCardsCategory(data);
+              });
+            }
+            }
+
+            if (sessionStorage.getItem('categoryId') === 'main') {
+              getProducts().then((data) => {
+                createProductsCards(data);
+              });
+          }
+        }
+        }
         });
       });
     return this.container;
