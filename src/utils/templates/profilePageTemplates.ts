@@ -217,6 +217,7 @@ add new address
     <h1>Update user profile</h1>
 
     <div class="update-user-profile">
+    <div class="exit-button">X</div>
     <div class="first-name-wrapper">
       <span>First name</span>
       <div class="tooltip">

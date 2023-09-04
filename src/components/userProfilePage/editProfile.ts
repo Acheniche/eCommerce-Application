@@ -4,6 +4,7 @@ import { getUserProfile } from './profileInfo';
 import ValidationProfile from './validationProfile';
 import checkButton from './checkButton';
 import deleteProfile from './deleteProfail';
+import App from '../app';
 
 export default class EditProfilePage {
   public clearProfilePage() {
@@ -161,6 +162,7 @@ export default class EditProfilePage {
     const editButton: HTMLButtonElement | null = document.querySelector('.edit-profile-button');
     if (editButton) {
       editButton.addEventListener('click', () => {
+
         this.clearProfilePage();
 
         const email = sessionStorage.getItem('email');
@@ -308,6 +310,10 @@ export default class EditProfilePage {
             setTimeout(() => {
               this.deleteButtonListener();
               checkButton();
+              document.querySelector('.exit-button')?.addEventListener('click', () =>{
+                App.renderPage('profile-page');
+              });
+              //addAddress(data);
 
               //addAddress(data);
               validationProfile.buttonListener();
