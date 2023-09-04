@@ -215,9 +215,7 @@ add new address
   public editBlock() {
     return `
     <h1>Update user profile</h1>
-
     <div class="update-user-profile">
-    <div class="exit-button">X</div>
     <div class="first-name-wrapper">
       <span>First name</span>
       <div class="tooltip">
@@ -311,6 +309,7 @@ add new address
     <button class="update-button">
         Update
     </button>
+    <button class="exit-button">Back</button>
     <span class="tooltip-text">Check if you filled in all the fields correctly?</span>
   </div>
 </div>

@@ -27,7 +27,6 @@
   border-radius: 20px;
 }
 .update-user-profile{
-  position: relative;
   display: block;
   width: 80%;
   margin-left: auto;
@@ -82,7 +81,7 @@
 
 
 
-
+.exit-button,
 .update-button{
   text-decoration: none;
   display: inline-block;
@@ -98,7 +97,7 @@
   transition: 0.2s ease-in-out;
   /* z-index: -1; */
 }
-
+.exit-button:before,
 .update-button:before {
   content: '';
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
@@ -110,11 +109,12 @@
   transform: skewX(-45deg);
   /* z-index: -1; */
 }
-
+.exit-button:hover,
 .update-button:hover {
   background: black;
   color: #fff;
 }
+.exit-button:hover:before,
 .update-button:hover:before {
   left: 150px;
   transition: 0.5s ease-in-out;
@@ -225,9 +225,9 @@ button{
   }
 
 }
+/*
 .exit-button{
-  font-size: 40px;
-  position: absolute;
+  font-size: 20px;
   border: 1px solid black;
   border-radius: 20px;
   padding: 10px;
@@ -244,3 +244,4 @@ button{
   background-color: black;
   cursor: pointer;
 }
+*/
