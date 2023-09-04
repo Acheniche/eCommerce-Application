@@ -28,6 +28,7 @@
   position: relative;
   left: 0;
   transition: all ease 1s;
+  z-index: -1;
 }
 
 .slider-line img {
@@ -72,7 +73,7 @@
 /* modal slider */
 
 .modal-slider {
-  width: 512px;
+  width:  512px;
   height: 512px;
   margin: 20px auto;
   overflow: hidden;
@@ -125,6 +126,7 @@
 
 .modal-inactive:hover {
   cursor: default;
+  opacity: 1;
 }
 
 .modal-wrapper{

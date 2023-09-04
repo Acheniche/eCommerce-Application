@@ -72,7 +72,9 @@ export function createProductsCards(data: Results) {
   }
   slider.append(sliderLine);
   carouselWrapper.append(slider);
-
+  slider.addEventListener('click', () => {
+    modalWrapper.classList.remove('display-none');
+  });
   const name = document.createElement('h3');
   name.classList.add('detailedName');
   name.textContent = `${data.masterData.current.name['en-US']}`;
@@ -114,11 +116,14 @@ export function createProductsCards(data: Results) {
   exitButton.classList.add('exit-button');
   exitButton.innerText = 'Exit';
 
-  modalWrapper.append(exitButton);
+
   modalСarouselWrapper.append(modalButtonPrev);
   modalСarouselWrapper.append(modalButtonNext);
 
   exitButton.addEventListener('click', () => {
+    modalWrapper.classList.add('display-none');
+  });
+  modalWrapper.addEventListener('click', () => {
     modalWrapper.classList.add('display-none');
   });
 
@@ -135,10 +140,14 @@ export function createProductsCards(data: Results) {
   modalWindow.append(modalСarouselWrapper);
 
   cardWrapper.append(modalWrapper);
-
+  modalСarouselWrapper.append(exitButton);
 
   let offset: number = 0;
   let modalOffset: number = 0;
+
+  modalSlider.addEventListener('click', function (event) {
+    event.stopPropagation();
+  });
 
   buttonNext.addEventListener('click', function () {
     if (offset < 512) {
@@ -147,6 +156,14 @@ export function createProductsCards(data: Results) {
       buttonPrev.classList.remove('inactive');
       if (offset == 512) {
         buttonNext.classList.add('inactive');
+      }
+    }
+    if (modalOffset < 1024) {
+      modalOffset = modalOffset + 512;
+      modalSliderLine.style.left = -modalOffset + 'px';
+      modalButtonPrev.classList.remove('modal-inactive');
+      if (modalOffset == 1024) {
+        modalButtonNext.classList.add('modal-inactive');
       }
     }
   });
@@ -161,9 +178,17 @@ export function createProductsCards(data: Results) {
         buttonPrev.classList.add('inactive');
       }
     }
+    if (modalOffset > 0) {
+      modalOffset = modalOffset - 512;
+      modalSliderLine.style.left = -modalOffset + 'px';
+      modalButtonNext.classList.remove('modal-inactive');
+      if (modalOffset == 0) {
+        modalButtonPrev.classList.add('modal-inactive');
+      }
+    }
   });
 
-  modalButtonNext.addEventListener('click', function () {
+  modalButtonNext.addEventListener('click', function (event) {
     if (modalOffset < 1024) {
       modalOffset = modalOffset + 512;
       modalSliderLine.style.left = -modalOffset + 'px';
@@ -172,9 +197,18 @@ export function createProductsCards(data: Results) {
         modalButtonNext.classList.add('modal-inactive');
       }
     }
+    if (offset < 512) {
+      offset = offset + 256;
+      sliderLine.style.left = -offset + 'px';
+      buttonPrev.classList.remove('inactive');
+      if (offset == 512) {
+        buttonNext.classList.add('inactive');
+      }
+    }
+    event.stopPropagation();
   });
 
-  modalButtonPrev.addEventListener('click', function () {
+  modalButtonPrev.addEventListener('click', function (event) {
     // console.log('offsetWidth', sliderLine.offsetWidth);
     if (modalOffset > 0) {
       modalOffset = modalOffset - 512;
@@ -184,6 +218,15 @@ export function createProductsCards(data: Results) {
         modalButtonPrev.classList.add('modal-inactive');
       }
     }
+    if (offset > 0) {
+      offset = offset - 256;
+      sliderLine.style.left = -offset + 'px';
+      buttonNext.classList.remove('inactive');
+      if (offset == 0) {
+        buttonPrev.classList.add('inactive');
+      }
+    }
+    event.stopPropagation();
   });
 
 
