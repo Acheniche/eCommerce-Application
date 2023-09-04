@@ -20,7 +20,7 @@ class LogoutButton {
           if (response.ok) {
             location.hash = 'main-page';
             App.renderPage(PagesID.mainPage);
-            console.log('Токен отозван успешно.');
+            // console.log('Токен отозван успешно.');
             const loginLink = document.querySelector('a[href="#login-page"]') as HTMLAnchorElement;
             const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
             logoutBtn.classList.add('display-none');

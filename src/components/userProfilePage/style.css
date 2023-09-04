@@ -1,1 +1,247 @@
+.ProfileWrapper{
+  margin-left: auto;
+  margin-right: auto;
+}
+.ProfileWrapper h1{
+    text-align: center;
+    font-size: 300%;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
+}
+.profile {
+  display: block;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.update-user-profile{
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.profile >*{
+  margin-left: 5%;
+}
+.update-user-profile >*{
+  margin-left: 5%;
+}
+.profile-firstname-wrapper,
+.profile-lastname-wrapper,
+.profile-dateOfBirth-wrapper,
+.profile-email-wrapper,
+.profile-password-wrapper,
+.profile-city,
+.profile-street,
+.profile-postalcode,
+.profile-country{
+  display: flex;
+}
+.profile-addresses-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
 
+.address-billing, .address-shipping{
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+
+
+
+
+.tooltip{
+  margin: 0 auto;;
+  display: block;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+
+.button-registration-wrapper{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.exit-button,
+.update-button{
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px;
+  margin-top: 100px;
+  /* position: relative; */
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+  /* z-index: -1; */
+}
+.exit-button:before,
+.update-button:before {
+  content: '';
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+  /* z-index: -1; */
+}
+.exit-button:hover,
+.update-button:hover {
+  background: black;
+  color: #fff;
+}
+.exit-button:hover:before,
+.update-button:hover:before {
+  left: 150px;
+  transition: 0.5s ease-in-out;
+}
+
+.edit-profile-button{
+  text-decoration: none;
+  display: block;
+  padding: 10px 30px;
+  margin: 10px;
+  /* position: relative; */
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+  /* z-index: -1; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.edit-profile-button:before {
+  content: '';
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+  /* z-index: -1; */
+}
+
+.edit-profile-button:hover {
+  background: black;
+  color: #fff;
+}
+.edit-profile-button:before {
+  left: 150px;
+  transition: 0.5s ease-in-out;
+}
+
+
+table {
+  border-spacing: 1.2vw 1vw;
+  overflow-x: auto;
+}
+
+.update-user-profile{
+  margin-bottom: 10px;
+}
+
+.first-name-wrapper{
+  margin-top: 18px;
+}
+
+button{
+  border-radius: 5px;
+}
+
+.ProfileWrapper .address-wrapper_billing{
+  margin-bottom: 0px;
+  height: auto;
+  width: auto;
+}
+
+.ProfileWrapper .address-wrapper_billing, .ProfileWrapper .address-shipping{
+  margin-right: 5px;
+  padding: 12px;
+}
+
+
+.ProfileWrapper table input{
+  width: 70px;
+}
+
+@media (max-width: 745px) {
+  .ProfileWrapper .address-wrapper_billing, .ProfileWrapper .address-shipping{
+    margin-bottom: 10px;
+
+  }
+}
+
+@media (max-width: 600px) {
+  .profile h3, .profile table {
+    font-size: 1em;
+  }
+  .update-user-profile input{
+    width: 45vw;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .profile{
+    width: 85vw;
+  }
+  .profile table {
+    font-size: 0.8em;
+  }
+  table {
+    border-spacing: 0.7vw 0.7vw;
+  }
+  table {
+    overflow-x: scroll !important; /* Или overflow-x: scroll; */
+    white-space: nowrap;
+  }
+
+}
+/*
+.exit-button{
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  top: 5%;
+  right: 5%;
+}
+.exit-button:hover{
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+.exit-button:active{
+  color: red;
+  background-color: black;
+  cursor: pointer;
+}
+*/

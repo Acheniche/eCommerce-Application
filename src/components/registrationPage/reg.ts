@@ -2,6 +2,7 @@ import LogoutButton from '../../utils/templates/logout';
 import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
 import Header from '../header/header';
+import { getUserProfile } from '../userProfilePage/profileInfo';
 
 async function addOnServ(check_billing: string, check_shipping: string) {
   const email = document.getElementById('registration-email') as HTMLInputElement;
@@ -89,6 +90,8 @@ async function addOnServ(check_billing: string, check_shipping: string) {
       logoutBtn.renderHeaderButtonsOkLogin();
       setTimeout(() => {
         logoutBtnListener.logoutBtnListener();
+        sessionStorage.setItem('email', data.email);
+        getUserProfile(data.email);
       }, 10);
       const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
       profileLink.classList.remove('display-none');

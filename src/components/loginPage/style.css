@@ -32,6 +32,8 @@
   margin: 0 auto;
 }
 
+.Oldtoggle-password-button,
+.Newtoggle-password-button,
 .toggle-password-button {
   width: 20px;
   height: 20px;

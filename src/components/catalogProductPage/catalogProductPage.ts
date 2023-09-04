@@ -16,6 +16,10 @@ import {
 import App from '../app';
 
 class CatalogPage extends Page {
+  static TextObject = {
+    MainTitle: 'Catalog',
+  };
+  
   render(): HTMLElement {
     const catalog = new CreateCatalogPage();
     this.container.classList.add('CatalogWrapper');
