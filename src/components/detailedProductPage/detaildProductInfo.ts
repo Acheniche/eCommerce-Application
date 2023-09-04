@@ -137,7 +137,8 @@ export function createProductsCards(data: Results) {
   cardWrapper.append(modalWrapper);
 
 
-  let offset = 0;
+  let offset: number = 0;
+  let modalOffset: number = 0;
 
   buttonNext.addEventListener('click', function () {
     if (offset < 512) {
@@ -163,11 +164,11 @@ export function createProductsCards(data: Results) {
   });
 
   modalButtonNext.addEventListener('click', function () {
-    if (offset < 1024) {
-      offset = offset + 512;
-      modalSliderLine.style.left = -offset + 'px';
+    if (modalOffset < 1024) {
+      modalOffset = modalOffset + 512;
+      modalSliderLine.style.left = -modalOffset + 'px';
       modalButtonPrev.classList.remove('modal-inactive');
-      if (offset == 1024) {
+      if (modalOffset == 1024) {
         modalButtonNext.classList.add('modal-inactive');
       }
     }
@@ -175,11 +176,11 @@ export function createProductsCards(data: Results) {
 
   modalButtonPrev.addEventListener('click', function () {
     // console.log('offsetWidth', sliderLine.offsetWidth);
-    if (offset > 0) {
-      offset = offset - 512;
-      modalSliderLine.style.left = -offset + 'px';
+    if (modalOffset > 0) {
+      modalOffset = modalOffset - 512;
+      modalSliderLine.style.left = -modalOffset + 'px';
       modalButtonNext.classList.remove('modal-inactive');
-      if (offset == 0) {
+      if (modalOffset == 0) {
         modalButtonPrev.classList.add('modal-inactive');
       }
     }

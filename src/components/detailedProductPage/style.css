@@ -53,6 +53,8 @@
 .slider-prev:hover,
 .slider-next:hover{
   cursor: pointer;
+  opacity: 0.7;
+  box-shadow: 0px 2px 10px 10px rgba(13, 13, 13, 0.1);
 }
 
 .inactive {
@@ -62,6 +64,8 @@
 
 .inactive:hover {
   cursor: default;
+  opacity: 1;
+  box-shadow: none;
 }
 
 
@@ -139,4 +143,6 @@
   display: none;
 }
 
-
+.detaileddiscount{
+  color: red;
+}
