@@ -115,7 +115,7 @@ export function createProductsCards(data: Results) {
   const exitButton = document.createElement('button');
   exitButton.classList.add('exit-button');
   exitButton.innerText = 'Exit';
-
+  modalСarouselWrapper.append(exitButton);
 
   modalСarouselWrapper.append(modalButtonPrev);
   modalСarouselWrapper.append(modalButtonNext);
@@ -140,7 +140,7 @@ export function createProductsCards(data: Results) {
   modalWindow.append(modalСarouselWrapper);
 
   cardWrapper.append(modalWrapper);
-  modalСarouselWrapper.append(exitButton);
+
 
   let offset: number = 0;
   let modalOffset: number = 0;

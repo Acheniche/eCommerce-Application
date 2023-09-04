@@ -75,7 +75,7 @@
 .modal-slider {
   width:  512px;
   height: 512px;
-  margin: 20px auto;
+  margin: 0 auto;
   overflow: hidden;
 }
 
