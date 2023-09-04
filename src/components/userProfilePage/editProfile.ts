@@ -226,6 +226,7 @@ export default class EditProfilePage {
               td5.appendChild(document.createTextNode(data.addresses[i].id));
               td5.className = 'adress-id';
               const td6 = document.createElement('td');
+
               const selectElement = document.createElement('select');
               selectElement.id = 'country_billing';
 
@@ -269,44 +270,29 @@ export default class EditProfilePage {
               console.log('data.defaultBillingAddressId', data.defaultBillingAddressId);
               const selectElement1 = document.createElement('select');
               selectElement1.id = 'address_billing';
-              const option11 = document.createElement('option');
+
               const option22 = document.createElement('option');
               option22.textContent = 'Billing';
               const option33 = document.createElement('option');
               option33.textContent = 'Shipping';
 
-              if (data.billingAddressIds.includes(data.addresses[i].id)) {
+              //selectElement1.appendChild(option33);
+              td6.appendChild(selectElement1);
 
+              if (data.billingAddressIds.includes(data.addresses[i].id)) {
+                selectElement1.appendChild(option22);
+                selectElement1.appendChild(option33);
                 if (data.addresses[i].id === data.defaultBillingAddressId) {
                   check.checked = true;
                   check.classList.add('billing');
-                  option11.textContent = 'Billing';
-                  selectElement1.appendChild(option11);
-                  selectElement1.appendChild(option22);
-                  selectElement1.appendChild(option33);
-                  td6.appendChild(selectElement1);
-                } else {
-                  option11.textContent = 'Billing';
-                  selectElement1.appendChild(option11);
-                  selectElement1.appendChild(option22);
-                  selectElement1.appendChild(option33);
-                  td6.appendChild(selectElement1);
+                  console.log('666');
                 }
               } else {
+                selectElement1.appendChild(option33);
+                selectElement1.appendChild(option22);
                 if (data.addresses[i].id === data.defaultShippingAddressId) {
                   check.checked = true;
                   check.classList.add('shipping');
-                  option11.textContent = 'Shipping';
-                  selectElement1.appendChild(option11);
-                  selectElement1.appendChild(option22);
-                  selectElement1.appendChild(option33);
-                  td6.appendChild(selectElement1);
-                } else {
-                  option11.textContent = 'Shipping';
-                  selectElement1.appendChild(option11);
-                  selectElement1.appendChild(option22);
-                  selectElement1.appendChild(option33);
-                  td6.appendChild(selectElement1);
                 }
               }
               row.appendChild(td1);
