@@ -15,6 +15,7 @@ body {
   position: sticky;
   top: 0;
   background-color: rgb(245, 245, 245);
+  z-index: 1;
 }
 .headerLogo {
   display: flex;
@@ -111,7 +112,7 @@ input {
 }
 /* popup */
 .modal-content {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);

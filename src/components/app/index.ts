@@ -6,6 +6,8 @@ import Header from '../header/header';
 import ErrorPage, { ErrorTypes } from '../errors/error404';
 import ProfilePage from '../userProfilePage/userProfilePage';
 import CatalogPage from '../catalogProductPage/catalogProductPage';
+import ProductPage from '../detailedProductPage/detailedProductPage';
+import { getProducts } from '../catalogProductPage/products';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -13,6 +15,7 @@ export const enum PagesID {
   loginPage = 'login-page',
   profilePage = 'profile-page',
   catalogPage = 'catalog-page',
+  productPage = 'product-page',
 }
 
 export default class App {
@@ -43,6 +46,8 @@ export default class App {
       page = new ProfilePage(PageID);
     } else if (PageID === PagesID.catalogPage) {
       page = new CatalogPage(PageID);
+    } else if (PageID === PagesID.productPage) {
+      page = new ProductPage(PageID);
     } else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
@@ -57,7 +62,20 @@ export default class App {
   private routeChange() {
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);
-      App.renderPage(hash);
+      const arr: string[] = [];
+      getProducts().then((data) => {
+        for (let i = 0; i < data.results.length; i++) {
+          arr.push(data.results[i].id);
+        }
+      }).then(() => {
+        for (let i = 0; i < arr.length; i++) {
+          if (hash === arr[i]) {
+            App.renderPage('product-page');
+            return;
+          }
+        }
+        App.renderPage(hash);
+      });
     });
   }
 
