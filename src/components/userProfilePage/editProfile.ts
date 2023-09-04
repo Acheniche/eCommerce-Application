@@ -2,7 +2,8 @@
 import CreateProfilePage from '../../utils/templates/profilePageTemplates';
 import { getUserProfile } from './profileInfo';
 import ValidationProfile from './validationProfile';
-import addAddress from './addAdress';
+import checkButton from './checkButton';
+import deleteProfile from './deleteProfail';
 
 export default class EditProfilePage {
   public clearProfilePage() {
@@ -60,6 +61,7 @@ export default class EditProfilePage {
   private createNewAddress() {
     const table = document.querySelector('table');
     const row = document.createElement('tr');
+    row.className = 'table-of-adresess';
     const td1 = document.createElement('td');
 
     td1.insertAdjacentHTML('beforeend', this.cityInput(''));
@@ -72,6 +74,24 @@ export default class EditProfilePage {
     td5.appendChild(document.createTextNode(''));
     const td6 = document.createElement('td');
     const td7 = document.createElement('td');
+
+    const td8 = document.createElement('td');
+    const checkLable = document.createElement('label');
+    checkLable.className = 'checkbox-ios';
+
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+
+    const span = document.createElement('span');
+    span.className = 'checkbox-ios-switch';
+    check.className = 'change-check';
+    checkLable.appendChild(check);
+    checkLable.appendChild(span);
+    td8.appendChild(checkLable);
+
+
+
+    //<input type="checkbox" class="change-check_billing">
     const buttonDelete = document.createElement('button');
     td7.appendChild(buttonDelete);
     buttonDelete.innerText = 'Delete';
@@ -114,6 +134,7 @@ export default class EditProfilePage {
     row.appendChild(td5);
     row.appendChild(td6);
     row.appendChild(td7);
+    row.appendChild(td8);
     table?.appendChild(row);
     setTimeout(() => {
       this.deleteButtonListener();
@@ -125,8 +146,8 @@ export default class EditProfilePage {
 
 
     deleteButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-
+      button.addEventListener('click', (e) => {
+        deleteProfile(e);
         const row = button.closest('tr');
 
         if (row) {
@@ -171,6 +192,8 @@ export default class EditProfilePage {
             const Td7 = document.createElement('th');
             const buttonAddAddress = document.createElement('button');
             Td7.appendChild(buttonAddAddress);
+            const Td8 = document.createElement('th');
+            Td8.appendChild(document.createTextNode('Default'));
             buttonAddAddress.innerText = 'Add Address';
             buttonAddAddress.classList.add('button-AddAddressProfile');
             Row.appendChild(Td1);
@@ -180,11 +203,13 @@ export default class EditProfilePage {
             Row.appendChild(Td5);
             Row.appendChild(Td6);
             Row.appendChild(Td7);
+            Row.appendChild(Td8);
             table.appendChild(Row);
 
 
             for (let i = 0; i < data.addresses.length; i++) {
               const row = document.createElement('tr');
+              row.className = 'table-of-adresess';
               const td1 = document.createElement('td');
 
               // td1.appendChild(document.createTextNode(data.addresses[i].city));
@@ -199,6 +224,7 @@ export default class EditProfilePage {
               // td4.appendChild(document.createTextNode(data.addresses[i].country));
               const td5 = document.createElement('td');
               td5.appendChild(document.createTextNode(data.addresses[i].id));
+              td5.className = 'adress-id';
               const td6 = document.createElement('td');
               const selectElement = document.createElement('select');
               selectElement.id = 'country_billing';
@@ -209,6 +235,22 @@ export default class EditProfilePage {
               buttonDelete.innerText = 'Delete';
               buttonDelete.classList.add('button-DeleteProfile');
               td7.appendChild(buttonDelete);
+
+
+              const td8 = document.createElement('td');
+              const checkLable = document.createElement('label');
+              checkLable.className = 'checkbox-ios';
+
+              const check = document.createElement('input');
+              check.type = 'checkbox';
+
+              const span = document.createElement('span');
+              span.className = 'checkbox-ios-switch';
+              check.className = 'change-check';
+              checkLable.appendChild(check);
+              checkLable.appendChild(span);
+              td8.appendChild(checkLable);
+
 
 
               const option1 = document.createElement('option');
@@ -232,9 +274,12 @@ export default class EditProfilePage {
               option22.textContent = 'Billing';
               const option33 = document.createElement('option');
               option33.textContent = 'Shipping';
+
               if (data.billingAddressIds.includes(data.addresses[i].id)) {
 
                 if (data.addresses[i].id === data.defaultBillingAddressId) {
+                  check.checked = true;
+                  check.classList.add('billing');
                   option11.textContent = 'Billing';
                   selectElement1.appendChild(option11);
                   selectElement1.appendChild(option22);
@@ -249,6 +294,8 @@ export default class EditProfilePage {
                 }
               } else {
                 if (data.addresses[i].id === data.defaultShippingAddressId) {
+                  check.checked = true;
+                  check.classList.add('shipping');
                   option11.textContent = 'Shipping';
                   selectElement1.appendChild(option11);
                   selectElement1.appendChild(option22);
@@ -269,6 +316,7 @@ export default class EditProfilePage {
               row.appendChild(td5);
               row.appendChild(td6);
               row.appendChild(td7);
+              row.appendChild(td8);
               table.appendChild(row);
             }
             const div = document.getElementById('table-wrapper');
@@ -276,11 +324,13 @@ export default class EditProfilePage {
 
             setTimeout(() => {
               this.deleteButtonListener();
+              checkButton();
 
-              addAddress(data);
+              //addAddress(data);
               validationProfile.buttonListener();
               buttonAddAddress.addEventListener('click', () => {
                 this.createNewAddress();
+                checkButton();
               });
             }, 100);
           });

@@ -31,12 +31,7 @@ async function updatePassword(id: string, version: number, accessToken: string) 
   }
 
 }
-
-async function updateData(id: string, version: number, accessToken: string) {
-  const data = {
-    version: version,
-    actions: [
-      /*{
+/*{
         'action' : 'addAddress',
         'address' : {
           'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
@@ -45,7 +40,7 @@ async function updateData(id: string, version: number, accessToken: string) {
           'country' : (<HTMLInputElement>document.querySelector('#input-modal6')).value,
         },
       },*/
-      /*       {
+/*       {
        action: 'addAddress',
        address: {
         'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
@@ -55,8 +50,14 @@ async function updateData(id: string, version: number, accessToken: string) {
       },
 
     }, */
-
-
+async function updateData(id: string, version: number, accessToken: string, allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
+/*       if(allAdress[3].id == undefined){
+        console.log('sss')
+      } */
+  //console.log(allAdress[2].id)
+  const data = {
+    version: version,
+    actions: [
       {
         action: 'setFirstName',
         firstName: (<HTMLInputElement>document.querySelector('#registration-firstname')).value,
@@ -73,6 +74,16 @@ async function updateData(id: string, version: number, accessToken: string) {
         action: 'setDateOfBirth',
         dateOfBirth: (<HTMLInputElement>document.querySelector('#registration-dateOfBirth')).value,
       },
+      ...allAdress.map(address => ({
+        action: address.id == null ? 'addAddress' : 'changeAddress',
+        addressId: address.id == null ? '' : address.id,
+        address: {
+          streetName: address.street,
+          postalCode: address.postalCode,
+          city: address.city,
+          country: address.country == 'Germany' ? 'DE' : 'US',
+        },
+      })),
     ],
   };
 
@@ -90,19 +101,20 @@ async function updateData(id: string, version: number, accessToken: string) {
       (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value.length > 0 &&
       (<HTMLInputElement>document.querySelector('#registration-newPassword')).value.length > 0
     ) {
-      console.log('true');
+      console.log('true', res);
       updatePassword(id, version, accessToken);
+
     } else {
       sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
 
       App.renderPage('profile-page');
 
-      console.log('all ok');
+      console.log('all ok', res);
     }
   });
 }
 
-export default async function getToken(id: string, version: number) {
+export default async function getToken(id: string, version: number, allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
     {
@@ -115,5 +127,21 @@ export default async function getToken(id: string, version: number) {
   );
   const tokenData = await response.json();
   const accessToken = tokenData.access_token;
-  updateData(id, version, accessToken);
+  updateData(id, version, accessToken, allAdress);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

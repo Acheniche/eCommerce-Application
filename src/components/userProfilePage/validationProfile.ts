@@ -1,5 +1,6 @@
 import ValidationLoginPage from '../loginPage/validation';
 import ValidationRegistrationPage from '../registrationPage/validation';
+import getAddressObjects from './getAllAdreses';
 import { getUserProfile } from './profileInfo';
 import getToken from './updateProfile';
 
@@ -283,9 +284,13 @@ export default class ValidationProfile {
 
           if (counter === 6) {
             const email = sessionStorage.getItem('email');
+
             if (email) {
               getUserProfile(email).then((data) => {
-                getToken(data.id, data.version);
+                const allAdress = getAddressObjects();
+                //const allAdress = getAddressObjects().map((address) => JSON.stringify(address))
+                console.log(allAdress);
+                getToken(data.id, data.version, allAdress);
               });
             }
           }
