@@ -6,11 +6,9 @@ function deleteAddressShiping(data:string[]) {
     elem.addEventListener('click', (e) =>{
       e.stopImmediatePropagation();
       if (allAdressesButtonDelete.length > 1) {
-        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove());
         deleteAddressShiping(data);
       } else {
-        console.log('You canot delete');
-        console.log(allAdressesButtonDelete);
+
         deleteAddressShiping(data);
       }
     });
@@ -24,11 +22,9 @@ function deleteAddress(data:string[]) {
     elem.addEventListener('click', (e) =>{
       e.stopImmediatePropagation();
       if (allAdressesButtonDelete.length > 1) {
-        console.log((<HTMLElement>e.target).parentElement?.parentElement?.remove());
         deleteAddress(data);
       } else {
-        console.log('You canot delete');
-        console.log(allAdressesButtonDelete);
+
         deleteAddress(data);
       }
     });

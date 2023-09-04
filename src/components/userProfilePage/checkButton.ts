@@ -14,20 +14,20 @@ export default function checkButton() {
       const tr = target.closest('tr') as HTMLTableRowElement; // Найти ближайший родительский элемент <tr>
       const addressBillingSelect = tr?.querySelector('#address_billing') as HTMLSelectElement;
       const addressBillingValue = addressBillingSelect?.value;
-      console.log(addressBillingValue);
+
       if (target.classList.contains('billing') || target.classList.contains('shipping')) {
         target.classList.remove('billing');
         target.classList.remove('shipping');
-        console.log(addressBillingValue);
+
       } else if (addressBillingValue == '') {
         target.checked = false;
       } else if (addressBillingValue == 'Billing') {
-        console.log('billing');
+
         const allBilling = document.querySelectorAll('.billing') as NodeListOf<HTMLInputElement>;
         removeEvery(allBilling, 'billing');
         target.classList.add('billing');
       } else if (addressBillingValue == 'Shipping') {
-        console.log('shipping');
+
         const allShipping = document.querySelectorAll('.shipping') as NodeListOf<HTMLInputElement>;
         removeEvery(allShipping, 'shipping');
         target.classList.add('shipping');

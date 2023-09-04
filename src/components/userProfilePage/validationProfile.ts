@@ -228,6 +228,13 @@ export default class ValidationProfile {
     }
   }
 
+  public input(): number  {
+    const inputLength = document.querySelectorAll('input').length;
+    const trLength = document.querySelectorAll('tr').length;
+    return inputLength - trLength  - 1;
+
+  }
+
   public buttonListener(): void {
     const updateButton: HTMLButtonElement | null = document.querySelector('.update-button');
     const OldPasswordWrapper: HTMLDivElement | null = document.querySelector('.Oldpassword-wrapper');
@@ -282,14 +289,14 @@ export default class ValidationProfile {
             counter += 1;
           }
 
-          if (counter === 6) {
+          if (counter === this.input()) {
             const email = sessionStorage.getItem('email');
 
             if (email) {
               getUserProfile(email).then((data) => {
                 const allAdress = getAddressObjects();
                 //const allAdress = getAddressObjects().map((address) => JSON.stringify(address))
-                console.log(allAdress);
+                // console.log(allAdress);
                 getToken(data.id, data.version, allAdress);
               });
             }

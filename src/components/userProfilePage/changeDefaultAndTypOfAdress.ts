@@ -21,7 +21,6 @@ async function updateData(
       const address = allAdress[index];
       const action =
         address.type == 'Shipping' ? address.isDefault == true ? 'setDefaultShippingAddress' : 'addShippingAddressId' : address.isDefault == true ? 'setDefaultBillingAddress' : 'addBillingAddressId';
-      console.log(address.type, dataAdress[index].id, address.isDefault, 'FACK');
       const addressId = dataAdress[index].id;
       const data = {
         action: action,
@@ -35,7 +34,7 @@ async function updateData(
       version: version,
       actions: actions,
     };
-    console.log(postData, 'POSTA');
+
 
     const response = await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${kod}`, {
       method: 'POST',
@@ -79,11 +78,10 @@ async function getToke(version: string, kod: number, dataAdress: { id: string }[
 export default async function changeDefaultAndTypOfAdress(allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
   try {
     const email = sessionStorage.getItem('email');
-    console.log('TASSS');
+
     if (email) {
       const data = await getUserProfile(email);
-      console.log(data.addresses, 'FARA');
-      console.log('FARARRRR', data);
+
       await getToke(data.version, data.id, data.addresses, allAdress);
     }
   } catch (error) {

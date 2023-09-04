@@ -266,8 +266,6 @@ export default class EditProfilePage {
               selectElement.appendChild(option3);
 
               td4.appendChild(selectElement);
-              console.log('data.addresses[i].id', data.addresses[i].id);
-              console.log('data.defaultBillingAddressId', data.defaultBillingAddressId);
               const selectElement1 = document.createElement('select');
               selectElement1.id = 'address_billing';
 
@@ -285,7 +283,6 @@ export default class EditProfilePage {
                 if (data.addresses[i].id === data.defaultBillingAddressId) {
                   check.checked = true;
                   check.classList.add('billing');
-                  console.log('666');
                 }
               } else {
                 selectElement1.appendChild(option33);

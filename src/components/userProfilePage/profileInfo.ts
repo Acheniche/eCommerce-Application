@@ -20,16 +20,6 @@ export async function getUserProfile(mail: string) {
     },
   });
   const data = await res.json();
-  /*  const firstName = tr.results.at(-1).firstName;
-      const lastName = tr.results.at(-1).lastName;
-      const dateOfBirth = tr.results.at(-1).dateOfBirth;
-      const postalCod = tr.results.at(-1).addresses.at(-1).postalCode;
-      const city = tr.results.at(-1).addresses.at(-1).city;
-      const countrys = tr.results.at(-1).addresses.at(-1).country;
-      const street = tr.results.at(-1).addresses.at(-1).streetName;
-      const email = tr.results.at(-1).email;
-      const id = tr.results.at(-1).id;
-      const version = tr.results.at(-1).version;*/
-  console.log(data);
+
   return data.results.at(-1);
 }

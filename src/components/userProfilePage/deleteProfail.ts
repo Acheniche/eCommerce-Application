@@ -48,7 +48,6 @@ export default function deleteProfile(e: Event) {
     const email = sessionStorage.getItem('email');
     if (email) {
       getUserProfile(email).then((data) => {
-        console.log(addressId, data.id);
         getToken(addressId, data.id, data.version);
 
       });

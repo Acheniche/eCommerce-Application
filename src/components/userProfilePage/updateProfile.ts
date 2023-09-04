@@ -22,7 +22,7 @@ async function updatePassword(id: string, version: number, accessToken: string) 
     },
     body: JSON.stringify(data),
   });
-  console.log(res.status, typeof res.status);
+
   if (res.status == 400) {
     popupWindow.popupTrue(passwordWrong);
     console.log('wrong');
@@ -78,7 +78,6 @@ async function updateData(id: string, version: number, accessToken: string, allA
     if (!res.ok) {
       console.log(res);
     } else if ((<HTMLInputElement>document.querySelector('#registration-oldPassword')).value.length > 0 && (<HTMLInputElement>document.querySelector('#registration-newPassword')).value.length > 0) {
-      //console.log('true', res);
       updatePassword(id, version, accessToken);
 
     }
@@ -87,7 +86,6 @@ async function updateData(id: string, version: number, accessToken: string, allA
       // выполнение других функций после updateData
         sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
         App.renderPage('profile-page');
-        console.log('all ok', res);
       })
       .catch(error => {
         console.log(error);

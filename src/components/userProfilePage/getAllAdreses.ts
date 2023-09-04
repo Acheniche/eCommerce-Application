@@ -15,7 +15,6 @@ export default function getAddressObjects() {
   for (let i = 1; i < rows.length; i++) {
     const row = rows[i];
     const cells = row.getElementsByTagName('td');
-    console.log((cells[1].querySelector('.street') as HTMLInputElement)?.value);
 
     const addressObject = {
       city: (cells[0].querySelector('#registration-city_billing') as HTMLInputElement)?.value || null,
