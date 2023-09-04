@@ -1,5 +1,6 @@
 import PopupWindow from '../../utils/templates/popup';
 import App from '../app';
+import changeDefaultAndTypOfAdress from './changeDefaultAndTypOfAdress';
 
 async function updatePassword(id: string, version: number, accessToken: string) {
   const vers = version;
@@ -12,7 +13,7 @@ async function updatePassword(id: string, version: number, accessToken: string) 
     currentPassword: (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value,
     newPassword: (<HTMLInputElement>document.querySelector('#registration-newPassword')).value,
   };
-  console.log(data);
+  //console.log(data);
   const res = await fetch('https://api.europe-west1.gcp.commercetools.com/ghpr/customers/password', {
     method: 'POST',
     headers: {
@@ -31,30 +32,7 @@ async function updatePassword(id: string, version: number, accessToken: string) 
   }
 
 }
-/*{
-        'action' : 'addAddress',
-        'address' : {
-          'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
-          'postalCode' :(<HTMLInputElement>document.querySelector('#input-modal4')).value,
-          'city' : (<HTMLInputElement>document.querySelector('#input-modal5')).value,
-          'country' : (<HTMLInputElement>document.querySelector('#input-modal6')).value,
-        },
-      },*/
-/*       {
-       action: 'addAddress',
-       address: {
-        'streetName' : (<HTMLInputElement>document.querySelector('#input-modal10')).value,
-        'postalCode' :(<HTMLInputElement>document.querySelector('#input-modal4')).value,
-        'city' : (<HTMLInputElement>document.querySelector('#input-modal5')).value,
-        'country' : (<HTMLInputElement>document.querySelector('#input-modal6')).value,
-      },
-
-    }, */
 async function updateData(id: string, version: number, accessToken: string, allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
-/*       if(allAdress[3].id == undefined){
-        console.log('sss')
-      } */
-  //console.log(allAdress[2].id)
   const data = {
     version: version,
     actions: [
@@ -76,6 +54,7 @@ async function updateData(id: string, version: number, accessToken: string, allA
       },
       ...allAdress.map(address => ({
         action: address.id == null ? 'addAddress' : 'changeAddress',
+        //action: address.type == "Shipping" ? address.isDefault == true? "setDefaultShippingAddress": "addShippingAddressId" : address.isDefault == true? "setDefaultBillingAddress": "addBillingAddressId",
         addressId: address.id == null ? '' : address.id,
         address: {
           streetName: address.street,
@@ -86,6 +65,7 @@ async function updateData(id: string, version: number, accessToken: string, allA
       })),
     ],
   };
+  console.log(data, 'LOLA');
 
   await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
     method: 'POST',
@@ -97,20 +77,22 @@ async function updateData(id: string, version: number, accessToken: string, allA
   }).then(function (res) {
     if (!res.ok) {
       console.log(res);
-    } else if (
-      (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value.length > 0 &&
-      (<HTMLInputElement>document.querySelector('#registration-newPassword')).value.length > 0
-    ) {
-      console.log('true', res);
+    } else if ((<HTMLInputElement>document.querySelector('#registration-oldPassword')).value.length > 0 && (<HTMLInputElement>document.querySelector('#registration-newPassword')).value.length > 0) {
+      //console.log('true', res);
       updatePassword(id, version, accessToken);
 
-    } else {
-      sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
-
-      App.renderPage('profile-page');
-
-      console.log('all ok', res);
     }
+    changeDefaultAndTypOfAdress(allAdress)
+      .then(() => {
+      // выполнение других функций после updateData
+        sessionStorage.setItem('email', (<HTMLInputElement>document.querySelector('#registration-email')).value);
+        App.renderPage('profile-page');
+        console.log('all ok', res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   });
 }
 
