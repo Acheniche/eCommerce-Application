@@ -1,3 +1,4 @@
+import BurgerMenu from '../../utils/templates/burgerMenu';
 import Component from '../../utils/templates/components';
 import PopupWindow from '../../utils/templates/popup';
 import { PagesID } from '../app';
@@ -8,12 +9,20 @@ const Buttons = [
     text: 'Main',
   },
   {
+    id: PagesID.catalogPage,
+    text: 'Catalog',
+  },
+  {
     id: PagesID.registrationPage,
     text: 'Registration',
   },
   {
     id: PagesID.loginPage,
     text: 'Login',
+  },
+  {
+    id: PagesID.profilePage,
+    text: 'Profile',
   },
 ];
 
@@ -34,6 +43,10 @@ export default class Header extends Component {
 
     headerButtons.appendChild(newLink);
     this.container.append(headerButtons);
+    setTimeout(() => {
+      const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
+      profileLink.classList.add('display-none');
+    }, 10);
   }
 
   renderHeaderButtonsOkLogin() {
@@ -61,10 +74,15 @@ export default class Header extends Component {
   }
 
   render() {
+    const burgerMenu = new BurgerMenu();
     this.renderHeaderLogo();
     this.renderHeaderButtons();
     const createPop = new PopupWindow();
     this.container.insertAdjacentHTML('beforeend', createPop.block);
+    this.container.insertAdjacentHTML('beforeend', burgerMenu.block);
+    setTimeout(() => {
+      burgerMenu.burgerListener();
+    }, 10);
     return this.container;
   }
 }

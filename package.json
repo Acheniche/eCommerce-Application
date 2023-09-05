@@ -2,7 +2,7 @@
   "name": "ecommerce-application",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve --env develop",
+    "dev": "webpack serve   --watch --env develop",
     "lint": "eslint src",
     "prettier": "prettier --write \"src/**/*.ts\"",
     "prepare": "husky install",

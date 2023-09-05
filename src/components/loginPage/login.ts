@@ -2,6 +2,7 @@ import LogoutButton from '../../utils/templates/logout';
 import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
 import Header from '../header/header';
+import { getUserProfile } from '../userProfilePage/profileInfo';
 
 export async function registration(email: string, password: string) {
   const popupWindow = new PopupWindow();
@@ -28,7 +29,12 @@ export async function registration(email: string, password: string) {
       logoutBtn.renderHeaderButtonsOkLogin();
       setTimeout(() => {
         logoutBtnListener.logoutBtnListener();
+        sessionStorage.setItem('email', email);
+        getUserProfile(email);
       }, 10);
+      const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
+      profileLink.classList.remove('display-none');
+      App.isLogin = true;
     }
   });
 }

@@ -6,7 +6,6 @@ class LogoutButton {
     if (logoutBtn) {
       logoutBtn.addEventListener('click', async (event) => {
         event.preventDefault();
-        console.log('EventListener work');
         try {
           const response = await fetch(
             'https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/anonymous/token?grant_type=client_credentials',
@@ -21,10 +20,13 @@ class LogoutButton {
           if (response.ok) {
             location.hash = 'main-page';
             App.renderPage(PagesID.mainPage);
-            console.log('Токен отозван успешно.');
+            // console.log('Токен отозван успешно.');
             const loginLink = document.querySelector('a[href="#login-page"]') as HTMLAnchorElement;
+            const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
             logoutBtn.classList.add('display-none');
             loginLink.classList.remove('display-none');
+            profileLink.classList.add('display-none');
+            App.isLogin = false;
           } else {
             console.error('Ошибка при отзыве токена.');
           }

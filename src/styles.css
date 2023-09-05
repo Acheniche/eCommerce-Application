@@ -7,11 +7,15 @@ body {
 }
 .header {
   width: 100%;
-  height: 10vh;
+  height: 70px;
   color: black;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid;
+  position: sticky;
+  top: 0;
+  background-color: rgb(245, 245, 245);
+  z-index: 1;
 }
 .headerLogo {
   display: flex;
@@ -108,7 +112,7 @@ input {
 }
 /* popup */
 .modal-content {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -123,7 +127,111 @@ input {
   transition: top 0.5s ease-in-out;
 }
 
-
 .display-none {
   display: none;
 }
+
+/* Burger Menu*/
+
+.header__burger {
+  display: none;
+  margin-top: 20px;
+  width: 30.5px;
+  height: 22px;
+  position: relative;
+  margin: 1vw 3vw 0 0;
+}
+
+.burger__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  position: absolute;
+  left: 0;
+}
+
+.burger__line_first {
+  top: 0;
+}
+
+.burger__line_second {
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.5px;
+}
+
+.burger__line_third {
+  bottom: 0;
+}
+
+.shadow {
+  display: none;
+  width: 100vw;
+  height: 500vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(29, 29, 29, 0.6);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.shadow_active {
+  z-index: 80;
+}
+
+.body_hidden {
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .headerButtons {
+    display: none;
+  }
+  .header__burger {
+    display: block;
+    margin-top: 15px;
+    z-index: 100;
+    transition: 0.4s all linear;
+  }
+  .headerButtons {
+    margin-right: 0;
+    width: 320px;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(41, 41, 41, 0.95);
+    top: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s all linear;
+    border: 1px solid;
+    border-radius: 20px;
+  }
+  .headerButtons a,
+  .headerButtons a:link,
+  .headerButtons a:visited {
+    margin-right: 0;
+  }
+
+  .head_nav_active {
+    transform: translateX(0);
+  }
+  .burger_active {
+    transform: rotate(90deg);
+  }
+  .burger__line_active {
+    background-color: #eaeaea;
+  }
+  .headerButtons a,
+  .headerButtons a:link,
+  .headerButtons a:visited {
+    color: #eaeaea;
+  }
+}
+

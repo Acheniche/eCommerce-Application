@@ -5,16 +5,27 @@
   padding-top: 1vw;
   border: 1px solid;
   border-radius: 20px;
-  width: 500px;
+  width: 600px;
   min-height: 450px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: left;
   color: black;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
 }
-.registration div{
+.registration div {
   margin: 3px;
 }
 
@@ -22,11 +33,11 @@
   color: red;
 }
 
-.email-wrapper-registration{
+.email-wrapper-registration {
   margin-top: 25px;
 }
 
-.button-registration-wrapper{
+.button-registration-wrapper {
   margin-left: 120px;
   margin-right: 120px;
 }
@@ -34,18 +45,19 @@
 .toggle-password-button {
   margin-left: 1vw;
   width: 20px;
-	height: 20px;
-	background: url(/src/assets/image/view.svg) 0 0 no-repeat;
+  height: 20px;
+  background: url(/src/assets/image/view.svg) 0 0 no-repeat;
 }
 
 .view {
-	background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
+  background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
 }
 
 .tooltip {
-  position: relative;
+  /* position: relative; */
   display: inline-block;
   cursor: pointer;
+  /* z-index: -1; */
 }
 
 .tooltip .tooltip-text {
@@ -63,6 +75,7 @@
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
+  /* z-index: -1; */
 }
 
 .tooltip:hover .tooltip-text {
@@ -71,7 +84,7 @@
 }
 
 .icon {
-  position: absolute;
+  /* position: absolute; */
   color: red;
   top: 50%;
   transform: translateY(-50%);
@@ -79,6 +92,7 @@
   visibility: hidden;
   font-size: 1.8rem;
   padding-left: 1vh;
+  /* z-index: -1; */
 }
 
 .display-active {
@@ -89,206 +103,286 @@
   border: 2px solid red;
 }
 
-.RegistrationWrapper h1{
+.RegistrationWrapper h1 {
   text-align: center;
   font-size: 300%;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+}
+
+.button-registration-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.registration-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px;
+  /* position: relative; */
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+  /* z-index: -1; */
+}
+
+.registration-button:before {
+  content: '';
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: -8px;
+  left: -75px;
+  transform: skewX(-45deg);
+  /* z-index: -1; */
+}
+
+.registration-button:hover {
+  background: black;
+  color: #fff;
+}
+.registration-button:hover:before {
+  left: 150px;
+  transition: 0.5s ease-in-out;
+}
+
+#country_shipping,
+#country_billing, #address_billing {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  padding: 5px;
+  max-width: 200px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: background-color 0.3s ease-in-out;
+}
+.checkbox-ios {
+  display: inline-block;
+  line-height: 28px;
+  position: relative;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.checkbox-ios .checkbox-ios-switch {
+  /* position: relative; */
+  display: inline-block;
+  box-sizing: border-box;
+  width: 28px;
+  top: 6px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 25%/50%;
+  vertical-align: top;
+  background: #eee;
+  transition: 0.2s;
+  z-index: -1;
+}
+.checkbox-ios .checkbox-ios-switch:before {
+  content: '';
+  position: absolute;
+  top: 0.5px;
+  left: 1px;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.15s;
+}
+.checkbox-ios input[type='checkbox'] {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  /* z-index: -1; */
+  opacity: 0;
+}
+.checkbox-ios input[type='checkbox']:not(:disabled):active + .checkbox-ios-switch:before {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.checkbox-ios input[type='checkbox']:checked + .checkbox-ios-switch {
+  background: limegreen;
+}
+.checkbox-ios input[type='checkbox']:checked + .checkbox-ios-switch:before {
+  transform: translateX(14px);
+}
+
+/* Hover */
+.checkbox-ios input[type='checkbox']:not(:disabled) + .checkbox-ios-switch {
+  cursor: pointer;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled */
+.checkbox-ios input[type='checkbox']:disabled + .checkbox-ios-switch {
+  filter: grayscale(70%);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.checkbox-ios input[type='checkbox']:disabled + .checkbox-ios-switch:before {
+  background: #eee;
+}
+
+/* Focus */
+.checkbox-ios.focused .checkbox-ios-switch:before {
+  box-shadow: inset 0px 0px 4px #ff5623;
+}
+
+.checkbox-ios {
+  display: inline-block;
+  line-height: 28px;
+  /* position: relative; */
+  vertical-align: middle;
+  user-select: none;
+  /* z-index: -1; */
+}
+
+.checkbox-ios .checkbox-ios-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 28px;
+  top: 6px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 25%/50%;
+  vertical-align: top;
+  background: #eee;
+  transition: 0.2s;
+}
+.checkbox-ios .checkbox-ios-switch:before {
+  content: '';
+  position: absolute;
+  top: 0.5px;
+  left: 1px;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.15s;
+}
+.checkbox-ios input[type='checkbox'] {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.checkbox-ios input[type='checkbox']:not(:disabled):active + .checkbox-ios-switch:before {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.checkbox-ios input[type='checkbox']:checked + .checkbox-ios-switch {
+  background: limegreen;
+}
+.checkbox-ios input[type='checkbox']:checked + .checkbox-ios-switch:before {
+  transform: translateX(14px);
+}
+
+/* Hover */
+.checkbox-ios input[type='checkbox']:not(:disabled) + .checkbox-ios-switch {
+  cursor: pointer;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled */
+.checkbox-ios input[type='checkbox']:disabled + .checkbox-ios-switch {
+  filter: grayscale(70%);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.checkbox-ios input[type='checkbox']:disabled + .checkbox-ios-switch:before {
+  background: #eee;
+}
+
+/* Focus */
+.checkbox-ios.focused .checkbox-ios-switch:before {
+  box-shadow: inset 0px 0px 4px #ff5623;
+}
+
+.address-wrapper {
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.address-wrapper_billing,
+.address-wrapper_shipping {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding-left: -1vw;
+}
+.street-wrapper,
+.city-wrapper,
+.postal-wrapper,
+.country-wrapper,
+.city-wrapper_shipping,
+.street-wrapper_shipping,
+.postal-wrapper_shipping,
+.country-wrapper_shipping {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+  .registration {
+    width: 61.1vw;
+  }
+  .address-wrapper_billing {
+    margin-bottom: 15vw;
+    width: 240px;
+  }
+  .registration .address-wrapper {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .registration input {
+    width: 45vw;
+  }
+  .address-wrapper_billing,
+  .address-wrapper_shipping {
+    width: 53.5vw;
   }
 
-  .button-registration-wrapper{
-    display: flex;
-    justify-content: center;
+  .street-wrapper h3,
+  .address-wrapper_shipping h3 {
+    font-size: 1rem;
   }
+  .RegistrationWrapper h1 {
+    font-size: 2rem;
+  }
+}
 
-  .registration-button{
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px 30px;
-    margin: 10px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    transition: .2s ease-in-out;
-  }
+#checkbox-ios-text2,
+#checkbox-ios-text2 {
+  z-index: -1;
+}
 
-  .registration-button:before {
-    content: "";
-    background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    top: -8px;
-    left: -75px;
-    transform: skewX(-45deg);
-  }
-
-  .registration-button:hover {
-    background: black;
-    color: #fff;
-  }
-  .registration-button:hover:before {
-    left: 150px;
-    transition: .5s ease-in-out;
-  }
-
-  #country{
-    background-color: #F4F4F4;
-    border-radius: 10px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    color: #333;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 16px;
-    padding: 5px;
-    max-width: 200px;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    transition: background-color 0.3s ease-in-out;
-  }
-  .checkbox-ios {
-    display: inline-block;
-    line-height: 28px;
-    position: relative;
-    vertical-align: middle;
-    user-select: none;
-  }
-
-  .checkbox-ios .checkbox-ios-switch {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 28px;
-      top: 6px;
-    height: 14px;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-radius: 25%/50%;
-    vertical-align: top;
-    background: #eee;
-    transition: .2s;
-  }
-  .checkbox-ios .checkbox-ios-switch:before {
-    content: '';
-    position: absolute;
-    top: 0.5px;
-    left: 1px;
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-    transition: .15s;
-  }
-  .checkbox-ios input[type=checkbox] {
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
-  .checkbox-ios input[type=checkbox]:not(:disabled):active + .checkbox-ios-switch:before {
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
-  }
-  .checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch {
-    background: limegreen;
-  }
-  .checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch:before {
-    transform:translateX(14px);
-  }
-
-  /* Hover */
-  .checkbox-ios input[type="checkbox"]:not(:disabled) + .checkbox-ios-switch {
-    cursor: pointer;
-    border-color: rgba(0, 0, 0, .3);
-  }
-
-  /* Disabled */
-  .checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch {
-    filter: grayscale(70%);
-    border-color: rgba(0, 0, 0, .1);
-  }
-  .checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch:before {
-    background: #eee;
-  }
-
-  /* Focus */
-  .checkbox-ios.focused .checkbox-ios-switch:before {
-    box-shadow: inset 0px 0px 4px #ff5623;
-  }
-
-  .checkbox-ios {
-    display: inline-block;
-    line-height: 28px;
-    position: relative;
-    vertical-align: middle;
-    user-select: none;
-  }
-
-  .checkbox-ios .checkbox-ios-switch {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    width: 28px;
-      top: 6px;
-    height: 14px;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-radius: 25%/50%;
-    vertical-align: top;
-    background: #eee;
-    transition: .2s;
-  }
-  .checkbox-ios .checkbox-ios-switch:before {
-    content: '';
-    position: absolute;
-    top: 0.5px;
-    left: 1px;
-    display: inline-block;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-    transition: .15s;
-  }
-  .checkbox-ios input[type=checkbox] {
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
-  .checkbox-ios input[type=checkbox]:not(:disabled):active + .checkbox-ios-switch:before {
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
-  }
-  .checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch {
-    background: limegreen;
-  }
-  .checkbox-ios input[type=checkbox]:checked + .checkbox-ios-switch:before {
-    transform:translateX(14px);
-  }
-
-  /* Hover */
-  .checkbox-ios input[type="checkbox"]:not(:disabled) + .checkbox-ios-switch {
-    cursor: pointer;
-    border-color: rgba(0, 0, 0, .3);
-  }
-
-  /* Disabled */
-  .checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch {
-    filter: grayscale(70%);
-    border-color: rgba(0, 0, 0, .1);
-  }
-  .checkbox-ios input[type=checkbox]:disabled + .checkbox-ios-switch:before {
-    background: #eee;
-  }
-
-  /* Focus */
-  .checkbox-ios.focused .checkbox-ios-switch:before {
-    box-shadow: inset 0px 0px 4px #ff5623;
-  }

@@ -1,0 +1,150 @@
+.productWrapper {
+  width: 50vw;
+  height: 100vh;
+}
+
+.detailedWrapper {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#current-page {
+  margin: auto;
+}
+
+/* slider */
+
+.slider {
+  width: 256px;
+  height: 256px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.slider-line {
+  width: 1024px;
+  height: 256px;
+  display: flex;
+  position: relative;
+  left: 0;
+  transition: all ease 1s;
+  z-index: -1;
+}
+
+.slider-line img {
+  width: 256px;
+  height: 256px;
+}
+
+
+.slider-prev,
+.slider-next {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 1vw 15px;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+}
+
+.slider-prev:hover,
+.slider-next:hover{
+  cursor: pointer;
+  opacity: 0.7;
+  box-shadow: 0px 2px 10px 10px rgba(13, 13, 13, 0.1);
+}
+
+.inactive {
+  color: rgb(118, 113, 113);
+  border: 1px solid rgb(118, 113, 113);
+}
+
+.inactive:hover {
+  cursor: default;
+  opacity: 1;
+  box-shadow: none;
+}
+
+
+/* modal slider */
+
+.modal-slider {
+  width:  512px;
+  height: 512px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.modal-slider-line {
+  width: 2048px;
+  height: 512px;
+  display: flex;
+  position: relative;
+  left: 0;
+  transition: all ease 1s;
+}
+
+.modal-slider-line img {
+  width: 512px;
+  height: 512px;
+}
+
+
+.modal-slider-prev,
+.modal-slider-next, .exit-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 1vw 15px;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+}
+
+.exit-button{
+  background-color: rgb(235, 110, 110);
+}
+
+.modal-slider-prev:hover,
+.modal-slider-next:hover,
+.exit-button:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.modal-inactive {
+  color: rgb(118, 113, 113);
+  border: 1px solid rgb(118, 113, 113);
+}
+
+.modal-inactive:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+.modal-wrapper{
+  position: absolute;
+  background-color: rgba(20, 19, 19, 0.9);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-none{
+  display: none;
+}
+
+.detaileddiscount{
+  color: red;
+}

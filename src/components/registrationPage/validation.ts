@@ -65,37 +65,42 @@ class ValidationRegistrationPage {
     }
   }
 
-  public cityCheck() {
-    const name: HTMLInputElement | null = document.querySelector('.city');
-    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-city');
-    const wrapper: HTMLDivElement | null = document.querySelector('.city-wrapper');
+  public cityCheck_billing() {
+    const name: NodeListOf<HTMLInputElement> = document.querySelectorAll('.city');
+    const spanNotValid: NodeListOf<HTMLSpanElement> = document.querySelectorAll('.not-valid-city');
+    const wrapper: NodeListOf<HTMLDivElement> = document.querySelectorAll('.city-wrapper');
     if (name && spanNotValid && wrapper) {
-      spanNotValid.innerHTML = '';
-      this.nameValidation(name, spanNotValid, wrapper);
-    }
-  }
-
-  public streetCheck() {
-    const name: HTMLInputElement | null = document.querySelector('.street');
-    const wrapper: HTMLDivElement | null = document.querySelector('.street-wrapper');
-    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-street');
-
-    if (name && spanNotValid && wrapper) {
-      spanNotValid.innerHTML = '';
-      const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
-      if (name.value.length < 1 && icon) {
-        icon.classList.add('display-active');
-        spanNotValid.innerHTML = 'Must contain at least one character';
-        name.classList.add('input-wrong');
-      } else {
-        icon?.classList.remove('display-active');
-        name.classList.remove('input-wrong');
+      for (let i = 0; i < name.length; i++) {
+        spanNotValid[i].innerHTML = '';
+        this.nameValidation(name[i], spanNotValid[i], wrapper[i]);
       }
     }
   }
 
-  public countryCheck() {
-    const country: HTMLInputElement | null = document.querySelector('#country');
+  public streetCheck_billing() {
+    const name: NodeListOf<HTMLInputElement> = document.querySelectorAll('.street');
+    const wrapper: NodeListOf<HTMLSpanElement> = document.querySelectorAll('.street-wrapper');
+    const spanNotValid: NodeListOf<HTMLDivElement> = document.querySelectorAll('.not-valid-street');
+
+    if (name && spanNotValid && wrapper) {
+      for (let i = 0; i < name.length; i++) {
+        spanNotValid[i].innerHTML = '';
+        const icon: HTMLSpanElement | null = wrapper[i].querySelector('.icon');
+        if (name[i].value.length < 1 && icon) {
+          icon.classList.add('display-active');
+          spanNotValid[i].innerHTML = 'Must contain at least one character';
+          name[i].classList.add('input-wrong');
+        } else {
+          icon?.classList.remove('display-active');
+          name[i].classList.remove('input-wrong');
+        }
+      }
+
+    }
+  }
+
+  public countryCheck_billing() {
+    const country: HTMLInputElement | null = document.querySelector('#country_billing');
     const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-country');
     const wrapper: HTMLDivElement | null = document.querySelector('.country-wrapper');
     if (country && spanNotValid && wrapper) {
@@ -112,34 +117,40 @@ class ValidationRegistrationPage {
     }
   }
 
-  public postalListener() {
-    const postal: HTMLInputElement | null = document.querySelector('.postal-code');
+  public postalListener_billing() {
+    const postal: NodeListOf<HTMLInputElement> = document.querySelectorAll('.postal-code');
     if (postal) {
-      postal.oninput = function () {
-        postal.value = postal.value.substring(0, 5);
-      };
+      for (let i = 0; i < postal.length; i++) {
+        postal[i].oninput = function () {
+          postal[i].value = postal[i].value.substring(0, 5);
+        };
+      }
+
     }
   }
 
-  public postalCheck() {
-    const country: HTMLInputElement | null = document.querySelector('.postal-code');
-    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-postal-code');
-    const wrapper: HTMLDivElement | null = document.querySelector('.postal-wrapper');
+  public postalCheck_billing() {
+    const country: NodeListOf<HTMLInputElement> = document.querySelectorAll('.postal-code');
+    const spanNotValid: NodeListOf<HTMLSpanElement> = document.querySelectorAll('.not-valid-postal-code');
+    const wrapper: NodeListOf<HTMLDivElement> = document.querySelectorAll('.postal-wrapper');
     if (country && spanNotValid && wrapper) {
-      spanNotValid.innerHTML = '';
-      const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
-      if (country.value == '' && icon) {
-        spanNotValid.innerHTML = 'Required field';
-        icon.classList.add('display-active');
-        country.classList.add('input-wrong');
-      } else if (country.value.length < 5 && icon) {
-        spanNotValid.innerHTML = 'Must be 5 digits';
-        icon.classList.add('display-active');
-        country.classList.add('input-wrong');
-      } else {
-        icon?.classList.remove('display-active');
-        country.classList.remove('input-wrong');
+      for (let i = 0; i < country.length; i++) {
+        spanNotValid[i].innerHTML = '';
+        const icon: HTMLSpanElement | null = wrapper[i].querySelector('.icon');
+        if (country[i].value == '' && icon) {
+          spanNotValid[i].innerHTML = 'Required field';
+          icon.classList.add('display-active');
+          country[i].classList.add('input-wrong');
+        } else if (country[i].value.length < 5 && icon) {
+          spanNotValid[i].innerHTML = 'Must be 5 digits';
+          icon.classList.add('display-active');
+          country[i].classList.add('input-wrong');
+        } else {
+          icon?.classList.remove('display-active');
+          country[i].classList.remove('input-wrong');
+        }
       }
+
     }
   }
 
@@ -186,10 +197,89 @@ class ValidationRegistrationPage {
     }
   }
 
+  public streetCheck_shipping() {
+    const name: HTMLInputElement | null = document.querySelector('.street_shipping');
+    const wrapper: HTMLDivElement | null = document.querySelector('.street-wrapper_shipping');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-street_shipping');
+
+    if (name && spanNotValid && wrapper) {
+      spanNotValid.innerHTML = '';
+      const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
+      if (name.value.length < 1 && icon) {
+        icon.classList.add('display-active');
+        spanNotValid.innerHTML = 'Must contain at least one character';
+        name.classList.add('input-wrong');
+      } else {
+        icon?.classList.remove('display-active');
+        name.classList.remove('input-wrong');
+      }
+    }
+  }
+
+  public cityCheck_shipping() {
+    const name: HTMLInputElement | null = document.querySelector('.city_shipping');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-city_shipping');
+    const wrapper: HTMLDivElement | null = document.querySelector('.city-wrapper_shipping');
+    if (name && spanNotValid && wrapper) {
+      spanNotValid.innerHTML = '';
+      this.nameValidation(name, spanNotValid, wrapper);
+    }
+  }
+
+  public postalCheck_shipping() {
+    const country: HTMLInputElement | null = document.querySelector('.postal-code_shipping');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-postal-code_shipping');
+    const wrapper: HTMLDivElement | null = document.querySelector('.postal-wrapper_shipping');
+    if (country && spanNotValid && wrapper) {
+      spanNotValid.innerHTML = '';
+      const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
+      if (country.value == '' && icon) {
+        spanNotValid.innerHTML = 'Required field';
+        icon.classList.add('display-active');
+        country.classList.add('input-wrong');
+      } else if (country.value.length < 5 && icon) {
+        spanNotValid.innerHTML = 'Must be 5 digits';
+        icon.classList.add('display-active');
+        country.classList.add('input-wrong');
+      } else {
+        icon?.classList.remove('display-active');
+        country.classList.remove('input-wrong');
+      }
+    }
+  }
+
+  public postalListener_shipping() {
+    const postal: HTMLInputElement | null = document.querySelector('.postal-code_shipping');
+    if (postal) {
+      postal.oninput = function () {
+        postal.value = postal.value.substring(0, 5);
+      };
+    }
+  }
+
+  public countryCheck_shipping() {
+    const country: HTMLInputElement | null = document.querySelector('#country_shipping');
+    const spanNotValid: HTMLSpanElement | null = document.querySelector('.not-valid-country_shipping');
+    const wrapper: HTMLDivElement | null = document.querySelector('.country-wrapper_shipping');
+    if (country && spanNotValid && wrapper) {
+      spanNotValid.innerHTML = '';
+      const icon: HTMLSpanElement | null = wrapper.querySelector('.icon');
+      if (country.value == '' && icon) {
+        spanNotValid.innerHTML = 'Required field';
+        icon.classList.add('display-active');
+        country.classList.add('input-wrong');
+      } else {
+        icon?.classList.remove('display-active');
+        country.classList.remove('input-wrong');
+      }
+    }
+  }
+
   public buttonListener(): void {
     const loginButton: HTMLButtonElement | null = document.querySelector('.registration-button');
     this.togglePasswordVisibility();
-    this.postalListener();
+    this.postalListener_billing();
+    this.postalListener_shipping();
     if (loginButton) {
       loginButton.addEventListener('click', () => {
         this.cleanSpan();
@@ -197,11 +287,15 @@ class ValidationRegistrationPage {
         this.passwordValidation();
         this.firstNameCheck();
         this.lastNameCheck();
-        this.cityCheck();
-        this.streetCheck();
+        this.cityCheck_billing();
+        this.cityCheck_shipping();
+        this.streetCheck_billing();
+        this.streetCheck_shipping();
         this.dateCheck();
-        this.postalCheck();
-        this.countryCheck();
+        this.postalCheck_billing();
+        this.postalCheck_shipping();
+        this.countryCheck_billing();
+        this.countryCheck_shipping();
         registrationOnServ();
       });
     }

@@ -9,6 +9,10 @@ class PopupWindow {
 
   private registrationText: string = 'You have successfully registered';
 
+  private passwordUpdate: string = 'Password is update';
+
+  private passwordWrong: string = 'Wrong old password entered';
+
   public popupTrue(text: string) {
     const modal: HTMLDivElement | null = document.querySelector('.modal-content');
     const textPopup: HTMLParagraphElement | null = document.querySelector('.text-popup');
@@ -27,6 +31,10 @@ class PopupWindow {
         textPopup.innerHTML = this.loginText;
       } else if (text === 'registration' && textPopup) {
         textPopup.innerHTML = this.registrationText;
+      } else if (text === 'password-tru' && textPopup) {
+        textPopup.innerHTML = this.passwordUpdate;
+      } else if (text === 'password-wrong' && textPopup) {
+        textPopup.innerHTML = this.passwordWrong;
       }
     }
   }
