@@ -13,7 +13,7 @@ export async function getUserProfile(mail: string) {
   const tokenData = await response.json();
   const accessToken = tokenData.access_token;
 
-  const res = await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/?where=email%3D%22${mail}%22`, {
+  const res = await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/customers?where=email%3D%22${mail}%22`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${accessToken}`,
