@@ -67,7 +67,7 @@ async function updateData(id: string, version: number, accessToken: string, allA
   };
   console.log(data, 'LOLA');
 
-  await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
+  await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,

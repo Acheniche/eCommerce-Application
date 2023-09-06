@@ -36,7 +36,7 @@ async function updateData(
     };
 
 
-    const response = await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${kod}`, {
+    const response = await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/customers/${kod}`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,

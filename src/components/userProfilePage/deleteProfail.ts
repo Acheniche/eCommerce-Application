@@ -10,7 +10,7 @@ async function deletAdress(addressId: string, id: string, accessToken:string, ve
     ],
   };
 
-  await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
+  await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/customers/${id}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${accessToken}`,
