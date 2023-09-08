@@ -29,7 +29,7 @@ const Buttons = [
     text: '🛒',
   },
   {
-    id: PagesID.aboutUs,
+    id: PagesID.aboutUsPage,
     text: 'About Us',
   },
 ];

@@ -43,7 +43,7 @@
 .view {
   background: url(/src/assets/image/no-view.svg) 0 0 no-repeat;
 }
-.LoginWrapper h1, .BasketWrapper h1{
+.LoginWrapper h1, .BasketWrapper h1, .AboutUsWrapper h1{
   text-align: center;
   font-size: 300%;
   font-family:
