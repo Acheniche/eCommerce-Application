@@ -87,7 +87,6 @@ export function createProductsCards(data: Products) {
     name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
     const div = document.createElement('div');
     div.appendChild(img);
-    div.appendChild(buttonBasket);
     div.appendChild(name);
     const description = document.createElement('p');
     description.classList.add('productDescription');
@@ -99,9 +98,13 @@ export function createProductsCards(data: Products) {
       data.results[i].masterData.staged.masterVariant.prices[0].value.currencyCode
     }`;
 
+    const priceButtonDiv = document.createElement('div');
+
+    priceButtonDiv.append(price);
+
     cardWrapper.append(div);
     cardWrapper.append(description);
-    cardWrapper.append(price);
+
 
     if (data.results[i].masterData.staged.masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
@@ -111,11 +114,15 @@ export function createProductsCards(data: Products) {
       discount.textContent = `${discountValue.slice(0, -2)} ${
         data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.currencyCode
       }`;
-      cardWrapper.append(discount);
+      priceButtonDiv.append(discount);
     }
     if (products) {
       products.append(cardWrapper);
     }
+    priceButtonDiv.append(buttonBasket);
+
+    cardWrapper.append(priceButtonDiv);
+
     buttonBasket.addEventListener('click', (event) => {
       event.stopPropagation();
     });
@@ -180,9 +187,13 @@ export function createProductsCardsCategory(data: Products) {
     const priceValue = `${data.results[i].masterVariant.prices[0].value.centAmount}`;
     price.textContent = `${priceValue.slice(0, -2)} ${data.results[i].masterVariant.prices[0].value.currencyCode}`;
 
+    const priceButtonDiv = document.createElement('div');
+
+    priceButtonDiv.append(price);
+
     cardWrapper.append(div);
     cardWrapper.append(description);
-    cardWrapper.append(price);
+
 
     if (data.results[i].masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
@@ -192,11 +203,15 @@ export function createProductsCardsCategory(data: Products) {
       discount.textContent = `${discountValue.slice(0, -2)} ${
         data.results[i].masterVariant.prices[0].discounted.value.currencyCode
       }`;
-      cardWrapper.append(discount);
+      priceButtonDiv.append(discount);
     }
     if (products) {
       products.append(cardWrapper);
     }
+
+    priceButtonDiv.append(buttonBasket);
+
+    cardWrapper.append(priceButtonDiv);
 
     buttonBasket.addEventListener('click', (event) => {
       event.stopPropagation();
