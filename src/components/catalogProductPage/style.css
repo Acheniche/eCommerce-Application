@@ -104,7 +104,6 @@ li:hover {
 }
 
 .buttonSearch, .button-filterByBrand {
-  /* position: relative; */
   padding: 10px 30px;
   margin: 10px;
   right: 0;
@@ -117,6 +116,16 @@ li:hover {
 
 .detailedWrapper{
   margin: auto;
+}
+
+.button-basket{
+  transition: 0.19s ease-in-out;
+}
+
+.button-basket:hover {
+  cursor: pointer;
+  background-color: #d4e3ef;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
 }
 
 @media (max-width: 751px) {

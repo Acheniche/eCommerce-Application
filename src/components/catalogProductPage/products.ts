@@ -79,11 +79,15 @@ export function createProductsCards(data: Products) {
     const img = document.createElement('img');
     img.src = `${data.results[i].masterData.staged.masterVariant.images[0].url}`;
     img.alt = 'pic';
+    const buttonBasket = document.createElement('button');
+    buttonBasket.textContent = '➕ 🛒';
+    buttonBasket.classList.add('button-basket');
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
     const div = document.createElement('div');
     div.appendChild(img);
+    div.appendChild(buttonBasket);
     div.appendChild(name);
     const description = document.createElement('p');
     description.classList.add('productDescription');
@@ -112,6 +116,9 @@ export function createProductsCards(data: Products) {
     if (products) {
       products.append(cardWrapper);
     }
+    buttonBasket.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
   }
 }
 
@@ -155,11 +162,15 @@ export function createProductsCardsCategory(data: Products) {
     const img = document.createElement('img');
     img.src = `${data.results[i].masterVariant.images[0].url}`;
     img.alt = 'pic';
+    const buttonBasket = document.createElement('button');
+    buttonBasket.textContent = '➕ 🛒';
+    buttonBasket.classList.add('button-basket');
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].name['en-US']}`;
     const div = document.createElement('div');
     div.appendChild(img);
+    div.appendChild(buttonBasket);
     div.appendChild(name);
     const description = document.createElement('p');
     description.classList.add('productDescription');
@@ -169,8 +180,6 @@ export function createProductsCardsCategory(data: Products) {
     const priceValue = `${data.results[i].masterVariant.prices[0].value.centAmount}`;
     price.textContent = `${priceValue.slice(0, -2)} ${data.results[i].masterVariant.prices[0].value.currencyCode}`;
 
-    // cardWrapper.append(img);
-    // cardWrapper.append(name);
     cardWrapper.append(div);
     cardWrapper.append(description);
     cardWrapper.append(price);
@@ -188,6 +197,10 @@ export function createProductsCardsCategory(data: Products) {
     if (products) {
       products.append(cardWrapper);
     }
+
+    buttonBasket.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
   }
 }
 
