@@ -13,6 +13,14 @@ const Buttons = [
     text: 'Catalog',
   },
   {
+    id: PagesID.basketPage,
+    text: '🛒',
+  },
+  {
+    id: PagesID.aboutUsPage,
+    text: 'About Us',
+  },
+  {
     id: PagesID.registrationPage,
     text: 'Registration',
   },
@@ -24,14 +32,7 @@ const Buttons = [
     id: PagesID.profilePage,
     text: 'Profile',
   },
-  {
-    id: PagesID.basketPage,
-    text: '🛒',
-  },
-  {
-    id: PagesID.aboutUsPage,
-    text: 'About Us',
-  },
+
 ];
 
 export default class Header extends Component {
