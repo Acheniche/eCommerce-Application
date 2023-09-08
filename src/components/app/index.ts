@@ -16,6 +16,8 @@ export const enum PagesID {
   profilePage = 'profile-page',
   catalogPage = 'catalog-page',
   productPage = 'product-page',
+  basketPage = 'basket-page',
+  aboutUs = 'about-us',
 }
 
 export default class App {
