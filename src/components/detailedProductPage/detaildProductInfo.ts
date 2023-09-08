@@ -85,11 +85,15 @@ export function createProductsCards(data: Results) {
   price.classList.add('detailedPrice');
   const priceValue = `${data.masterData.staged.masterVariant.prices[0].value.centAmount}`;
   price.textContent = `${priceValue.slice(0, -2)} ${data.masterData.staged.masterVariant.prices[0].value.currencyCode}`;
+  const buttonBasket = document.createElement('button');
+  buttonBasket.textContent = '➕ 🛒';
+  buttonBasket.classList.add('button-basket');
 
   cardWrapper.append(carouselWrapper);
   cardWrapper.append(name);
   cardWrapper.append(description);
   cardWrapper.append(price);
+  cardWrapper.append(buttonBasket);
 
 
   const modalWindow = document.createElement('div');
