@@ -8,6 +8,7 @@ import ProfilePage from '../userProfilePage/userProfilePage';
 import CatalogPage from '../catalogProductPage/catalogProductPage';
 import ProductPage from '../detailedProductPage/detailedProductPage';
 import { getProducts } from '../catalogProductPage/products';
+import BasketPage from '../basketPage/basketPage';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -50,6 +51,8 @@ export default class App {
       page = new CatalogPage(PageID);
     } else if (PageID === PagesID.productPage) {
       page = new ProductPage(PageID);
+    } else if (PageID === PagesID.basketPage) {
+      page = new BasketPage(PageID);
     } else {
       page = new ErrorPage(PageID, ErrorTypes.Error404);
     }
