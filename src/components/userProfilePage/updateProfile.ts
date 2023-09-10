@@ -13,7 +13,7 @@ async function updatePassword(id: string, version: number, accessToken: string) 
     currentPassword: (<HTMLInputElement>document.querySelector('#registration-oldPassword')).value,
     newPassword: (<HTMLInputElement>document.querySelector('#registration-newPassword')).value,
   };
-  //console.log(data);
+  //console.log(data);d
   const res = await fetch('https://api.europe-west1.gcp.commercetools.com/ghpr/customers/password', {
     method: 'POST',
     headers: {

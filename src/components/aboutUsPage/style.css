@@ -1,0 +1,38 @@
+.profile-user{
+  display: flex;
+  justify-content: space-around;
+}
+.foto-of-user{
+  height: 20vh;
+}
+.img-about-us{
+  height: 100%;
+}
+.userImfo > *{
+  margin-left: 3%;
+  font-size: 1.5vh;
+}
+.git-info-about-us a:hover{
+  color: blue;
+}
+.git-info-about-us a:active{
+  color: red;
+}
+.rs-img{
+  margin-left: 5%;
+  max-height: 3vh;
+}
+.git-info-about-us-school{
+  background-color: darkorange;
+}
+.about-our-school{
+  font-size: 2.5vh;
+  margin-left: 5%;
+  text-decoration: none;
+}
+.about-our-school:hover{
+  color: blue;
+}
+.about-our-school:active{
+  color: red;
+}
