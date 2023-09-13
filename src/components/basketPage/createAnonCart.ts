@@ -126,3 +126,17 @@ export async function getCartByCustomerId(customerId: string) {
         const result = await res.json();
         return result;
 }
+
+export async function getProductsFromCartById(cartId: string) {
+    const accessToken = await getToken();
+    const res = await fetch(
+        `https://api.europe-west1.gcp.commercetools.com/ghpr/carts/${cartId}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        const result = await res.json();
+        return result;
+}

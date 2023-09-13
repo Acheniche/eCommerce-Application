@@ -1,3 +1,4 @@
+import { addProductToCard, getCartById } from '../basketPage/createAnonCart';
 import { Results } from '../catalogProductPage/products';
 
 export async function getProduct() {
@@ -144,6 +145,17 @@ export function createProductsCards(data: Results) {
   modalWindow.append(modalСarouselWrapper);
 
   cardWrapper.append(modalWrapper);
+
+  buttonBasket.addEventListener('click', (e) => {
+    e.stopPropagation();
+      const cardId = sessionStorage.getItem('productId');
+      const cartId = sessionStorage.getItem('cartId');
+      if (cartId && cardId) {
+      getCartById(cartId).then((version) => {
+        addProductToCard(cardId, version, cartId);
+      });
+      }
+  });
 
 
   let offset: number = 0;
