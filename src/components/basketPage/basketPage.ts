@@ -18,7 +18,13 @@ export default class BasketPage extends Page {
         const empty = document.createElement('div');
         empty.classList.add('empty-cart');
         empty.textContent = 'Cart is empty';
-        this.container.append(empty);
+        const buttonToCatalog = document.createElement('button');
+        buttonToCatalog.classList.add('toCatalog-button');
+        buttonToCatalog.textContent = 'To Catalog';
+        this.container.append(empty, buttonToCatalog);
+        buttonToCatalog.addEventListener('click', () => {
+          location.hash = 'catalog-page';
+        });
       } else {
         for (let i = 0; i < data.lineItems.length; i++) {
           const wrapper = document.createElement('div');
