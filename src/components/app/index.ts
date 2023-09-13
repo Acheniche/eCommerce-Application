@@ -10,6 +10,7 @@ import ProductPage from '../detailedProductPage/detailedProductPage';
 import { getProducts } from '../catalogProductPage/products';
 import BasketPage from '../basketPage/basketPage';
 import AboutUsPage from '../aboutUsPage/aboutUsPage';
+import { createCart } from '../basketPage/createAnonCart';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -93,6 +94,9 @@ export default class App {
   }
 
   run() {
+    if (App.isLogin === false) {
+          createCart();
+        }
     App.container.append(this.header.render());
     const hash = window.location.hash.slice(1);
     if (hash === '') {

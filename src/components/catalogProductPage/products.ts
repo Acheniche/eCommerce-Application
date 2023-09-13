@@ -1,3 +1,5 @@
+import { addProductToCard, getCartById } from '../basketPage/createAnonCart';
+
 export type Products = {
   results: Array<Results>;
 };
@@ -123,8 +125,18 @@ export function createProductsCards(data: Products) {
 
     cardWrapper.append(priceButtonDiv);
 
-    buttonBasket.addEventListener('click', (event) => {
-      event.stopPropagation();
+    buttonBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      if (card) {
+        const cardId = card.id;
+        const cartId = sessionStorage.getItem('cartId');
+        if (cartId) {
+        getCartById(cartId).then((version) => {
+          addProductToCard(cardId, version, cartId);
+        });
+        }
+      }
     });
   }
 }
@@ -213,8 +225,18 @@ export function createProductsCardsCategory(data: Products) {
 
     cardWrapper.append(priceButtonDiv);
 
-    buttonBasket.addEventListener('click', (event) => {
-      event.stopPropagation();
+    buttonBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      if (card) {
+        const cardId = card.id;
+        const cartId = sessionStorage.getItem('cartId');
+        if (cartId) {
+        getCartById(cartId).then((version) => {
+          addProductToCard(cardId, version, cartId);
+        });
+        }
+      }
     });
   }
 }

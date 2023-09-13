@@ -1,8 +1,9 @@
-import LogoutButton from '../../utils/templates/logout';
-import PopupWindow from '../../utils/templates/popup';
-import App, { PagesID } from '../app';
-import Header from '../header/header';
-import { getUserProfile } from '../userProfilePage/profileInfo';
+//import LogoutButton from '../../utils/templates/logout';
+//import PopupWindow from '../../utils/templates/popup';
+//import App, { PagesID } from '../app';
+//import Header from '../header/header';
+import { registration } from '../loginPage/login';
+//import { getUserProfile } from '../userProfilePage/profileInfo';
 
 async function addOnServ(check_billing: string, check_shipping: string) {
   const email = document.getElementById('registration-email') as HTMLInputElement;
@@ -18,9 +19,9 @@ async function addOnServ(check_billing: string, check_shipping: string) {
   const shippingCity = document.getElementById('registration-city_shipping') as HTMLInputElement;
   const shippingPostal = document.getElementById('registration-postal_shipping') as HTMLInputElement;
   const shippingCountry = document.getElementById('country_shipping') as HTMLInputElement;
-  const popupWindow = new PopupWindow();
-  const logoutBtn = new Header('header', 'header');
-  const logoutBtnListener = new LogoutButton();
+  //const popupWindow = new PopupWindow();
+  //const logoutBtn = new Header('header', 'header');
+  //const logoutBtnListener = new LogoutButton();
   let billingCountryData = '';
   let shippingCountryData = '';
   if (billingCountry.value === 'USA') {
@@ -83,7 +84,8 @@ async function addOnServ(check_billing: string, check_shipping: string) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-email')).innerHTML = 'this email already exists';
     } else {
-      App.renderPage(PagesID.mainPage);
+      registration(data.email, data.password);
+     /* App.renderPage(PagesID.mainPage);
       location.hash = 'main-page';
       const text = 'registration';
       popupWindow.popupTrue(text);
@@ -95,7 +97,7 @@ async function addOnServ(check_billing: string, check_shipping: string) {
       }, 10);
       const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
       profileLink.classList.remove('display-none');
-      App.isLogin = true;
+      App.isLogin = true;*/
     }
   });
   await fetch(
