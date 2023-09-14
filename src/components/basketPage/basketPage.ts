@@ -1,6 +1,7 @@
 import CreateBasketPage from '../../utils/templates/basketPageTemplate';
 import Page from '../../utils/templates/page';
-import { getProductsFromCartById } from './createAnonCart';
+import App from '../app';
+import { getProductsFromCartById, removeProductFromCart } from './createAnonCart';
 import './style.css';
 
 export default class BasketPage extends Page {
@@ -29,6 +30,7 @@ export default class BasketPage extends Page {
         for (let i = 0; i < data.lineItems.length; i++) {
           const wrapper = document.createElement('div');
           wrapper.classList.add('product-wrapper');
+          wrapper.setAttribute('id', `${data.lineItems[i].id}`);
           const name = document.createElement('h3');
           name.classList.add('product-name');
           name.textContent = `${data.lineItems[i].name['en-US']}`;
@@ -48,9 +50,23 @@ export default class BasketPage extends Page {
           totalCost.classList.add('product-totalCost');
           const totalCostValue = `${data.lineItems[i].totalPrice.centAmount}`;
           totalCost.textContent = `Total: ${totalCostValue.slice(0, -2)} ${data.lineItems[i].totalPrice.currencyCode}`;
-          wrapper.append(img, name, price, totalCost);
+
+          const deleteButton = document.createElement('button');
+          deleteButton.classList.add('deleteButton');
+          deleteButton.textContent = 'X';
+          deleteButton.addEventListener('click', (e) =>{
+            if ((e.target as HTMLElement).closest('.product-wrapper')) {
+              const card = (e.target as HTMLElement).closest('.product-wrapper');
+              if (card) {
+                const cardId = card.id;
+                removeProductFromCart(data.version, cartId, cardId).then(() => {
+                  App.renderPage('basket-page');
+                });
+              }
+            }
+          });
+          wrapper.append(img, name, price, totalCost, deleteButton);
           this.container.append(wrapper);
-          console.log(data);
         }
       }
     });

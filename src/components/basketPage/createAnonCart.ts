@@ -140,3 +140,28 @@ export async function getProductsFromCartById(cartId: string) {
         const result = await res.json();
         return result;
 }
+
+export async function removeProductFromCart(version: string, cartId: string, cardId: string) {
+    const accessToken = await getToken();
+    const data = {
+        'version': version,
+        'actions': [
+            {
+                'action' : 'removeLineItem',
+                'lineItemId' : cardId,
+              },
+        ],
+    };
+    const res = await fetch(
+        `https://api.europe-west1.gcp.commercetools.com/ghpr/carts/${cartId}`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        const result = await res.json();
+        console.log(result);
+        return result;   
+}
