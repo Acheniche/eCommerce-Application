@@ -19,7 +19,7 @@ class CatalogPage extends Page {
   static TextObject = {
     MainTitle: 'Catalog',
   };
-  
+
   render(): HTMLElement {
     const catalog = new CreateCatalogPage();
     this.container.classList.add('CatalogWrapper');
@@ -48,7 +48,7 @@ class CatalogPage extends Page {
             }
 
             if ((e.target as HTMLElement).id === 'main') {
-              getProducts().then((data) => {
+              getProducts(true).then((data) => {
                 createProductsCards(data);
               });
             }
