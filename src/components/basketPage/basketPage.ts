@@ -1,7 +1,7 @@
 import CreateBasketPage from '../../utils/templates/basketPageTemplate';
 import Page from '../../utils/templates/page';
 import App from '../app';
-import { getProductsFromCartById, removeProductFromCart } from './createAnonCart';
+import { deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
 import './style.css';
 
 export default class BasketPage extends Page {
@@ -27,6 +27,18 @@ export default class BasketPage extends Page {
             location.hash = 'catalog-page';
           });
         } else {
+          const clearCart = document.createElement('button');
+          clearCart.classList.add('clearCart-button');
+          clearCart.textContent = 'Clear Cart';
+          this.container.append(clearCart);
+          clearCart.addEventListener('click', () => {
+            deleteAllProductsFromCart(cartId);
+          /*  for (let i = 0; i < data.lineItems.length; i++) {
+              getProductsFromCartById(cartId).then((Data) => {
+                removeProductFromCart(Data.version, cartId, data.lineItems[i].id);
+              });
+            }*/
+          });
           for (let i = 0; i < data.lineItems.length; i++) {
             const wrapper = document.createElement('div');
             wrapper.classList.add('product-wrapper');

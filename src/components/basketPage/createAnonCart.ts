@@ -157,3 +157,12 @@ export async function removeProductFromCart(version: string, cartId: string, car
   const result = await res.json();
   return result;
 }
+
+export async function deleteAllProductsFromCart(cartId: string) {
+    const data = await getProductsFromCartById(cartId);
+    for (let i = 0; i < data.lineItems.length; i++) {
+        const Data = await getProductsFromCartById(cartId);
+        await removeProductFromCart(Data.version, cartId, data.lineItems[i].id);
+      }
+    App.renderPage('basket-page');
+}
