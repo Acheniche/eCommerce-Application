@@ -1,4 +1,5 @@
 import App, { PagesID } from '../../components/app';
+import { createCart } from '../../components/basketPage/createAnonCart';
 
 class LogoutButton {
   public logoutBtnListener() {
@@ -27,6 +28,9 @@ class LogoutButton {
             loginLink.classList.remove('display-none');
             profileLink.classList.add('display-none');
             App.isLogin = false;
+            if (App.isLogin === false) {
+              createCart();
+            }
           } else {
             console.error('Ошибка при отзыве токена.');
           }
