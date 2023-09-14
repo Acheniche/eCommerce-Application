@@ -1,7 +1,7 @@
 import CreateBasketPage from '../../utils/templates/basketPageTemplate';
 import Page from '../../utils/templates/page';
 import App from '../app';
-import { deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
+import { changeLineItem, deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
 import './style.css';
 
 export default class BasketPage extends Page {
@@ -33,11 +33,6 @@ export default class BasketPage extends Page {
           this.container.append(clearCart);
           clearCart.addEventListener('click', () => {
             deleteAllProductsFromCart(cartId);
-          /*  for (let i = 0; i < data.lineItems.length; i++) {
-              getProductsFromCartById(cartId).then((Data) => {
-                removeProductFromCart(Data.version, cartId, data.lineItems[i].id);
-              });
-            }*/
           });
           for (let i = 0; i < data.lineItems.length; i++) {
             const wrapper = document.createElement('div');
@@ -58,6 +53,42 @@ export default class BasketPage extends Page {
               const priceValue = `${data.lineItems[i].price.discounted.value.centAmount}`;
               price.textContent = `${priceValue.slice(0, -2)} ${data.lineItems[i].price.value.currencyCode}`;
             }
+
+            const addLineItemBtn = document.createElement('button');
+            addLineItemBtn.classList.add('addLineItem');
+            addLineItemBtn.textContent = '+';
+
+            const quantityProducts = document.createElement('h2');
+            quantityProducts.classList.add('quantityProducts');
+            quantityProducts.textContent = `${data.lineItems[i].quantity}`;
+
+            addLineItemBtn.addEventListener('click', (e) => {
+              if ((e.target as HTMLElement).closest('.product-wrapper')) {
+                const card = (e.target as HTMLElement).closest('.product-wrapper');
+                if (card) {
+                  const cardId = card.id;
+                  changeLineItem(data.version, cartId, cardId, data.lineItems[i].quantity + 1).then(() => {
+                    App.renderPage('basket-page');
+                  });
+                }
+              }
+            });
+
+            const removeLineItemBtn = document.createElement('button');
+            removeLineItemBtn.classList.add('removeLineItem');
+            removeLineItemBtn.textContent = '-';
+            removeLineItemBtn.addEventListener('click', (e) => {
+              if ((e.target as HTMLElement).closest('.product-wrapper')) {
+                const card = (e.target as HTMLElement).closest('.product-wrapper');
+                if (card) {
+                  const cardId = card.id;
+                  changeLineItem(data.version, cartId, cardId, data.lineItems[i].quantity - 1).then(() => {
+                    App.renderPage('basket-page');
+                  });
+                }
+              }
+            });
+
             const totalCost = document.createElement('h2');
             totalCost.classList.add('product-totalCost');
             const totalCostValue = `${data.lineItems[i].totalPrice.centAmount}`;
@@ -79,7 +110,7 @@ export default class BasketPage extends Page {
                 }
               }
             });
-            wrapper.append(img, name, price, totalCost, deleteButton);
+            wrapper.append(img, name, price, addLineItemBtn, quantityProducts, removeLineItemBtn, totalCost, deleteButton);
             this.container.append(wrapper);
           }
         }

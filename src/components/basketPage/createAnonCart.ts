@@ -166,3 +166,27 @@ export async function deleteAllProductsFromCart(cartId: string) {
       }
     App.renderPage('basket-page');
 }
+
+export async function changeLineItem(version: string, cartId: string, cardId: string, quantity: number) {
+    const accessToken = await getToken();
+    const data = {
+      version: version,
+      actions: [
+        {
+          action: 'changeLineItemQuantity',
+          lineItemId: cardId,
+          quantity: quantity,
+        },
+      ],
+    };
+    const res = await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/carts/${cartId}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    return result;
+}
