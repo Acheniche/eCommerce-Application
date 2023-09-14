@@ -113,6 +113,11 @@ export default class BasketPage extends Page {
             wrapper.append(img, name, price, addLineItemBtn, quantityProducts, removeLineItemBtn, totalCost, deleteButton);
             this.container.append(wrapper);
           }
+          const totalCostOfCart = document.createElement('h2');
+          totalCostOfCart.classList.add('totalCostOfCart');
+          const costOfCart = `${data.totalPrice.centAmount}`;
+          totalCostOfCart.textContent = `Total cost of cart: ${costOfCart.slice(0, -2)} ${data.totalPrice.currencyCode}`;
+          this.container.append(totalCostOfCart);
         }
       });
     }
