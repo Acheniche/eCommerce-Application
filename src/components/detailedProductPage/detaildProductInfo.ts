@@ -62,7 +62,6 @@ export function createProductsCards(data: Results) {
   modalWrapper.classList.add('display-none');
 
   for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
-
     const img = document.createElement('img');
     img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
     img.alt = 'pic';
@@ -95,7 +94,6 @@ export function createProductsCards(data: Results) {
   cardWrapper.append(description);
   cardWrapper.append(price);
   cardWrapper.append(buttonBasket);
-
 
   const modalWindow = document.createElement('div');
   modalWindow.classList.add('modal-window');
@@ -133,7 +131,6 @@ export function createProductsCards(data: Results) {
   });
 
   for (let i = 0; i < data.masterData.staged.masterVariant.images.length; i = i + 1) {
-
     const img = document.createElement('img');
     img.src = `${data.masterData.staged.masterVariant.images[i].url}`;
     img.alt = 'pic';
@@ -148,15 +145,14 @@ export function createProductsCards(data: Results) {
 
   buttonBasket.addEventListener('click', (e) => {
     e.stopPropagation();
-      const cardId = sessionStorage.getItem('productId');
-      const cartId = sessionStorage.getItem('cartId');
-      if (cartId && cardId) {
+    const cardId = sessionStorage.getItem('productId');
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId && cardId) {
       getCartById(cartId).then((version) => {
         addProductToCard(cardId, version, cartId);
       });
-      }
+    }
   });
-
 
   let offset: number = 0;
   let modalOffset: number = 0;
@@ -185,7 +181,6 @@ export function createProductsCards(data: Results) {
   });
 
   buttonPrev.addEventListener('click', function () {
-    // console.log('offsetWidth', sliderLine.offsetWidth);
     if (offset > 0) {
       offset = offset - 256;
       sliderLine.style.left = -offset + 'px';
@@ -225,7 +220,6 @@ export function createProductsCards(data: Results) {
   });
 
   modalButtonPrev.addEventListener('click', function (event) {
-    // console.log('offsetWidth', sliderLine.offsetWidth);
     if (modalOffset > 0) {
       modalOffset = modalOffset - 512;
       modalSliderLine.style.left = -modalOffset + 'px';
@@ -244,8 +238,6 @@ export function createProductsCards(data: Results) {
     }
     event.stopPropagation();
   });
-
-
 
   if (data.masterData.staged.masterVariant.prices[0].discounted) {
     price.style.textDecoration = 'line-through';

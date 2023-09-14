@@ -1,4 +1,4 @@
-export function adressShiping(typ:string, street:string, city:string, postalCode:string, country:string) {
+export function adressShiping(typ: string, street: string, city: string, postalCode: string, country: string) {
   return `
   <div class="address-shipping">
   <h3>Shipping address</h3>
@@ -71,7 +71,7 @@ export function adressShiping(typ:string, street:string, city:string, postalCode
   `;
 }
 
-export function adressBilling(typ:string, street:string, city:string, postalCode:string, country:string) {
+export function adressBilling(typ: string, street: string, city: string, postalCode: string, country: string) {
   return `
   <div class="address-wrapper_billing">
   <div class="street-wrapper">
@@ -297,7 +297,6 @@ add new address
 </div>
 </div>`;
 }
-
 
 /* export default function innerAddres(data:ResponseType) {
   let i:number = 0;

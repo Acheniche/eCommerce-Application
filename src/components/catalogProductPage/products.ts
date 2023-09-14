@@ -107,7 +107,6 @@ export function createProductsCards(data: Products) {
     cardWrapper.append(div);
     cardWrapper.append(description);
 
-
     if (data.results[i].masterData.staged.masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
       const discount = document.createElement('h3');
@@ -132,9 +131,9 @@ export function createProductsCards(data: Products) {
         const cardId = card.id;
         const cartId = sessionStorage.getItem('cartId');
         if (cartId) {
-        getCartById(cartId).then((version) => {
-          addProductToCard(cardId, version, cartId);
-        });
+          getCartById(cartId).then((version) => {
+            addProductToCard(cardId, version, cartId);
+          });
         }
       }
     });
@@ -206,7 +205,6 @@ export function createProductsCardsCategory(data: Products) {
     cardWrapper.append(div);
     cardWrapper.append(description);
 
-
     if (data.results[i].masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
       const discount = document.createElement('h3');
@@ -232,9 +230,9 @@ export function createProductsCardsCategory(data: Products) {
         const cardId = card.id;
         const cartId = sessionStorage.getItem('cartId');
         if (cartId) {
-        getCartById(cartId).then((version) => {
-          addProductToCard(cardId, version, cartId);
-        });
+          getCartById(cartId).then((version) => {
+            addProductToCard(cardId, version, cartId);
+          });
         }
       }
     });
@@ -378,7 +376,7 @@ export async function productSearch(search: string) {
   return data;
 }
 
-export async function Filter(brands:string) {
+export async function Filter(brands: string) {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
     {
@@ -420,4 +418,3 @@ export async function Filter(brands:string) {
     return data;
   }
 }
-

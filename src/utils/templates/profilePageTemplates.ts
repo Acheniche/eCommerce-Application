@@ -184,8 +184,6 @@ add new address
 </div>`;
   }
 
-
-
   block() {
     return `
     <div class="profile">

@@ -1,8 +1,7 @@
 import LogoutButton from '../../utils/templates/logout';
 import PopupWindow from '../../utils/templates/popup';
 import App, { PagesID } from '../app';
-import { getCartByCustomerId, getCartById, setCustomerId  } from '../basketPage/createAnonCart';
-//import { getToken } from '../basketPage/createAnonCart';
+import { getCartByCustomerId, getCartById, setCustomerId } from '../basketPage/createAnonCart';
 import Header from '../header/header';
 import { getUserProfile } from '../userProfilePage/profileInfo';
 
@@ -12,13 +11,13 @@ export async function registration(email: string, password: string) {
   const logoutBtnListener = new LogoutButton();
 
   const data = {
-    'email': email,
-    'password': password,
-    'anonymousCart': {
-      'id': sessionStorage.getItem('cartId'),
-      'typeId': 'cart',
+    email: email,
+    password: password,
+    anonymousCart: {
+      id: sessionStorage.getItem('cartId'),
+      typeId: 'cart',
     },
-    'anonymousCartSignInMode': 'MergeWithExistingCustomerCart',
+    anonymousCartSignInMode: 'MergeWithExistingCustomerCart',
   };
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
@@ -32,15 +31,12 @@ export async function registration(email: string, password: string) {
   );
   const tokenData = await response.json();
   const accessToken = tokenData.access_token;
-  //const accessToken = await getToken();
 
   await fetch(
-  //  `https://auth.europe-west1.gcp.commercetools.com/oauth/ghpr/customers/token?grant_type=password&username=${email}&password=${password}`,
-      'https://api.europe-west1.gcp.commercetools.com/ghpr/me/login',
+    'https://api.europe-west1.gcp.commercetools.com/ghpr/me/login',
     {
       method: 'POST',
       headers: {
-        //Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -50,37 +46,24 @@ export async function registration(email: string, password: string) {
     if (!res.ok) {
       (<HTMLElement>document.querySelector('.not-valid-password')).innerHTML = 'Incorrect login or password';
     } else {
-      //----------------------------------------------------------
       getUserProfile(email).then((customerData) => {
         sessionStorage.setItem('customerId', customerData.id);
         const customerId = sessionStorage.getItem('customerId');
         if (customerId) {
-        getCartByCustomerId(customerId).then((result) => {
-          if (!result.statusCode) {
-            sessionStorage.setItem('cartId', result.id);
-          } else {
-            const cartId = sessionStorage.getItem('cartId');
-            if (cartId && customerId) {
-              getCartById(cartId).then((version) => {
-                setCustomerId(cartId, version, customerId);
-              });
+          getCartByCustomerId(customerId).then((result) => {
+            if (!result.statusCode) {
+              sessionStorage.setItem('cartId', result.id);
+            } else {
+              const cartId = sessionStorage.getItem('cartId');
+              if (cartId && customerId) {
+                getCartById(cartId).then((version) => {
+                  setCustomerId(cartId, version, customerId);
+                });
+              }
             }
-          }
-        });
-        }
-      });
-/*
-      getUserProfile(email).then((customerData) => {
-        sessionStorage.setItem('customerId', customerData.id);
-        const cartId = sessionStorage.getItem('cartId');
-        const customerId = sessionStorage.getItem('customerId');
-        if (cartId && customerId) {
-          getCartById(cartId).then((version) => {
-            setCustomerId(cartId, version, customerId);
           });
         }
-      });*/
-      //---------------------------------------------------------------
+      });
       App.renderPage(PagesID.mainPage);
       location.hash = 'main-page';
       const text = 'login';
