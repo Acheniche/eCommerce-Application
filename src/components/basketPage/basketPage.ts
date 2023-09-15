@@ -1,4 +1,3 @@
-import CreateBasketPage from '../../utils/templates/basketPageTemplate';
 import Page from '../../utils/templates/page';
 import App from '../app';
 import { changeLineItem, deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
@@ -11,7 +10,6 @@ export default class BasketPage extends Page {
 
   render() {
     const title = this.createHeaderTitle(BasketPage.TextObject.MainTitle);
-    const basket = new CreateBasketPage();
     const cartId = sessionStorage.getItem('cartId');
     if (cartId) {
       getProductsFromCartById(cartId).then((data) => {
@@ -20,17 +18,28 @@ export default class BasketPage extends Page {
           empty.classList.add('empty-cart');
           empty.textContent = 'Cart is empty';
           const buttonToCatalog = document.createElement('button');
+          const clearCartDiv = document.createElement('div');
           buttonToCatalog.classList.add('toCatalog-button');
+          clearCartDiv.classList.add('div_clearCart-button');
           buttonToCatalog.textContent = 'To Catalog';
-          this.container.append(empty, buttonToCatalog);
+          clearCartDiv.append(buttonToCatalog);
+          this.container.append(empty, clearCartDiv);
           buttonToCatalog.addEventListener('click', () => {
             location.hash = 'catalog-page';
           });
         } else {
           const clearCart = document.createElement('button');
+          const clearCartDiv = document.createElement('div');
           clearCart.classList.add('clearCart-button');
+          clearCartDiv.classList.add('div_clearCart-button');
           clearCart.textContent = 'Clear Cart';
-          this.container.append(clearCart);
+          clearCartDiv.append(clearCart);
+          this.container.append(clearCartDiv);
+
+          const basketDiv = document.createElement('div');
+          basketDiv.classList.add('basket');
+          this.container.insertAdjacentElement('beforeend', basketDiv);
+
           clearCart.addEventListener('click', () => {
             deleteAllProductsFromCart(cartId);
           });
@@ -88,6 +97,10 @@ export default class BasketPage extends Page {
                 }
               }
             });
+            const quantityCounter = document.createElement('div');
+            quantityCounter.classList.add('quantity-counter');
+
+            quantityCounter.append(addLineItemBtn, quantityProducts, removeLineItemBtn);
 
             const totalCost = document.createElement('h2');
             totalCost.classList.add('product-totalCost');
@@ -110,8 +123,8 @@ export default class BasketPage extends Page {
                 }
               }
             });
-            wrapper.append(img, name, price, addLineItemBtn, quantityProducts, removeLineItemBtn, totalCost, deleteButton);
-            this.container.append(wrapper);
+            wrapper.append(img, name, price, quantityCounter, totalCost, deleteButton);
+            basketDiv.append(wrapper);
           }
           const totalCostOfCart = document.createElement('h2');
           totalCostOfCart.classList.add('totalCostOfCart');
@@ -123,7 +136,6 @@ export default class BasketPage extends Page {
     }
     this.container.classList.add('BasketWrapper');
     this.container.append(title);
-    this.container.insertAdjacentHTML('beforeend', basket.block);
     return this.container;
   }
 }

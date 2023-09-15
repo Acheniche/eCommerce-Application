@@ -92,24 +92,24 @@ export function createProductsCards(data: Products) {
     buttonRemoveFromBasket.disabled = true;
     const cartId = sessionStorage.getItem('cartId');
     if (cartId) {
-    getProductsFromCartById(cartId).then((Data) => {
-      if (Data.lineItems.length === 0) {
-        buttonBasket.disabled = false;
-        buttonRemoveFromBasket.disabled = true;
-        
-       } else if (Data.lineItems) {
-        for (let j = 0; j < Data.lineItems.length; j++) {
-         if (Data.lineItems[j].productId === data.results[i].id) {
-          console.log('first');
-          buttonBasket.disabled = true;
-          buttonRemoveFromBasket.disabled = false;
-         }
-        } 
+      getProductsFromCartById(cartId).then((Data) => {
+        if (Data.lineItems.length === 0) {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+
+        } else if (Data.lineItems) {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              console.log('first');
+              buttonBasket.disabled = true;
+              buttonRemoveFromBasket.disabled = false;
+            }
+          }
         } else {
           buttonBasket.disabled = false;
           buttonRemoveFromBasket.disabled = true;
         }
-    });
+      });
     }
 
     const name = document.createElement('h3');
@@ -177,12 +177,12 @@ export function createProductsCards(data: Products) {
       if (cartId && cardId) {
         getCartById(cartId).then((version) => {
           getProductsFromCartById(cartId).then((Data) => {
-          for (let j = 0; j < Data.lineItems.length; j++) {
-            if (Data.lineItems[j].productId === data.results[i].id) {
-              removeProductFromCart(version, cartId, Data.lineItems[j].id);
+            for (let j = 0; j < Data.lineItems.length; j++) {
+              if (Data.lineItems[j].productId === data.results[i].id) {
+                removeProductFromCart(version, cartId, Data.lineItems[j].id);
+              }
             }
-          }
-        });
+          });
         });
       }
     });
@@ -239,24 +239,24 @@ export function createProductsCardsCategory(data: Products) {
     buttonRemoveFromBasket.disabled = true;
     const cartId = sessionStorage.getItem('cartId');
     if (cartId) {
-    getProductsFromCartById(cartId).then((Data) => {
-      if (Data.lineItems.length === 0) {
-        buttonBasket.disabled = false;
-        buttonRemoveFromBasket.disabled = true;
-        
-       } else if (Data.lineItems) {
-        for (let j = 0; j < Data.lineItems.length; j++) {
-         if (Data.lineItems[j].productId === data.results[i].id) {
-          console.log('first');
-          buttonBasket.disabled = true;
-          buttonRemoveFromBasket.disabled = false;
-         }
-        } 
+      getProductsFromCartById(cartId).then((Data) => {
+        if (Data.lineItems.length === 0) {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+
+        } else if (Data.lineItems) {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              console.log('first');
+              buttonBasket.disabled = true;
+              buttonRemoveFromBasket.disabled = false;
+            }
+          }
         } else {
           buttonBasket.disabled = false;
           buttonRemoveFromBasket.disabled = true;
         }
-    });
+      });
     }
 
     const name = document.createElement('h3');
@@ -325,12 +325,12 @@ export function createProductsCardsCategory(data: Products) {
       if (cartId && cardId) {
         getCartById(cartId).then((version) => {
           getProductsFromCartById(cartId).then((Data) => {
-          for (let j = 0; j < Data.lineItems.length; j++) {
-            if (Data.lineItems[j].productId === data.results[i].id) {
-              removeProductFromCart(version, cartId, Data.lineItems[j].id);
+            for (let j = 0; j < Data.lineItems.length; j++) {
+              if (Data.lineItems[j].productId === data.results[i].id) {
+                removeProductFromCart(version, cartId, Data.lineItems[j].id);
+              }
             }
-          }
-        });
+          });
         });
       }
     });

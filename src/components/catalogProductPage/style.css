@@ -38,7 +38,7 @@
   border-left: 1px black solid;
   min-height: 85vh;
 }
-.cardWrapper {
+.cardWrapper, .product-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
