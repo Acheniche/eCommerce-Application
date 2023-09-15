@@ -1,4 +1,4 @@
-export default function aboutUsInfo(firstName:string, lastName:string, dataOfBerth:string, email:string, role:string, foto:string, information:string, gitProfail:string) {
+export default function aboutUsInfo(firstName:string, lastName:string, dataOfBerth:string, email:string, role:string, photo:string, information:string, gitProfail:string) {
   return `
   <div class="profile-user">
     <div class="userImfo">
@@ -15,7 +15,7 @@ export default function aboutUsInfo(firstName:string, lastName:string, dataOfBer
           <p class="brief-info">About me: ${information}</p>
         </div>
         <div class="rol-about-us">
-          <p class="roll-about-us">My role: ${role}</p>
+          <p class="roll-about-us">Role: ${role}</p>
         </div>
         <div class="git-about-us">
           <p class="git-info-about-us"><a href="${gitProfail}">Here is my GitHub profile</a></p>
@@ -24,9 +24,8 @@ export default function aboutUsInfo(firstName:string, lastName:string, dataOfBer
 
     </div>
     <div class=foto-of-user>
-        <img class="img-about-us" src="${foto}"></img>
+        <img class="img-about-us" src="${photo}" alt="photo"></img>
     </div>
   </div>
-  <hr color="black" />
   `;
 }
