@@ -1,4 +1,4 @@
-import { addProductToCard, getCartById } from '../basketPage/createAnonCart';
+import { addProductToCard, getCartById, getProductsFromCartById, removeProductFromCart } from '../basketPage/createAnonCart';
 import { Results } from '../catalogProductPage/products';
 
 export async function getProduct() {
@@ -88,12 +88,38 @@ export function createProductsCards(data: Results) {
   const buttonBasket = document.createElement('button');
   buttonBasket.textContent = '➕ 🛒';
   buttonBasket.classList.add('button-basket');
+  buttonBasket.disabled = true;
+
+  const buttonRemoveFromBasket = document.createElement('button');
+  buttonRemoveFromBasket.textContent = '-- 🛒';
+  buttonRemoveFromBasket.classList.add('button-removeFromBasket');
+  buttonRemoveFromBasket.disabled = true;
+
+  const cartId = sessionStorage.getItem('cartId');
+  if (cartId) {
+  getProductsFromCartById(cartId).then((Data) => {
+    if (Data.lineItems.length === 0) {
+      buttonBasket.disabled = false;
+      buttonRemoveFromBasket.disabled = true;
+    }
+    for (let i = 0; i < Data.lineItems.length; i++) {
+      if (Data.lineItems[i].productId != data.id) {
+        buttonBasket.disabled = false;
+        buttonRemoveFromBasket.disabled = true;
+      } else {
+        buttonBasket.disabled = true;
+        buttonRemoveFromBasket.disabled = false;
+      }
+    }
+  });
+  }
 
   cardWrapper.append(carouselWrapper);
   cardWrapper.append(name);
   cardWrapper.append(description);
   cardWrapper.append(price);
   cardWrapper.append(buttonBasket);
+  cardWrapper.append(buttonRemoveFromBasket);
 
   const modalWindow = document.createElement('div');
   modalWindow.classList.add('modal-window');
@@ -145,11 +171,30 @@ export function createProductsCards(data: Results) {
 
   buttonBasket.addEventListener('click', (e) => {
     e.stopPropagation();
+    buttonBasket.disabled = true;
+    buttonRemoveFromBasket.disabled = false;
     const cardId = sessionStorage.getItem('productId');
-    const cartId = sessionStorage.getItem('cartId');
     if (cartId && cardId) {
       getCartById(cartId).then((version) => {
         addProductToCard(cardId, version, cartId);
+      });
+    }
+  });
+
+  buttonRemoveFromBasket.addEventListener('click', (e) => {
+    e.stopPropagation();
+    buttonBasket.disabled = false;
+    buttonRemoveFromBasket.disabled = true;
+    const cardId = sessionStorage.getItem('productId');
+    if (cartId && cardId) {
+      getCartById(cartId).then((version) => {
+        getProductsFromCartById(cartId).then((Data) => {
+        for (let i = 0; i < Data.lineItems.length; i++) {
+          if (Data.lineItems[i].productId === data.id) {
+            removeProductFromCart(version, cartId, Data.lineItems[i].id);
+          }
+        }
+      });
       });
     }
   });

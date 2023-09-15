@@ -1,4 +1,4 @@
-import { addProductToCard, getCartById } from '../basketPage/createAnonCart';
+import { addProductToCard, getCartById, getProductsFromCartById, removeProductFromCart } from '../basketPage/createAnonCart';
 
 export type Products = {
   results: Array<Results>;
@@ -10,6 +10,7 @@ export type Results = {
   description: Lang;
   prices: Array<Prices>;
   id: string;
+  productType: Results;
 };
 export type Staged = {
   staged: MasterVariant;
@@ -84,6 +85,33 @@ export function createProductsCards(data: Products) {
     const buttonBasket = document.createElement('button');
     buttonBasket.textContent = '➕ 🛒';
     buttonBasket.classList.add('button-basket');
+
+    const buttonRemoveFromBasket = document.createElement('button');
+    buttonRemoveFromBasket.textContent = '-- 🛒';
+    buttonRemoveFromBasket.classList.add('button-removeFromBasket');
+    buttonRemoveFromBasket.disabled = true;
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+    getProductsFromCartById(cartId).then((Data) => {
+      if (Data.lineItems.length === 0) {
+        buttonBasket.disabled = false;
+        buttonRemoveFromBasket.disabled = true;
+        
+       } else if (Data.lineItems) {
+        for (let j = 0; j < Data.lineItems.length; j++) {
+         if (Data.lineItems[j].productId === data.results[i].id) {
+          console.log('first');
+          buttonBasket.disabled = true;
+          buttonRemoveFromBasket.disabled = false;
+         }
+        } 
+        } else {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+        }
+    });
+    }
+
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
@@ -121,20 +149,41 @@ export function createProductsCards(data: Products) {
       products.append(cardWrapper);
     }
     priceButtonDiv.append(buttonBasket);
+    priceButtonDiv.append(buttonRemoveFromBasket);
 
     cardWrapper.append(priceButtonDiv);
 
     buttonBasket.addEventListener('click', (e) => {
       e.stopPropagation();
+      buttonBasket.disabled = true;
+      buttonRemoveFromBasket.disabled = false;
       const card = (e.target as HTMLElement).closest('.cardWrapper');
       if (card) {
         const cardId = card.id;
-        const cartId = sessionStorage.getItem('cartId');
         if (cartId) {
           getCartById(cartId).then((version) => {
             addProductToCard(cardId, version, cartId);
           });
         }
+      }
+    });
+
+    buttonRemoveFromBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = false;
+      buttonRemoveFromBasket.disabled = true;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      const cardId = card?.id;
+      if (cartId && cardId) {
+        getCartById(cartId).then((version) => {
+          getProductsFromCartById(cartId).then((Data) => {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              removeProductFromCart(version, cartId, Data.lineItems[j].id);
+            }
+          }
+        });
+        });
       }
     });
   }
@@ -183,6 +232,33 @@ export function createProductsCardsCategory(data: Products) {
     const buttonBasket = document.createElement('button');
     buttonBasket.textContent = '➕ 🛒';
     buttonBasket.classList.add('button-basket');
+
+    const buttonRemoveFromBasket = document.createElement('button');
+    buttonRemoveFromBasket.textContent = '-- 🛒';
+    buttonRemoveFromBasket.classList.add('button-removeFromBasket');
+    buttonRemoveFromBasket.disabled = true;
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+    getProductsFromCartById(cartId).then((Data) => {
+      if (Data.lineItems.length === 0) {
+        buttonBasket.disabled = false;
+        buttonRemoveFromBasket.disabled = true;
+        
+       } else if (Data.lineItems) {
+        for (let j = 0; j < Data.lineItems.length; j++) {
+         if (Data.lineItems[j].productId === data.results[i].id) {
+          console.log('first');
+          buttonBasket.disabled = true;
+          buttonRemoveFromBasket.disabled = false;
+         }
+        } 
+        } else {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+        }
+    });
+    }
+
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].name['en-US']}`;
@@ -220,20 +296,42 @@ export function createProductsCardsCategory(data: Products) {
     }
 
     priceButtonDiv.append(buttonBasket);
-
+    priceButtonDiv.append(buttonRemoveFromBasket);
     cardWrapper.append(priceButtonDiv);
+
+
 
     buttonBasket.addEventListener('click', (e) => {
       e.stopPropagation();
+      buttonBasket.disabled = true;
+      buttonRemoveFromBasket.disabled = false;
       const card = (e.target as HTMLElement).closest('.cardWrapper');
       if (card) {
         const cardId = card.id;
-        const cartId = sessionStorage.getItem('cartId');
         if (cartId) {
           getCartById(cartId).then((version) => {
             addProductToCard(cardId, version, cartId);
           });
         }
+      }
+    });
+
+    buttonRemoveFromBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = false;
+      buttonRemoveFromBasket.disabled = true;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      const cardId = card?.id;
+      if (cartId && cardId) {
+        getCartById(cartId).then((version) => {
+          getProductsFromCartById(cartId).then((Data) => {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              removeProductFromCart(version, cartId, Data.lineItems[j].id);
+            }
+          }
+        });
+        });
       }
     });
   }
