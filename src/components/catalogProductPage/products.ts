@@ -1,3 +1,4 @@
+import PopupWindow from '../../utils/templates/popup';
 import { addProductToCard, getCartById, getProductsFromCartById, removeProductFromCart } from '../basketPage/createAnonCart';
 
 export type Products = {
@@ -153,6 +154,8 @@ export function createProductsCards(data: Products) {
 
     cardWrapper.append(priceButtonDiv);
 
+    const popupWindow = new PopupWindow();
+
     buttonBasket.addEventListener('click', (e) => {
       e.stopPropagation();
       buttonBasket.disabled = true;
@@ -161,8 +164,11 @@ export function createProductsCards(data: Products) {
       if (card) {
         const cardId = card.id;
         if (cartId) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
           getCartById(cartId).then((version) => {
             addProductToCard(cardId, version, cartId);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         }
       }
@@ -175,6 +181,7 @@ export function createProductsCards(data: Products) {
       const card = (e.target as HTMLElement).closest('.cardWrapper');
       const cardId = card?.id;
       if (cartId && cardId) {
+        popupWindow.popupTrue(' ', 'loaderOpen');
         getCartById(cartId).then((version) => {
           getProductsFromCartById(cartId).then((Data) => {
             for (let j = 0; j < Data.lineItems.length; j++) {
@@ -182,6 +189,8 @@ export function createProductsCards(data: Products) {
                 removeProductFromCart(version, cartId, Data.lineItems[j].id);
               }
             }
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         });
       }
@@ -219,6 +228,7 @@ export async function getSubCategoryProduct(id: string) {
 
 export function createProductsCardsCategory(data: Products) {
   const products = document.querySelector('.products');
+  const popupWindow = new PopupWindow();
   if (products) {
     products.innerHTML = '';
   }
@@ -309,8 +319,11 @@ export function createProductsCardsCategory(data: Products) {
       if (card) {
         const cardId = card.id;
         if (cartId) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
           getCartById(cartId).then((version) => {
             addProductToCard(cardId, version, cartId);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         }
       }
@@ -323,6 +336,7 @@ export function createProductsCardsCategory(data: Products) {
       const card = (e.target as HTMLElement).closest('.cardWrapper');
       const cardId = card?.id;
       if (cartId && cardId) {
+        popupWindow.popupTrue(' ', 'loaderOpen');
         getCartById(cartId).then((version) => {
           getProductsFromCartById(cartId).then((Data) => {
             for (let j = 0; j < Data.lineItems.length; j++) {
@@ -330,6 +344,8 @@ export function createProductsCardsCategory(data: Products) {
                 removeProductFromCart(version, cartId, Data.lineItems[j].id);
               }
             }
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         });
       }

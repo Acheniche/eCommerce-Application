@@ -1,7 +1,13 @@
 .BasketWrapper {
   padding: 10px;
+  padding-top: 0;
   max-width: 80vw;
   margin: auto;
+}
+
+.BasketWrapper h1{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .empty-cart {
@@ -69,11 +75,19 @@ img {
   height: 40px;
   transition: 0.19s ease-in-out;
 }
+.deleteButton{
+  transition: 0.19s ease-in-out;
+}
 
-.deleteButton:hover,
+
 .addLineItem:hover,
 .removeLineItem:hover {
   cursor: pointer;
   background-color: #d4e3ef;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
+}
+.deleteButton:hover{
+  cursor: pointer;
+  background-color: #f56b6b;
   box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
 }
