@@ -101,7 +101,6 @@ export function createProductsCards(data: Products) {
         } else if (Data.lineItems) {
           for (let j = 0; j < Data.lineItems.length; j++) {
             if (Data.lineItems[j].productId === data.results[i].id) {
-              console.log('first');
               buttonBasket.disabled = true;
               buttonRemoveFromBasket.disabled = false;
             }
@@ -257,7 +256,6 @@ export function createProductsCardsCategory(data: Products) {
         } else if (Data.lineItems) {
           for (let j = 0; j < Data.lineItems.length; j++) {
             if (Data.lineItems[j].productId === data.results[i].id) {
-              console.log('first');
               buttonBasket.disabled = true;
               buttonRemoveFromBasket.disabled = false;
             }

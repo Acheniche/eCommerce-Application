@@ -1,7 +1,7 @@
 import Page from '../../utils/templates/page';
 import PopupWindow from '../../utils/templates/popup';
 import App from '../app';
-import { changeLineItem, deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
+import { applyPromo, changeLineItem, deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
 import './style.css';
 
 export default class BasketPage extends Page {
@@ -35,12 +35,24 @@ export default class BasketPage extends Page {
           clearCart.classList.add('clearCart-button');
           clearCartDiv.classList.add('div_clearCart-button');
           clearCart.textContent = 'Clear Cart';
+
+          const promoDiv = document.createElement('div');
+          const inputArea = document.createElement('input');
+          inputArea.type = 'text';
+          inputArea.classList.add('input-promo');
+          inputArea.placeholder = 'promocode';
+          const promoButoon = document.createElement('button');
+          promoButoon.classList.add('promoButton');
+          promoButoon.textContent = 'apply';
+          const error = document.createElement('h3');
+
+          promoDiv.append(inputArea, promoButoon, error);
           clearCartDiv.append(clearCart);
-          this.container.append(clearCartDiv);
+          this.container.append(clearCartDiv, promoDiv);
 
           const basketDiv = document.createElement('div');
-          basketDiv.classList.add('basket');
-          this.container.insertAdjacentElement('beforeend', basketDiv);
+          basketDiv.classList.add('basket');          this.container.insertAdjacentElement('beforeend', basketDiv);
+
 
           clearCart.addEventListener('click', () => {
             popupWindow.popupTrue(' ', 'loaderOpen');
@@ -145,6 +157,18 @@ export default class BasketPage extends Page {
           const costOfCart = `${data.totalPrice.centAmount}`;
           totalCostOfCart.textContent = `Total cost of cart: ${costOfCart.slice(0, -2)} ${data.totalPrice.currencyCode}`;
           this.container.append(totalCostOfCart);
+
+          promoButoon.addEventListener('click', () => {
+            if (inputArea.value === 'WEEKEND' || inputArea.value === 'QWERTY') {
+            applyPromo(data.version, cartId, inputArea.value).then(() => {
+              inputArea.value = '';
+              App.renderPage('basket-page');
+            });
+          } else {
+            inputArea.value = '';
+            error.textContent = 'invalid promo code';
+          }
+          });
         }
       });
     }

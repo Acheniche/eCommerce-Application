@@ -190,3 +190,26 @@ export async function changeLineItem(version: string, cartId: string, cardId: st
   const result = await res.json();
   return result;
 }
+
+export async function applyPromo(version: string, cartId: string, promo: string) {
+  const accessToken = await getToken();
+  const data = {
+    version: version,
+    actions: [
+      {
+        action: 'addDiscountCode',
+        code: promo,
+      },
+    ],
+  };
+  const res = await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/carts/${cartId}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  return result;
+}
