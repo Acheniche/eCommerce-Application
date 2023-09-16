@@ -1,3 +1,4 @@
+import PopupWindow from '../../utils/templates/popup';
 import { registration } from '../loginPage/login';
 
 async function addOnServ(check_billing: string, check_shipping: string) {
@@ -108,6 +109,7 @@ function setDefaultAdressShipping() {
 }
 
 export default function registrationOnServ() {
+  const popupWindow = new PopupWindow();
   (<HTMLInputElement>document.querySelector('.registration-button')).addEventListener('click', (e) => {
     e.stopImmediatePropagation();
     const icons = document.querySelectorAll('.icon');
@@ -118,9 +120,12 @@ export default function registrationOnServ() {
         counter += 1;
       }
       if (counter == 13) {
+        popupWindow.popupTrue(' ', 'loaderOpen');
         const checkBilling = setDefaultAdressBilling();
         const checkShipping = setDefaultAdressShipping();
-        addOnServ(String(checkBilling), String(checkShipping));
+        addOnServ(String(checkBilling), String(checkShipping)).then(() => {
+          popupWindow.popupTrue(' ', ' ');
+        });
       }
       i += 1;
     }

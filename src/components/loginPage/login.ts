@@ -82,13 +82,17 @@ export async function registration(email: string, password: string) {
 }
 
 export default function loginOnServ() {
+  const popupWindow = new PopupWindow();
   (<HTMLInputElement>document.querySelector('.login-button')).addEventListener('click', () => {
     const passwordEl = <HTMLInputElement>document.querySelector('.password');
     const emailEl = <HTMLInputElement>document.querySelector('.email');
     if (!passwordEl.classList.contains('input-wrong') && !emailEl.classList.contains('input-wrong')) {
       const email = (<HTMLInputElement>document.querySelector('.email')).value;
       const password = (<HTMLInputElement>document.querySelector('.password')).value;
-      registration(String(email), String(password));
+      popupWindow.popupTrue(' ', 'loaderOpen');
+      registration(String(email), String(password)).then(() => {
+        popupWindow.popupTrue(' ', ' ');
+      });
       sessionStorage.setItem('login', email);
       sessionStorage.setItem('password', password);
     }

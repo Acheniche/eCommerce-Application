@@ -5,6 +5,7 @@ import ValidationProfile from './validationProfile';
 import checkButton from './checkButton';
 import deleteProfile from './deleteProfail';
 import App from '../app';
+import PopupWindow from '../../utils/templates/popup';
 
 export default class EditProfilePage {
   public clearProfilePage() {
@@ -155,6 +156,7 @@ export default class EditProfilePage {
   }
 
   public buttonListener(): void {
+    const popupWindow = new PopupWindow();
     const editButton: HTMLButtonElement | null = document.querySelector('.edit-profile-button');
     if (editButton) {
       editButton.addEventListener('click', () => {
@@ -162,6 +164,7 @@ export default class EditProfilePage {
 
         const email = sessionStorage.getItem('email');
         if (email) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
           getUserProfile(email).then((data) => {
             const validationProfile = new ValidationProfile();
             const profile = new CreateProfilePage(data);
@@ -313,6 +316,8 @@ export default class EditProfilePage {
                 checkButton();
               });
             }, 100);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         }
       });

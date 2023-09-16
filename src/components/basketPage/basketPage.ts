@@ -1,4 +1,5 @@
 import Page from '../../utils/templates/page';
+import PopupWindow from '../../utils/templates/popup';
 import App from '../app';
 import { changeLineItem, deleteAllProductsFromCart, getProductsFromCartById, removeProductFromCart } from './createAnonCart';
 import './style.css';
@@ -11,6 +12,7 @@ export default class BasketPage extends Page {
   render() {
     const title = this.createHeaderTitle(BasketPage.TextObject.MainTitle);
     const cartId = sessionStorage.getItem('cartId');
+    const popupWindow = new PopupWindow();
     if (cartId) {
       getProductsFromCartById(cartId).then((data) => {
         if (data.lineItems.length === 0) {
@@ -41,7 +43,10 @@ export default class BasketPage extends Page {
           this.container.insertAdjacentElement('beforeend', basketDiv);
 
           clearCart.addEventListener('click', () => {
-            deleteAllProductsFromCart(cartId);
+            popupWindow.popupTrue(' ', 'loaderOpen');
+            deleteAllProductsFromCart(cartId).then(() => {
+              popupWindow.popupTrue(' ', ' ');
+            });
           });
           for (let i = 0; i < data.lineItems.length; i++) {
             const wrapper = document.createElement('div');
@@ -76,8 +81,11 @@ export default class BasketPage extends Page {
                 const card = (e.target as HTMLElement).closest('.product-wrapper');
                 if (card) {
                   const cardId = card.id;
+                  popupWindow.popupTrue(' ', 'loaderOpen');
                   changeLineItem(data.version, cartId, cardId, data.lineItems[i].quantity + 1).then(() => {
                     App.renderPage('basket-page');
+                  }).then(() => {
+                    popupWindow.popupTrue(' ', ' ');
                   });
                 }
               }
@@ -91,8 +99,11 @@ export default class BasketPage extends Page {
                 const card = (e.target as HTMLElement).closest('.product-wrapper');
                 if (card) {
                   const cardId = card.id;
+                  popupWindow.popupTrue(' ', 'loaderOpen');
                   changeLineItem(data.version, cartId, cardId, data.lineItems[i].quantity - 1).then(() => {
                     App.renderPage('basket-page');
+                  }).then(() => {
+                    popupWindow.popupTrue(' ', ' ');
                   });
                 }
               }
@@ -117,8 +128,11 @@ export default class BasketPage extends Page {
                 const card = (e.target as HTMLElement).closest('.product-wrapper');
                 if (card) {
                   const cardId = card.id;
+                  popupWindow.popupTrue(' ', 'loaderOpen');
                   removeProductFromCart(data.version, cartId, cardId).then(() => {
                     App.renderPage('basket-page');
+                  }).then(() => {
+                    popupWindow.popupTrue(' ', ' ');
                   });
                 }
               }
