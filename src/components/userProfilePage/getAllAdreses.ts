@@ -26,10 +26,8 @@ export default function getAddressObjects() {
       isDefault: (cells[7].querySelector("input[type='checkbox']") as HTMLInputElement)?.checked || false,
     };
 
-
     addressObjects.push(addressObject);
   }
-
 
   return addressObjects;
 }

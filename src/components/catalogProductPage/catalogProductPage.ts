@@ -14,17 +14,21 @@ import {
   productSearch,
 } from './products';
 import App from '../app';
+import PopupWindow from '../../utils/templates/popup';
 
 class CatalogPage extends Page {
   static TextObject = {
     MainTitle: 'Catalog',
   };
-  
+
+
+
   render(): HTMLElement {
     const catalog = new CreateCatalogPage();
     this.container.classList.add('CatalogWrapper');
     sessionStorage.setItem('categoryId', 'main');
     this.container.insertAdjacentHTML('beforeend', catalog.mainCatalog());
+    const popupWindow = new PopupWindow();
     getProducts()
       .then((data) => {
         createProductsCards(data);
@@ -42,14 +46,20 @@ class CatalogPage extends Page {
               products.innerHTML = '';
             }
             if ((e.target as HTMLElement).id != 'main') {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               getSubCategoryProduct((e.target as HTMLElement).id).then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             }
 
             if ((e.target as HTMLElement).id === 'main') {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               getProducts().then((data) => {
                 createProductsCards(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             }
           }
@@ -61,12 +71,18 @@ class CatalogPage extends Page {
               products.innerHTML = '';
             }
             if (sessionStorage.getItem('categoryId') != 'main') {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               nameFilter().then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             } else {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               mainNameFilter().then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             }
           }
@@ -78,12 +94,18 @@ class CatalogPage extends Page {
               products.innerHTML = '';
             }
             if (sessionStorage.getItem('categoryId') != 'main') {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               priceFilter().then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             } else {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               mainPriceFilter().then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             }
           }
@@ -138,22 +160,31 @@ class CatalogPage extends Page {
             });
             const brands = values.join('","');
             if (brands != '') {
+              popupWindow.popupTrue(' ', 'loaderOpen');
               Filter(brands).then((data) => {
                 createProductsCardsCategory(data);
+              }).then(() => {
+                popupWindow.popupTrue(' ', ' ');
               });
             } else {
               if (sessionStorage.getItem('categoryId') != 'main') {
                 const id = sessionStorage.getItem('categoryId');
                 if (id) {
+                  popupWindow.popupTrue(' ', 'loaderOpen');
                   getSubCategoryProduct(id).then((data) => {
                     createProductsCardsCategory(data);
+                  }).then(() => {
+                    popupWindow.popupTrue(' ', ' ');
                   });
                 }
               }
 
               if (sessionStorage.getItem('categoryId') === 'main') {
+                popupWindow.popupTrue(' ', 'loaderOpen');
                 getProducts().then((data) => {
                   createProductsCards(data);
+                }).then(() => {
+                  popupWindow.popupTrue(' ', ' ');
                 });
               }
             }

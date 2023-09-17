@@ -5,6 +5,7 @@ import ValidationProfile from './validationProfile';
 import checkButton from './checkButton';
 import deleteProfile from './deleteProfail';
 import App from '../app';
+import PopupWindow from '../../utils/templates/popup';
 
 export default class EditProfilePage {
   public clearProfilePage() {
@@ -90,8 +91,6 @@ export default class EditProfilePage {
     checkLable.appendChild(span);
     td8.appendChild(checkLable);
 
-
-
     //<input type="checkbox" class="change-check_billing">
     const buttonDelete = document.createElement('button');
     td7.appendChild(buttonDelete);
@@ -100,7 +99,6 @@ export default class EditProfilePage {
     td7.appendChild(buttonDelete);
     const selectElement = document.createElement('select');
     selectElement.id = 'country_billing';
-
 
     const option1 = document.createElement('option');
     option1.textContent = '';
@@ -145,7 +143,6 @@ export default class EditProfilePage {
   private deleteButtonListener() {
     const deleteButtons = document.querySelectorAll('.button-DeleteProfile');
 
-
     deleteButtons.forEach((button) => {
       button.addEventListener('click', (e) => {
         deleteProfile(e);
@@ -159,14 +156,15 @@ export default class EditProfilePage {
   }
 
   public buttonListener(): void {
+    const popupWindow = new PopupWindow();
     const editButton: HTMLButtonElement | null = document.querySelector('.edit-profile-button');
     if (editButton) {
       editButton.addEventListener('click', () => {
-
         this.clearProfilePage();
 
         const email = sessionStorage.getItem('email');
         if (email) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
           getUserProfile(email).then((data) => {
             const validationProfile = new ValidationProfile();
             const profile = new CreateProfilePage(data);
@@ -208,7 +206,6 @@ export default class EditProfilePage {
             Row.appendChild(Td8);
             table.appendChild(Row);
 
-
             for (let i = 0; i < data.addresses.length; i++) {
               const row = document.createElement('tr');
               row.className = 'table-of-adresess';
@@ -239,7 +236,6 @@ export default class EditProfilePage {
               buttonDelete.classList.add('button-DeleteProfile');
               td7.appendChild(buttonDelete);
 
-
               const td8 = document.createElement('td');
               const checkLable = document.createElement('label');
               checkLable.className = 'checkbox-ios';
@@ -253,8 +249,6 @@ export default class EditProfilePage {
               checkLable.appendChild(check);
               checkLable.appendChild(span);
               td8.appendChild(checkLable);
-
-
 
               const option1 = document.createElement('option');
               option1.textContent = data.addresses[i].country == 'DE' ? 'Germany' : 'USA';
@@ -310,7 +304,7 @@ export default class EditProfilePage {
             setTimeout(() => {
               this.deleteButtonListener();
               checkButton();
-              document.querySelector('.exit-button')?.addEventListener('click', () =>{
+              document.querySelector('.exit-button')?.addEventListener('click', () => {
                 App.renderPage('profile-page');
               });
               //addAddress(data);
@@ -322,6 +316,8 @@ export default class EditProfilePage {
                 checkButton();
               });
             }, 100);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
           });
         }
       });

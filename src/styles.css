@@ -131,6 +131,25 @@ input {
   display: none;
 }
 
+.loader {
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  border:10px solid rgba(13, 71, 161, 0.6);
+  border-radius: 50%;
+  border-left-color:#0D47A1;
+  animation: loader 1.3s linear infinite;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  z-index: 2;
+
+ }
+ @keyframes loader {
+  100% {
+   transform: rotate(360deg);
+  }
+ }
 /* Burger Menu*/
 
 .header__burger {
@@ -176,6 +195,14 @@ input {
   z-index: 50;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+}
+.loader-shadow{
+  width: 98.5vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .shadow_active {
