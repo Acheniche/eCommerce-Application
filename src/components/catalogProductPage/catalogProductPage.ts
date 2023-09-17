@@ -21,8 +21,6 @@ class CatalogPage extends Page {
     MainTitle: 'Catalog',
   };
 
-
-
   render(): HTMLElement {
     const catalog = new CreateCatalogPage();
     this.container.classList.add('CatalogWrapper');
@@ -55,8 +53,7 @@ class CatalogPage extends Page {
             }
 
             if ((e.target as HTMLElement).id === 'main') {
-              popupWindow.popupTrue(' ', 'loaderOpen');
-              getProducts().then((data) => {
+              getProducts(true).then((data) => {
                 createProductsCards(data);
               }).then(() => {
                 popupWindow.popupTrue(' ', ' ');

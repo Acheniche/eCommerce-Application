@@ -46,7 +46,94 @@ export type Value = {
   value: Prices;
 };
 
-export async function getProducts() {
+let offset = 12;
+let isGetProductsAfterScrollComplete = true;
+
+export async function getProducts(mineOffset?: boolean) {
+  const response = await fetch(
+    'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: 'Basic akNVdWl0cXRNRzViRm03a1cwRDY5OGFNOjVMeElVQ2VFeFVsaXJUeEswb2pxWWFxdGtjcWRuVXh3',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    },
+  );
+  const tokenData = await response.json();
+  const accessToken = tokenData.access_token;
+
+  // const res = await fetch('https://api.europe-west1.gcp.commercetools.com/ghpr/products?&limit=100', {
+  //   method: 'GET',
+  //   headers: {
+  //     Authorization: `Bearer ${accessToken}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
+  if (mineOffset) {
+    offset = 12;
+  }
+  const test = await fetch('https://api.europe-west1.gcp.commercetools.com/ghpr/products?&limit=12&offset=0', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await test.json();
+  return data;
+}
+
+
+
+export function addAfterScrollProductsCards(data: Products) {
+  const products = document.querySelector('.products');
+  if (products) {
+    for (let i = 0; i < data.results.length; i++) {
+      const cardWrapper = document.createElement('div');
+      cardWrapper.classList.add('cardWrapper');
+      cardWrapper.setAttribute('id', `${data.results[i].id}`);
+      const img = document.createElement('img');
+      img.src = `${data.results[i].masterData.staged.masterVariant.images[0].url}`;
+      img.alt = 'pic';
+      const name = document.createElement('h3');
+      name.classList.add('productName');
+      name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
+      const div = document.createElement('div');
+      div.appendChild(img);
+      div.appendChild(name);
+      const description = document.createElement('p');
+      description.classList.add('productDescription');
+      description.textContent = `${data.results[i].masterData.current.description['en-US']}`;
+      const price = document.createElement('h3');
+      price.classList.add('productPrice');
+      const priceValue = `${data.results[i].masterData.staged.masterVariant.prices[0].value.centAmount}`;
+      price.textContent = `${priceValue.slice(0, -2)} ${
+        data.results[i].masterData.staged.masterVariant.prices[0].value.currencyCode
+      }`;
+      cardWrapper.append(div);
+      cardWrapper.append(description);
+      cardWrapper.append(price);
+      if (data.results[i].masterData.staged.masterVariant.prices[0].discounted) {
+        price.style.textDecoration = 'line-through';
+        const discount = document.createElement('h3');
+        discount.classList.add('discount');
+        const discountVal = `${data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.centAmount}`;
+        discount.textContent = `${discountVal.slice(0, -2)} ${
+          data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.currencyCode
+        }`;
+        cardWrapper.append(discount);
+      }
+      if (products) {
+        products.append(cardWrapper);
+      }
+    }
+  }
+  offset += 12;
+}
+
+export async function getProductsAfterScroll() {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
     {
@@ -67,8 +154,20 @@ export async function getProducts() {
       'Content-Type': 'application/json',
     },
   });
-  const data = await res.json();
-  return data;
+  const dataRes = await res.json();
+  if (Math.ceil(dataRes.results.length / 12) < offset) {
+    const test = await fetch(`https://api.europe-west1.gcp.commercetools.com/ghpr/products?&limit=12&offset=${offset}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await test.json();
+    return data;
+  } else {
+    isGetProductsAfterScrollComplete = false;
+  }
 }
 
 export function createProductsCards(data: Products) {
@@ -195,7 +294,30 @@ export function createProductsCards(data: Products) {
       }
     });
   }
+
+
+
+  function handleScroll() {
+    const documentRect = document.documentElement.getBoundingClientRect();
+    const documentHeight = document.documentElement.clientHeight;
+
+    if (documentRect.bottom < documentHeight + 170) {
+
+      if (isGetProductsAfterScrollComplete) {
+        isGetProductsAfterScrollComplete = false;
+
+        getProductsAfterScroll().then((a) => {
+          addAfterScrollProductsCards(a);
+
+        }).then(() => {isGetProductsAfterScrollComplete = true;});
+      }
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
 }
+
+
 
 export async function getSubCategoryProduct(id: string) {
   const response = await fetch(
