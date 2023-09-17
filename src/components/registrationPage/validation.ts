@@ -95,7 +95,6 @@ class ValidationRegistrationPage {
           name[i].classList.remove('input-wrong');
         }
       }
-
     }
   }
 
@@ -125,7 +124,6 @@ class ValidationRegistrationPage {
           postal[i].value = postal[i].value.substring(0, 5);
         };
       }
-
     }
   }
 
@@ -150,7 +148,6 @@ class ValidationRegistrationPage {
           country[i].classList.remove('input-wrong');
         }
       }
-
     }
   }
 

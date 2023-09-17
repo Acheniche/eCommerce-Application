@@ -38,7 +38,7 @@
   border-left: 1px black solid;
   min-height: 85vh;
 }
-.cardWrapper {
+.cardWrapper, .product-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,7 +104,6 @@ li:hover {
 }
 
 .buttonSearch, .button-filterByBrand {
-  /* position: relative; */
   padding: 10px 30px;
   margin: 10px;
   right: 0;
@@ -117,6 +116,22 @@ li:hover {
 
 .detailedWrapper{
   margin: auto;
+}
+
+.button-basket{
+  transition: 0.19s ease-in-out;
+  margin-bottom: 15px;
+}
+
+.button-basket:hover {
+  cursor: pointer;
+  background-color: #d4e3ef;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
+}
+
+h3{
+  margin-top: 16.5px;
+  margin-bottom: 16.5px;
 }
 
 @media (max-width: 751px) {

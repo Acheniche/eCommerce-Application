@@ -1,4 +1,5 @@
 import App, { PagesID } from '../../components/app';
+import { createCart } from '../../components/basketPage/createAnonCart';
 
 class LogoutButton {
   public logoutBtnListener() {
@@ -20,13 +21,15 @@ class LogoutButton {
           if (response.ok) {
             location.hash = 'main-page';
             App.renderPage(PagesID.mainPage);
-            // console.log('Токен отозван успешно.');
             const loginLink = document.querySelector('a[href="#login-page"]') as HTMLAnchorElement;
             const profileLink = document.querySelector('a[href="#profile-page"]') as HTMLAnchorElement;
             logoutBtn.classList.add('display-none');
             loginLink.classList.remove('display-none');
             profileLink.classList.add('display-none');
             App.isLogin = false;
+            if (App.isLogin === false) {
+              createCart();
+            }
           } else {
             console.error('Ошибка при отзыве токена.');
           }

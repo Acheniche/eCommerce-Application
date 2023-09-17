@@ -1,0 +1,108 @@
+.BasketWrapper {
+  padding: 10px;
+  padding-top: 0;
+  max-width: 80vw;
+  margin: auto;
+}
+
+.BasketWrapper h1{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.empty-cart {
+  font-size: 24px;
+  text-align: center;
+  justify-content: center;
+}
+.product-wrapper {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 20px;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.div_clearCart-button {
+  display: flex;
+  justify-content: center;
+}
+
+.promo-div{
+  display: flex;
+  justify-content: center;
+}
+
+.toCatalog-button,
+.clearCart-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 5px;
+  margin: 1vw 5px;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  transition: 0.2s ease-in-out;
+}
+.toCatalog-button{
+  float: right;
+}
+
+.promoButton{
+  transition: 0.2s ease-in-out;
+  margin-left: 5px;
+}
+
+.toCatalog-button:hover,
+.clearCart-button:hover,
+.promoButton:hover {
+  cursor: pointer;
+  background-color: #d4e3ef;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
+}
+
+.basket {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quantity-counter {
+  display: flex;
+}
+
+.quantity-counter h2 {
+  margin: 6px 6px;
+}
+
+.addLineItem,
+.removeLineItem {
+  height: 40px;
+  transition: 0.19s ease-in-out;
+}
+.deleteButton{
+  transition: 0.19s ease-in-out;
+}
+
+
+.addLineItem:hover,
+.removeLineItem:hover {
+  cursor: pointer;
+  background-color: #d4e3ef;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
+}
+.deleteButton:hover{
+  cursor: pointer;
+  background-color: #f56b6b;
+  box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);
+}
+
+.price-without{
+  color: red;
+}

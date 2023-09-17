@@ -10,6 +10,7 @@ import ProductPage from '../detailedProductPage/detailedProductPage';
 import { getProducts } from '../catalogProductPage/products';
 import BasketPage from '../basketPage/basketPage';
 import AboutUsPage from '../aboutUsPage/aboutUsPage';
+import { createCart } from '../basketPage/createAnonCart';
 
 export const enum PagesID {
   mainPage = 'main-page',
@@ -71,19 +72,21 @@ export default class App {
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash.slice(1);
       const arr: string[] = [];
-      getProducts().then((data) => {
-        for (let i = 0; i < data.results.length; i++) {
-          arr.push(data.results[i].id);
-        }
-      }).then(() => {
-        for (let i = 0; i < arr.length; i++) {
-          if (hash === arr[i]) {
-            App.renderPage('product-page');
-            return;
+      getProducts()
+        .then((data) => {
+          for (let i = 0; i < data.results.length; i++) {
+            arr.push(data.results[i].id);
           }
-        }
-        App.renderPage(hash);
-      });
+        })
+        .then(() => {
+          for (let i = 0; i < arr.length; i++) {
+            if (hash === arr[i]) {
+              App.renderPage('product-page');
+              return;
+            }
+          }
+          App.renderPage(hash);
+        });
     });
   }
 
@@ -93,6 +96,9 @@ export default class App {
   }
 
   run() {
+    if (App.isLogin === false) {
+      createCart();
+    }
     App.container.append(this.header.render());
     const hash = window.location.hash.slice(1);
     if (hash === '') {

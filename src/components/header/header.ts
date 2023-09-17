@@ -32,7 +32,6 @@ const Buttons = [
     id: PagesID.profilePage,
     text: 'Profile',
   },
-
 ];
 
 export default class Header extends Component {
