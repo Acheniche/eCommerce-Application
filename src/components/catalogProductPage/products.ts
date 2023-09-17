@@ -1,3 +1,6 @@
+import PopupWindow from '../../utils/templates/popup';
+import { addProductToCard, getCartById, getProductsFromCartById, removeProductFromCart } from '../basketPage/createAnonCart';
+
 export type Products = {
   results: Array<Results>;
 };
@@ -8,6 +11,7 @@ export type Results = {
   description: Lang;
   prices: Array<Prices>;
   id: string;
+  productType: Results;
 };
 export type Staged = {
   staged: MasterVariant;
@@ -178,6 +182,35 @@ export function createProductsCards(data: Products) {
     const img = document.createElement('img');
     img.src = `${data.results[i].masterData.staged.masterVariant.images[0].url}`;
     img.alt = 'pic';
+    const buttonBasket = document.createElement('button');
+    buttonBasket.textContent = '➕ 🛒';
+    buttonBasket.classList.add('button-basket');
+
+    const buttonRemoveFromBasket = document.createElement('button');
+    buttonRemoveFromBasket.textContent = '-- 🛒';
+    buttonRemoveFromBasket.classList.add('button-removeFromBasket');
+    buttonRemoveFromBasket.disabled = true;
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+      getProductsFromCartById(cartId).then((Data) => {
+        if (Data.lineItems.length === 0) {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+
+        } else if (Data.lineItems) {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              buttonBasket.disabled = true;
+              buttonRemoveFromBasket.disabled = false;
+            }
+          }
+        } else {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+        }
+      });
+    }
+
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].masterData.current.name['en-US']}`;
@@ -194,9 +227,12 @@ export function createProductsCards(data: Products) {
       data.results[i].masterData.staged.masterVariant.prices[0].value.currencyCode
     }`;
 
+    const priceButtonDiv = document.createElement('div');
+
+    priceButtonDiv.append(price);
+
     cardWrapper.append(div);
     cardWrapper.append(description);
-    cardWrapper.append(price);
 
     if (data.results[i].masterData.staged.masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
@@ -206,11 +242,57 @@ export function createProductsCards(data: Products) {
       discount.textContent = `${discountValue.slice(0, -2)} ${
         data.results[i].masterData.staged.masterVariant.prices[0].discounted.value.currencyCode
       }`;
-      cardWrapper.append(discount);
+      priceButtonDiv.append(discount);
     }
     if (products) {
       products.append(cardWrapper);
     }
+    priceButtonDiv.append(buttonBasket);
+    priceButtonDiv.append(buttonRemoveFromBasket);
+
+    cardWrapper.append(priceButtonDiv);
+
+    const popupWindow = new PopupWindow();
+
+    buttonBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = true;
+      buttonRemoveFromBasket.disabled = false;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      if (card) {
+        const cardId = card.id;
+        if (cartId) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
+          getCartById(cartId).then((version) => {
+            addProductToCard(cardId, version, cartId);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
+          });
+        }
+      }
+    });
+
+    buttonRemoveFromBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = false;
+      buttonRemoveFromBasket.disabled = true;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      const cardId = card?.id;
+      if (cartId && cardId) {
+        popupWindow.popupTrue(' ', 'loaderOpen');
+        getCartById(cartId).then((version) => {
+          getProductsFromCartById(cartId).then((Data) => {
+            for (let j = 0; j < Data.lineItems.length; j++) {
+              if (Data.lineItems[j].productId === data.results[i].id) {
+                removeProductFromCart(version, cartId, Data.lineItems[j].id);
+              }
+            }
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
+          });
+        });
+      }
+    });
   }
 
 
@@ -267,6 +349,7 @@ export async function getSubCategoryProduct(id: string) {
 
 export function createProductsCardsCategory(data: Products) {
   const products = document.querySelector('.products');
+  const popupWindow = new PopupWindow();
   if (products) {
     products.innerHTML = '';
   }
@@ -277,11 +360,41 @@ export function createProductsCardsCategory(data: Products) {
     const img = document.createElement('img');
     img.src = `${data.results[i].masterVariant.images[0].url}`;
     img.alt = 'pic';
+    const buttonBasket = document.createElement('button');
+    buttonBasket.textContent = '➕ 🛒';
+    buttonBasket.classList.add('button-basket');
+
+    const buttonRemoveFromBasket = document.createElement('button');
+    buttonRemoveFromBasket.textContent = '-- 🛒';
+    buttonRemoveFromBasket.classList.add('button-removeFromBasket');
+    buttonRemoveFromBasket.disabled = true;
+    const cartId = sessionStorage.getItem('cartId');
+    if (cartId) {
+      getProductsFromCartById(cartId).then((Data) => {
+        if (Data.lineItems.length === 0) {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+
+        } else if (Data.lineItems) {
+          for (let j = 0; j < Data.lineItems.length; j++) {
+            if (Data.lineItems[j].productId === data.results[i].id) {
+              buttonBasket.disabled = true;
+              buttonRemoveFromBasket.disabled = false;
+            }
+          }
+        } else {
+          buttonBasket.disabled = false;
+          buttonRemoveFromBasket.disabled = true;
+        }
+      });
+    }
+
     const name = document.createElement('h3');
     name.classList.add('productName');
     name.textContent = `${data.results[i].name['en-US']}`;
     const div = document.createElement('div');
     div.appendChild(img);
+    div.appendChild(buttonBasket);
     div.appendChild(name);
     const description = document.createElement('p');
     description.classList.add('productDescription');
@@ -290,9 +403,13 @@ export function createProductsCardsCategory(data: Products) {
     price.classList.add('productPrice');
     const priceValue = `${data.results[i].masterVariant.prices[0].value.centAmount}`;
     price.textContent = `${priceValue.slice(0, -2)} ${data.results[i].masterVariant.prices[0].value.currencyCode}`;
+
+    const priceButtonDiv = document.createElement('div');
+
+    priceButtonDiv.append(price);
+
     cardWrapper.append(div);
     cardWrapper.append(description);
-    cardWrapper.append(price);
 
     if (data.results[i].masterVariant.prices[0].discounted) {
       price.style.textDecoration = 'line-through';
@@ -302,11 +419,57 @@ export function createProductsCardsCategory(data: Products) {
       discount.textContent = `${discountValue.slice(0, -2)} ${
         data.results[i].masterVariant.prices[0].discounted.value.currencyCode
       }`;
-      cardWrapper.append(discount);
+      priceButtonDiv.append(discount);
     }
     if (products) {
       products.append(cardWrapper);
     }
+
+    priceButtonDiv.append(buttonBasket);
+    priceButtonDiv.append(buttonRemoveFromBasket);
+    cardWrapper.append(priceButtonDiv);
+
+
+
+    buttonBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = true;
+      buttonRemoveFromBasket.disabled = false;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      if (card) {
+        const cardId = card.id;
+        if (cartId) {
+          popupWindow.popupTrue(' ', 'loaderOpen');
+          getCartById(cartId).then((version) => {
+            addProductToCard(cardId, version, cartId);
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
+          });
+        }
+      }
+    });
+
+    buttonRemoveFromBasket.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buttonBasket.disabled = false;
+      buttonRemoveFromBasket.disabled = true;
+      const card = (e.target as HTMLElement).closest('.cardWrapper');
+      const cardId = card?.id;
+      if (cartId && cardId) {
+        popupWindow.popupTrue(' ', 'loaderOpen');
+        getCartById(cartId).then((version) => {
+          getProductsFromCartById(cartId).then((Data) => {
+            for (let j = 0; j < Data.lineItems.length; j++) {
+              if (Data.lineItems[j].productId === data.results[i].id) {
+                removeProductFromCart(version, cartId, Data.lineItems[j].id);
+              }
+            }
+          }).then(() => {
+            popupWindow.popupTrue(' ', ' ');
+          });
+        });
+      }
+    });
   }
 }
 
@@ -447,7 +610,7 @@ export async function productSearch(search: string) {
   return data;
 }
 
-export async function Filter(brands:string) {
+export async function Filter(brands: string) {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
     {
@@ -489,4 +652,3 @@ export async function Filter(brands:string) {
     return data;
   }
 }
-

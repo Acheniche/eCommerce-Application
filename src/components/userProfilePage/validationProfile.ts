@@ -17,7 +17,6 @@ export default class ValidationProfile {
       this.validationLoginPage.emailValidation(wrapper);
     }
   }
-  //---------------------------------------------------------
 
   public OldpasswordValidation(wrapper?: HTMLDivElement): void {
     const passwordInput: HTMLInputElement | null = document.querySelector('.Oldpassword');
@@ -108,7 +107,6 @@ export default class ValidationProfile {
       }
     }
   }
-  //---------------------------------------------------------
 
   public oldtogglePasswordVisibility(): void {
     const passwordInput: HTMLInputElement | null = document.querySelector('.Oldpassword');
@@ -228,18 +226,17 @@ export default class ValidationProfile {
     }
   }
 
-  public input(): number  {
+  public input(): number {
     const inputLength = document.querySelectorAll('input').length;
     const trLength = document.querySelectorAll('tr').length;
-    return inputLength - trLength  - 1;
-
+    return inputLength - trLength - 1;
   }
 
   public buttonListener(): void {
     const updateButton: HTMLButtonElement | null = document.querySelector('.update-button');
     const OldPasswordWrapper: HTMLDivElement | null = document.querySelector('.Oldpassword-wrapper');
     const NewPasswordWrapper: HTMLDivElement | null = document.querySelector('.Newpassword-wrapper');
-    const ValidationAddres = new ValidationRegistrationPage;
+    const ValidationAddres = new ValidationRegistrationPage();
     this.oldtogglePasswordVisibility();
     this.newtogglePasswordVisibility();
     if (updateButton) {
@@ -280,7 +277,6 @@ export default class ValidationProfile {
         ValidationAddres.postalListener_shipping();
         ValidationAddres.countryCheck_shipping();
 
-        //-------------------------------
         const icons = document.querySelectorAll('.icon');
         let i: number = 0;
         let counter: number = 0;
@@ -295,16 +291,12 @@ export default class ValidationProfile {
             if (email) {
               getUserProfile(email).then((data) => {
                 const allAdress = getAddressObjects();
-                //const allAdress = getAddressObjects().map((address) => JSON.stringify(address))
-                // console.log(allAdress);
                 getToken(data.id, data.version, allAdress);
               });
             }
           }
           i += 1;
-
         }
-        //------------------------------
       });
     }
   }

@@ -1,11 +1,11 @@
 import { getUserProfile } from './profileInfo';
-async function deletAdress(addressId: string, id: string, accessToken:string, version:string) {
+async function deletAdress(addressId: string, id: string, accessToken: string, version: string) {
   const data = {
     version: version,
     actions: [
       {
-        'action': 'removeAddress',
-        'addressId': `${addressId}`,
+        action: 'removeAddress',
+        addressId: `${addressId}`,
       },
     ],
   };
@@ -19,12 +19,12 @@ async function deletAdress(addressId: string, id: string, accessToken:string, ve
     body: JSON.stringify(data),
   }).then(function (res) {
     if (!res.ok) {
-      console.log(res, 'NO');
+      console.log(res);
     }
   });
 }
 
-async function getToken(addressId:string, id:string, version:string) {
+async function getToken(addressId: string, id: string, version: string) {
   const response = await fetch(
     'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
     {
@@ -44,29 +44,12 @@ export default function deleteProfile(e: Event) {
   const tr = target.closest('tr') as HTMLTableRowElement;
   const addressId = tr?.querySelector('.adress-id')?.innerHTML;
 
-  if (addressId !== undefined && addressId !== '') { // Проверяем, что addressId не является undefined или пустой строкой
+  if (addressId !== undefined && addressId !== '') {
     const email = sessionStorage.getItem('email');
     if (email) {
       getUserProfile(email).then((data) => {
         getToken(addressId, data.id, data.version);
-
       });
     }
   }
 }
-
-
-
-/*   if (addressId) {
-    const email = sessionStorage.getItem('email');
-        if (email) {
-          getUserProfile(email).then((data) => {
-             console.log(String(token), addressId.value, data.id)
-            deletAdress(String(token), addressId.value, data.id)
-            console.log(addressId.value); // Выводим значение поля .address-id
-    })
-   }
-  } */
-
-
-

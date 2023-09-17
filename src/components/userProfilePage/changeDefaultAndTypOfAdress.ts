@@ -8,7 +8,8 @@ async function updateData(
     city: string | null;
     street: string | null;
     postalCode: string | null;
-    country: string | null;id: string | null;
+    country: string | null;
+    id: string | null;
     type: string | null;
     isDefault: boolean;
   }[],
@@ -20,7 +21,13 @@ async function updateData(
     while (index < allAdress.length) {
       const address = allAdress[index];
       const action =
-        address.type == 'Shipping' ? address.isDefault == true ? 'setDefaultShippingAddress' : 'addShippingAddressId' : address.isDefault == true ? 'setDefaultBillingAddress' : 'addBillingAddressId';
+        address.type == 'Shipping'
+          ? address.isDefault == true
+            ? 'setDefaultShippingAddress'
+            : 'addShippingAddressId'
+          : address.isDefault == true
+            ? 'setDefaultBillingAddress'
+            : 'addBillingAddressId';
       const addressId = dataAdress[index].id;
       const data = {
         action: action,
@@ -35,12 +42,12 @@ async function updateData(
       actions: actions,
     };
 
-
     const response = await fetch(`https:/api.europe-west1.gcp.commercetools.com/ghpr/customers/${kod}`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json' },
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(postData),
     });
 
@@ -56,7 +63,20 @@ async function updateData(
     console.log(error);
   }
 }
-async function getToke(version: string, kod: number, dataAdress: { id: string }[], allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
+async function getToke(
+  version: string,
+  kod: number,
+  dataAdress: { id: string }[],
+  allAdress: {
+    city: string | null;
+    street: string | null;
+    postalCode: string | null;
+    country: string | null;
+    id: string | null;
+    type: string | null;
+    isDefault: boolean;
+  }[],
+) {
   try {
     const response = await fetch(
       'https://auth.europe-west1.gcp.commercetools.com/oauth/token?grant_type=client_credentials',
@@ -75,7 +95,17 @@ async function getToke(version: string, kod: number, dataAdress: { id: string }[
     console.log(error);
   }
 }
-export default async function changeDefaultAndTypOfAdress(allAdress: { city: string | null, street: string | null, postalCode: string | null, country: string | null, id: string | null, type: string | null, isDefault: boolean }[]) {
+export default async function changeDefaultAndTypOfAdress(
+  allAdress: {
+    city: string | null;
+    street: string | null;
+    postalCode: string | null;
+    country: string | null;
+    id: string | null;
+    type: string | null;
+    isDefault: boolean;
+  }[],
+) {
   try {
     const email = sessionStorage.getItem('email');
 
@@ -88,7 +118,3 @@ export default async function changeDefaultAndTypOfAdress(allAdress: { city: str
     console.log(error);
   }
 }
-
-
-
-
