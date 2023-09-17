@@ -14,12 +14,12 @@
 
 }
 .foto-of-user{
-  /* height: 20vh; */
-
+  margin: auto;
 }
 .img-about-us{
   height: 25vw;
   width: 19vw;
+  border-radius: 10px;
 }
 
 .userImfo > *{

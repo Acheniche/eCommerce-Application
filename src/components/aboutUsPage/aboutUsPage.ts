@@ -31,7 +31,7 @@ export default class AboutUsPage extends Page {
       'Евдокимов', '22.11.1992',
       'yomayo1992@yandex.ru',
       'I worked with APIs on this project.',
-      'https://img.hhcdn.ru/photo/505200434.jpeg?t=1694450370&h=J5gScY8y75k6ri02YJufbw',
+      '../src/assets/image/Alex.jpg',
       '"I\'ve completed courses from Meta and I\'m currently taking a course from RS School. I want to become a good front-end programmer."',
       'https://github.com/yomayo666');
       const aboutArtem = aboutUsInfo('Artem',
