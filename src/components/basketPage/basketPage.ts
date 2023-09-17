@@ -9,6 +9,42 @@ export default class BasketPage extends Page {
     MainTitle: 'Basket',
   };
 
+  promoTotal(text: string) {
+    if (text == 'WEEKEND') {
+      setTimeout(() => {
+        const totalCostOfCart: HTMLTitleElement | null = document.querySelector('.totalCostOfCart');
+        const BasketWrapper: HTMLDivElement | null = document.querySelector('.BasketWrapper');
+        if (totalCostOfCart && BasketWrapper) {
+          const textContent: string = totalCostOfCart.textContent || '';
+          const costMatch: RegExpMatchArray | null = textContent.match(/\d+/);
+
+          if (costMatch) {
+            const cost: number = parseInt(costMatch[0], 10);
+            const totalCostOfCart1 = document.createElement('h2');
+            totalCostOfCart1.textContent = `price without promo code ${cost / (1 - (30 / 100))}`;
+            BasketWrapper.append(totalCostOfCart1);
+          }
+        }
+      }, 1000);
+    } else if (text ==  'QWERTY') {
+      setTimeout(() => {
+        const totalCostOfCart: HTMLTitleElement | null = document.querySelector('.totalCostOfCart');
+        const BasketWrapper: HTMLDivElement | null = document.querySelector('.BasketWrapper');
+        if (totalCostOfCart && BasketWrapper) {
+          const textContent: string = totalCostOfCart.textContent || '';
+          const costMatch: RegExpMatchArray | null = textContent.match(/\d+/);
+
+          if (costMatch) {
+            const cost: number = parseInt(costMatch[0], 10);
+            const totalCostOfCart1 = document.createElement('h2');
+            totalCostOfCart1.textContent = `Price without promo code ${cost / (1 - (20 / 100))}`;
+            BasketWrapper.append(totalCostOfCart1);
+          }
+        }
+      }, 1000);
+    }
+  }
+
   render() {
     const title = this.createHeaderTitle(BasketPage.TextObject.MainTitle);
     const cartId = sessionStorage.getItem('cartId');
@@ -37,6 +73,7 @@ export default class BasketPage extends Page {
           clearCart.textContent = 'Clear Cart';
 
           const promoDiv = document.createElement('div');
+          promoDiv.classList.add('promo-div');
           const inputArea = document.createElement('input');
           inputArea.type = 'text';
           inputArea.classList.add('input-promo');
@@ -159,15 +196,26 @@ export default class BasketPage extends Page {
           this.container.append(totalCostOfCart);
 
           promoButoon.addEventListener('click', () => {
-            if (inputArea.value === 'WEEKEND' || inputArea.value === 'QWERTY') {
-            applyPromo(data.version, cartId, inputArea.value).then(() => {
+            if (inputArea.value === 'WEEKEND') {
+              applyPromo(data.version, cartId, inputArea.value).then(() => {
+                inputArea.value = '';
+                App.renderPage('basket-page');
+
+              }).then(() => {
+                this.promoTotal('WEEKEND');
+              });
+            } else if (inputArea.value === 'QWERTY') {
+              applyPromo(data.version, cartId, inputArea.value).then(() => {
+                inputArea.value = '';
+                App.renderPage('basket-page');
+
+              }).then(() => {
+                this.promoTotal('QWERTY');
+              });
+            } else {
               inputArea.value = '';
-              App.renderPage('basket-page');
-            });
-          } else {
-            inputArea.value = '';
-            error.textContent = 'invalid promo code';
-          }
+              error.textContent = 'invalid promo code';
+            }
           });
         }
       });

@@ -32,6 +32,11 @@ img {
   justify-content: center;
 }
 
+.promo-div{
+  display: flex;
+  justify-content: center;
+}
+
 .toCatalog-button,
 .clearCart-button {
   text-decoration: none;
@@ -49,8 +54,14 @@ img {
   float: right;
 }
 
+.promoButton{
+  transition: 0.2s ease-in-out;
+  margin-left: 5px;
+}
+
 .toCatalog-button:hover,
-.clearCart-button:hover {
+.clearCart-button:hover,
+.promoButton:hover {
   cursor: pointer;
   background-color: #d4e3ef;
   box-shadow: 0px 2px 5px 4px rgba(13, 13, 13, 0.1);

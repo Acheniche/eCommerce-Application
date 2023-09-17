@@ -211,5 +211,6 @@ export async function applyPromo(version: string, cartId: string, promo: string)
     body: JSON.stringify(data),
   });
   const result = await res.json();
+  console.log('aplyPromo', result);
   return result;
 }
