@@ -53,8 +53,7 @@ class CatalogPage extends Page {
             }
 
             if ((e.target as HTMLElement).id === 'main') {
-              popupWindow.popupTrue(' ', 'loaderOpen');
-              getProducts().then((data) => {
+              getProducts(true).then((data) => {
                 createProductsCards(data);
               }).then(() => {
                 popupWindow.popupTrue(' ', ' ');
