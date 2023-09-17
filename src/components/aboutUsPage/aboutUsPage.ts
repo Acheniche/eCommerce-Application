@@ -23,7 +23,7 @@ export default class AboutUsPage extends Page {
     const aboutAndrei = aboutUsInfo('Andrei',
       'Bibik', ' ',
       'Email: Ache_niche00@mail.ru',
-      'In this project, I was the team leader. I handled all the organizational aspects of the project and coordinated with teammates. Ебанул больше половины приложения один)',
+      'In this project, I was the team leader. I handled all the organizational aspects of the project and coordinated with teammates. ',
       'https://img.hhcdn.ru/photo/505200434.jpeg?t=1694450370&h=J5gScY8y75k6ri02YJufbw',
       '"I am 19 years old, at the moment i study at Belarusian State University of Informatics and Radioelectronics. My goal at the moment is to become a highly qualified IT specialist."',
       'https://github.com/Acheniche');
@@ -38,7 +38,7 @@ export default class AboutUsPage extends Page {
       'Farkhutdinov', ' ',
       'Email: artiom.farhutdinoff@yandex.ru',
       'In this project, I was responsible for responsiveness, design, and input field validation.',
-      ' ',
+      '/src/assets/image/Artem.jpg',
       '"I am 31 years old and currently completing my studies at Rolling Scopes School, specializing in JavaScript/Front-end 2023Q1. My current goal is to find my first job in IT) and become a highly skilled IT specialist."',
       'https://github.com/ChessMasterr');
     this.container.insertAdjacentHTML('beforeend', aboutAndrei);
