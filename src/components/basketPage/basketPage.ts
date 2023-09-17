@@ -21,7 +21,8 @@ export default class BasketPage extends Page {
           if (costMatch) {
             const cost: number = parseInt(costMatch[0], 10);
             const totalCostOfCart1 = document.createElement('h2');
-            totalCostOfCart1.textContent = `price without promo code ${cost / (1 - (30 / 100))}`;
+            totalCostOfCart1.classList.add('price-without');
+            totalCostOfCart1.textContent = `Price without promo code ${cost / (1 - (30 / 100))}`;
             BasketWrapper.append(totalCostOfCart1);
           }
         }
@@ -37,6 +38,7 @@ export default class BasketPage extends Page {
           if (costMatch) {
             const cost: number = parseInt(costMatch[0], 10);
             const totalCostOfCart1 = document.createElement('h2');
+            totalCostOfCart1.classList.add('price-without');
             totalCostOfCart1.textContent = `Price without promo code ${cost / (1 - (20 / 100))}`;
             BasketWrapper.append(totalCostOfCart1);
           }
